@@ -16,6 +16,8 @@ set(PROJECT_SOURCES
         main.cpp
         mainwindow.cpp
         mainwindow.h
+        irisdata.cpp
+        irisdata.h
         Images.qrc
         mainwindow.ui
 )

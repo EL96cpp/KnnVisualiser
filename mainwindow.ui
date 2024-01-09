@@ -24,24 +24,11 @@ background-image: url(:/background.jpg);
    <property name="styleSheet">
     <string notr="true"/>
    </property>
-   <widget class="QLabel" name="label_3">
-    <property name="geometry">
-     <rect>
-      <x>40</x>
-      <y>160</y>
-      <width>121</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
    <widget class="QGroupBox" name="groupBox">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>70</y>
+      <x>40</x>
+      <y>60</y>
       <width>411</width>
       <height>141</height>
      </rect>
@@ -53,6 +40,13 @@ background-image: url(:/background.jpg);
     border-style: outset;
     border-width: 2px;
     border-radius: 15px;
+
+}
+
+#groupBox::QLabel {
+
+	color: rgb(204, 245, 234);
+	background-color: rgb(2, 50, 57);
 
 }</string>
     </property>
@@ -73,7 +67,7 @@ background-image: url(:/background.jpg);
      </property>
      <layout class="QFormLayout" name="formLayout">
       <item row="0" column="0">
-       <widget class="QLabel" name="neighbours_label">
+       <widget class="QLabel" name="neighboursLabel">
         <property name="styleSheet">
          <string notr="true">color: rgb(204, 245, 234);
 background-color: rgb(2, 50, 57);</string>
@@ -87,10 +81,19 @@ background-color: rgb(2, 50, 57);</string>
        </widget>
       </item>
       <item row="0" column="1">
-       <widget class="QLineEdit" name="neighboursLineEdit"/>
+       <widget class="QLineEdit" name="neighboursLineEdit">
+        <property name="styleSheet">
+         <string notr="true">    border-style: outset;
+    border-width: 1px;
+	border-color: rbg(154, 173, 176);
+    border-radius: 5px;
+	color: rgb(204, 245, 234);
+	background-color: rgb(2, 50, 57);</string>
+        </property>
+       </widget>
       </item>
       <item row="1" column="0">
-       <widget class="QLabel" name="kernel_label">
+       <widget class="QLabel" name="kernelLabel">
         <property name="styleSheet">
          <string notr="true">color: rgb(204, 245, 234);
 background-color: rgb(2, 50, 57);</string>
@@ -107,7 +110,7 @@ background-color: rgb(2, 50, 57);</string>
        <widget class="QComboBox" name="kernelComboBox"/>
       </item>
       <item row="2" column="0">
-       <widget class="QLabel" name="metric_label">
+       <widget class="QLabel" name="metricLabel">
         <property name="styleSheet">
          <string notr="true">color: rgb(204, 245, 234);
 background-color: rgb(2, 50, 57);</string>
@@ -151,8 +154,8 @@ background-color: rgb(2, 50, 57);</string>
    <widget class="QPushButton" name="startLearnButton">
     <property name="geometry">
      <rect>
-      <x>460</x>
-      <y>180</y>
+      <x>470</x>
+      <y>170</y>
       <width>89</width>
       <height>25</height>
      </rect>
@@ -162,6 +165,10 @@ background-color: rgb(2, 50, 57);</string>
 
 	background-color: rgb(3, 73, 80);
 	color: rgb(204, 245, 234);
+    border-style: outset;
+    border-width: 1px;
+	border-color: rbg(154, 173, 176);
+    border-radius: 5px;
 
 }
 
