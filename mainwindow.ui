@@ -6,14 +6,24 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1217</width>
-    <height>786</height>
+    <width>1274</width>
+    <height>905</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">#MainWindow {
+
+background-image: url(:/background.jpg);
+
+}</string>
+  </property>
   <widget class="QWidget" name="centralwidget">
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
    <widget class="QLabel" name="label_3">
     <property name="geometry">
      <rect>
@@ -31,10 +41,20 @@
     <property name="geometry">
      <rect>
       <x>30</x>
-      <y>50</y>
+      <y>70</y>
       <width>411</width>
       <height>141</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#groupBox {
+
+	background-color: rgba(7,103,119,210);
+    border-style: outset;
+    border-width: 2px;
+    border-radius: 15px;
+
+}</string>
     </property>
     <property name="title">
      <string/>
@@ -42,7 +62,7 @@
     <property name="alignment">
      <set>Qt::AlignCenter</set>
     </property>
-    <widget class="QWidget" name="">
+    <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
        <x>20</x>
@@ -54,6 +74,10 @@
      <layout class="QFormLayout" name="formLayout">
       <item row="0" column="0">
        <widget class="QLabel" name="neighbours_label">
+        <property name="styleSheet">
+         <string notr="true">color: rgb(204, 245, 234);
+background-color: rgb(2, 50, 57);</string>
+        </property>
         <property name="text">
          <string>Число соседей</string>
         </property>
@@ -67,6 +91,10 @@
       </item>
       <item row="1" column="0">
        <widget class="QLabel" name="kernel_label">
+        <property name="styleSheet">
+         <string notr="true">color: rgb(204, 245, 234);
+background-color: rgb(2, 50, 57);</string>
+        </property>
         <property name="text">
          <string>Функция ядра</string>
         </property>
@@ -80,6 +108,10 @@
       </item>
       <item row="2" column="0">
        <widget class="QLabel" name="metric_label">
+        <property name="styleSheet">
+         <string notr="true">color: rgb(204, 245, 234);
+background-color: rgb(2, 50, 57);</string>
+        </property>
         <property name="text">
          <string>Параметр метрики
 Минковского</string>
@@ -120,10 +152,25 @@
     <property name="geometry">
      <rect>
       <x>460</x>
-      <y>170</y>
+      <y>180</y>
       <width>89</width>
       <height>25</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#startLearnButton {
+
+	background-color: rgb(3, 73, 80);
+	color: rgb(204, 245, 234);
+
+}
+
+#startLearnButton:hover {
+
+	background-color: rgb(79, 128, 133);
+	color: rgb(255, 255, 255);
+
+}</string>
     </property>
     <property name="text">
      <string>Старт</string>

@@ -16,6 +16,7 @@ set(PROJECT_SOURCES
         main.cpp
         mainwindow.cpp
         mainwindow.h
+        Images.qrc
         mainwindow.ui
 )
 
