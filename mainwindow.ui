@@ -62,18 +62,18 @@ background-image: url(:/background.jpg);
        <x>20</x>
        <y>20</y>
        <width>371</width>
-       <height>101</height>
+       <height>107</height>
       </rect>
      </property>
      <layout class="QFormLayout" name="formLayout">
       <item row="0" column="0">
-       <widget class="QLabel" name="neighboursLabel">
+       <widget class="QLabel" name="widthLabel">
         <property name="styleSheet">
          <string notr="true">color: rgb(204, 245, 234);
 background-color: rgb(2, 50, 57);</string>
         </property>
         <property name="text">
-         <string>Число соседей</string>
+         <string>Ширина окна</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
@@ -81,7 +81,7 @@ background-color: rgb(2, 50, 57);</string>
        </widget>
       </item>
       <item row="0" column="1">
-       <widget class="QLineEdit" name="neighboursLineEdit">
+       <widget class="QLineEdit" name="windowWidthLineEdit">
         <property name="styleSheet">
          <string notr="true">    border-style: outset;
     border-width: 1px;
@@ -107,7 +107,33 @@ background-color: rgb(2, 50, 57);</string>
        </widget>
       </item>
       <item row="1" column="1">
-       <widget class="QComboBox" name="kernelComboBox"/>
+       <widget class="QComboBox" name="kernelComboBox">
+        <item>
+         <property name="text">
+          <string>Прямоугольное</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Треугольное</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Ядро Епанченкова</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Биквадратное</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Гауссовское</string>
+         </property>
+        </item>
+       </widget>
       </item>
       <item row="2" column="0">
        <widget class="QLabel" name="metricLabel">

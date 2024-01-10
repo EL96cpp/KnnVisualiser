@@ -11,6 +11,16 @@
 
 #include "irisdata.h"
 
+enum class KernelType {
+
+    RECTANGULAR,
+    TRIANGLE,
+    EPANCHENKOV,
+    BIQUADRATIC,
+    GAUSSIAN
+
+};
+
 class Model : public QObject
 {
     Q_OBJECT
@@ -19,6 +29,7 @@ public:
 
 public slots:
     //void startLearning();
+    void onSetKernelType(const KernelType& kernel_type);
 
 
 signals:
@@ -32,6 +43,8 @@ private:
 private:
     QVector<IrisData> dataset;
     QVector<QVector<IrisData>> cv_data;
+    int minkowski_metric;
+    KernelType kernel_type;
 
 };
 

@@ -17,6 +17,12 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+signals:
+    void setKernelType(const KernelType& kernel_type);
+
+private slots:
+    void on_kernelComboBox_currentTextChanged(const QString &arg1);
+
 private:
     Ui::MainWindow *ui;
     Model* model;

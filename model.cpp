@@ -8,6 +8,12 @@ Model::Model(QObject *parent)
 
 }
 
+void Model::onSetKernelType(const KernelType &kernel_type) {
+
+    this->kernel_type = kernel_type;
+
+}
+
 void Model::readDataFromCsv() {
 
     QFile dataset_file("../Data/iris_csv.csv");
@@ -97,12 +103,5 @@ void Model::prepareCrossValidationData() {
         cv_data.push_back(cv_group);
 
     }
-
-    for (int i = 0; i < cv_data.size(); ++i) {
-
-        qDebug() << cv_data[i].size();
-
-    }
-
 
 }
