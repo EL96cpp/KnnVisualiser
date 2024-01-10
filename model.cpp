@@ -4,6 +4,7 @@ Model::Model(QObject *parent)
     : QObject{parent} {
 
     readDataFromCsv();
+    prepareCrossValidationData();
 
 }
 
@@ -51,8 +52,57 @@ void Model::readDataFromCsv() {
 
         }
 
-        qDebug() << dataset.size();
+    }
+
+}
+
+void Model::prepareCrossValidationData() {
+
+    //In dataset first 50 values are Iris-setosa, next 50 - Iris-versicolor, last 50 - Iris-virginica
+    //It means we can create vector of indexes, shuffle indexes in each group of 50 values
+    //and consistently put 10 values from each of three groups in cross-validation vectors
+    //to get 5 cross-validation vectors, 30 values in each
+
+    QVector<int> cv_indexes;
+
+    for (int i = 0; i < 150; ++i) {
+
+        cv_indexes.push_back(i);
 
     }
+
+    //std::time(0) - time in seconds since the Unix epoch
+    std::srand(std::time(0));
+
+    for (int i = 0; i <= 100; i += 50) {
+
+        std::random_shuffle(cv_indexes.begin() + i, cv_indexes.begin() + (i + 50));
+
+    }
+
+    cv_data.clear();
+
+    for (int i = 0; i < 5; ++i) {
+
+        QVector<IrisData> cv_group;
+
+        for (int j = 0; j < 10; ++j) {
+
+            cv_group.push_back(dataset[cv_indexes[i*10 + j]]);
+            cv_group.push_back(dataset[cv_indexes[i*10 + 50 + j]]);
+            cv_group.push_back(dataset[cv_indexes[i*10 + 100 + j]]);
+
+        }
+
+        cv_data.push_back(cv_group);
+
+    }
+
+    for (int i = 0; i < cv_data.size(); ++i) {
+
+        qDebug() << cv_data[i].size();
+
+    }
+
 
 }

@@ -7,8 +7,7 @@
 #include <QFile>
 #include <QStringList>
 #include <QTextStream>
-
-#include <typeinfo>
+#include <algorithm>
 
 #include "irisdata.h"
 
@@ -18,17 +17,21 @@ class Model : public QObject
 public:
     explicit Model(QObject *parent = nullptr);
 
+public slots:
+    //void startLearning();
+
+
 signals:
     void openCsvFileError();
 
 private:
     void readDataFromCsv();
+    void prepareCrossValidationData();
 
 
 private:
     QVector<IrisData> dataset;
-    QVector<IrisData> train_data;
-    QVector<IrisData> test_data;
+    QVector<QVector<IrisData>> cv_data;
 
 };
 
