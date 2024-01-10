@@ -14,6 +14,20 @@ void Model::onSetKernelType(const KernelType &kernel_type) {
 
 }
 
+void Model::onSetWindowWidth(const double &window_width) {
+
+    this->window_width = window_width;
+    qDebug() << window_width;
+
+}
+
+void Model::onSetMinkowskiMetric(const int &minkowski_metric) {
+
+    this->minkowski_metric = minkowski_metric;
+    qDebug() << minkowski_metric;
+
+}
+
 void Model::readDataFromCsv() {
 
     QFile dataset_file("../Data/iris_csv.csv");

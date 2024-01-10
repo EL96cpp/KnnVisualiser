@@ -30,7 +30,8 @@ public:
 public slots:
     //void startLearning();
     void onSetKernelType(const KernelType& kernel_type);
-
+    void onSetWindowWidth(const double &window_width);
+    void onSetMinkowskiMetric(const int& minkowski_metric);
 
 signals:
     void openCsvFileError();
@@ -44,6 +45,7 @@ private:
     QVector<IrisData> dataset;
     QVector<QVector<IrisData>> cv_data;
     int minkowski_metric;
+    double window_width;
     KernelType kernel_type;
 
 };
