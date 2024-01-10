@@ -19,7 +19,7 @@ public:
     ~MainWindow();
 
 signals:
-    void setKernelType(const KernelType& kernel_type);
+    void setKernelType(const QString& kernel_type);
     void setWindowWidth(const double& window_width);
     void setMinkowskiMetric(const int& minkowski_metric);
 

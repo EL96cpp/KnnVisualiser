@@ -1,5 +1,41 @@
 #include "model.h"
 
+# define PI 3.14159265358979323846
+
+#include <math.h>
+
+// Kernel functions
+
+double Rectangular(const double& x) {
+
+    return 0.5 * (std::abs(x) <= 1);
+
+}
+
+double Triangle(const double& x) {
+
+    return (1 - std::abs(x)) * (std::abs(x) <= 1);
+
+}
+
+double Epanchenkov(const double& x) {
+
+    return 0.75 * (1 - std::pow(x, 2)) * (std::abs(x) <= 1);
+
+}
+
+double Biquadratic(const double& x) {
+
+    return 0.9375 * std::pow(1 - std::pow(x, 2), 2) * (std::abs(x) <= 1);
+
+}
+
+double Gaussian(const double& x) {
+
+    return (1/std::sqrt(2 * PI)) * std::exp(-2 * std::pow(x, 2));
+
+}
+
 Model::Model(QObject *parent)
     : QObject{parent} {
 
@@ -8,23 +44,43 @@ Model::Model(QObject *parent)
 
 }
 
-void Model::onSetKernelType(const KernelType &kernel_type) {
+void Model::onSetKernelType(const QString &kernel_type) {
 
-    this->kernel_type = kernel_type;
+    if (kernel_type == "Прямоугольное") {
+
+        kernel = Rectangular;
+
+    } else if (kernel_type == "Треугольное") {
+
+        kernel = Triangle;
+
+    } else if (kernel_type == "Ядро Епанченкова") {
+
+        kernel = Epanchenkov;
+
+    } else if (kernel_type == "Биквадратное") {
+
+        kernel = Biquadratic;
+
+    } else if (kernel_type == "Гауссовское") {
+
+        kernel = Gaussian;
+
+    }
+
+    qDebug() << kernel(0.5);
 
 }
 
 void Model::onSetWindowWidth(const double &window_width) {
 
     this->window_width = window_width;
-    qDebug() << window_width;
 
 }
 
 void Model::onSetMinkowskiMetric(const int &minkowski_metric) {
 
     this->minkowski_metric = minkowski_metric;
-    qDebug() << minkowski_metric;
 
 }
 

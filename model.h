@@ -8,18 +8,11 @@
 #include <QStringList>
 #include <QTextStream>
 #include <algorithm>
+#include <math.h>
+#include <functional>
 
 #include "irisdata.h"
 
-enum class KernelType {
-
-    RECTANGULAR,
-    TRIANGLE,
-    EPANCHENKOV,
-    BIQUADRATIC,
-    GAUSSIAN
-
-};
 
 class Model : public QObject
 {
@@ -29,7 +22,7 @@ public:
 
 public slots:
     //void startLearning();
-    void onSetKernelType(const KernelType& kernel_type);
+    void onSetKernelType(const QString& kernel_type);
     void onSetWindowWidth(const double &window_width);
     void onSetMinkowskiMetric(const int& minkowski_metric);
 
@@ -44,9 +37,9 @@ private:
 private:
     QVector<IrisData> dataset;
     QVector<QVector<IrisData>> cv_data;
+    std::function<double(const double&)> kernel;
     int minkowski_metric;
     double window_width;
-    KernelType kernel_type;
 
 };
 

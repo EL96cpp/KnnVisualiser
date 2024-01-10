@@ -12,6 +12,7 @@ MainWindow::MainWindow(QWidget *parent)
     auto dv = new QDoubleValidator(0.0, 5.0, 2); // [0, 5] with 2 decimals of precision
     dv->setNotation(QDoubleValidator::StandardNotation);
     ui->windowWidthLineEdit->setValidator(dv);
+    ui->windowWidthLineEdit->insert("1,0");
 
     connect(this, &MainWindow::setKernelType, model, &Model::onSetKernelType);
     connect(this, &MainWindow::setMinkowskiMetric, model, &Model::onSetMinkowskiMetric);
@@ -26,29 +27,9 @@ MainWindow::~MainWindow() {
 }
 
 
-void MainWindow::on_kernelComboBox_currentTextChanged(const QString &kernel_string) {
+void MainWindow::on_kernelComboBox_currentTextChanged(const QString &kernel_type) {
 
-    if (kernel_string == "Прямоугольное") {
-
-        emit setKernelType(KernelType::RECTANGULAR);
-
-    } else if (kernel_string == "Треугольное") {
-
-        emit setKernelType(KernelType::TRIANGLE);
-
-    } else if (kernel_string == "Ядро Епанченкова") {
-
-        emit setKernelType(KernelType::EPANCHENKOV);
-
-    } else if (kernel_string == "Биквадратное") {
-
-        emit setKernelType(KernelType::BIQUADRATIC);
-
-    } else if (kernel_string == "Гауссовское") {
-
-        emit setKernelType(KernelType::GAUSSIAN);
-
-    }
+    emit setKernelType(kernel_type);
 
 }
 
