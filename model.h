@@ -30,7 +30,7 @@ public slots:
 
 signals:
     void openCsvFileError();
-    void setIsLearning(const bool& is_learning); //Sends, when model starts/stops learning process
+    void setIsLearning(const bool& is_learning); //Emits, when model starts/stops learning process
 
 private:
     void readDataFromCsv();
@@ -48,6 +48,7 @@ private:
     bool is_learning;
     DistancesVector distances;
     QVector<int> accuracy_results;
+    int max_number_of_neighbours = 30;
 
 };
 
