@@ -6,31 +6,31 @@ IrisData::IrisData(const double &sepal_length, const double &sepal_width,
                                            petal_length(petal_length), petal_width(petal_width),
                                            iris_type(iris_type) {}
 
-double IrisData::getSepalLength() {
+double IrisData::getSepalLength() const {
 
     return sepal_length;
 
 }
 
-double IrisData::getSepalWidth() {
+double IrisData::getSepalWidth() const {
 
     return sepal_width;
 
 }
 
-double IrisData::getPetalLength() {
+double IrisData::getPetalLength() const {
 
     return petal_length;
 
 }
 
-double IrisData::getPetalWidth() {
+double IrisData::getPetalWidth() const {
 
     return petal_width;
 
 }
 
-int IrisData::getType() {
+int IrisData::getType() const {
 
     return iris_type;
 

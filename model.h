@@ -33,7 +33,7 @@ signals:
 private:
     void readDataFromCsv();
     void prepareCrossValidationData();
-    double calculateDistance();
+    double calculateDistance(const IrisData& first, const IrisData& second);
 
 
 private:

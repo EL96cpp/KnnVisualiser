@@ -9,13 +9,11 @@ public:
              const double& petal_length, const double& petal_width,
              const int& iris_type);
 
-    double getSepalLength();
-    double getSepalWidth();
-    double getPetalLength();
-    double getPetalWidth();
-    int getType();
-
-    double calculateDistance(const IrisData& other, const int& minkowski_metric_param);
+    double getSepalLength() const;
+    double getSepalWidth() const;
+    double getPetalLength() const;
+    double getPetalWidth() const;
+    int getType() const;
 
 private:
     double sepal_length;
