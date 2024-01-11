@@ -47,6 +47,7 @@ private:
     double window_width;
     bool is_learning;
     DistancesVector distances;
+    QVector<int> accuracy_results;
 
 };
 
