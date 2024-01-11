@@ -47,15 +47,9 @@ void Model::startLearning() {
 
     emit setIsLearning(true);
 
+    accuracy_results.clear();
+    prepareCrossValidationData();
     setDistancesVector();
-    QVector<DistanceData> data = distances.getDecreasingSortedDistances(149);
-    for (int i = 0; i < data.size(); ++i) {
-
-        qDebug() << data[i].getDistance();
-
-    }
-
-    qDebug() << data.size();
 
     emit setIsLearning(false);
 

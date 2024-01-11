@@ -12,6 +12,7 @@ public:
 
     bool checkIfIncludesId(const int& search_id) const;
     double getDistance() const;
+    int getPairForId(const int& search_id) const;
 
     bool operator < (const DistanceData& other) const;
 

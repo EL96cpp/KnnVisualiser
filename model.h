@@ -47,7 +47,7 @@ private:
     double window_width;
     bool is_learning;
     DistancesVector distances;
-    QVector<int> accuracy_results;
+    QVector<double> accuracy_results;
     int max_number_of_neighbours = 30;
 
 };

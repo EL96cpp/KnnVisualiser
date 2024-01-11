@@ -18,8 +18,21 @@ double DistanceData::getDistance() const {
 
 }
 
-int DistanceData::getPairForId(const int &search_id) const
-{
+int DistanceData::getPairForId(const int &search_id) const {
+
+    if (search_id == first_id) {
+
+        return second_id;
+
+    } else if (search_id == second_id) {
+
+        return first_id;
+
+    } else {
+
+        return -1;
+
+    }
 
 }
 
