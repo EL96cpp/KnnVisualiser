@@ -10,8 +10,8 @@ class DistanceData
 public:
     DistanceData(const int& first_id, const int& second_id, const double& distance);
 
-    bool checkIfIncludesId(const int& search_id);
-    double getDistance();
+    bool checkIfIncludesId(const int& search_id) const;
+    double getDistance() const;
 
     bool operator < (const DistanceData& other) const;
 

@@ -47,6 +47,8 @@ void Model::startLearning() {
 
     emit setIsLearning(true);
 
+    setDistancesVector();
+
 
     emit setIsLearning(false);
 
@@ -181,6 +183,20 @@ void Model::prepareCrossValidationData() {
         }
 
         cv_data.push_back(cv_group);
+
+    }
+
+}
+
+void Model::setDistancesVector() {
+
+    for (int i = 0; i < dataset.size(); ++i) {
+
+        for (int j = i+1; j < dataset.size(); ++j) {
+
+            distances.pushBack(DistanceData(dataset[i].getId(), dataset[j].getId(), calculateDistance(dataset[i], dataset[j])));
+
+        }
 
     }
 

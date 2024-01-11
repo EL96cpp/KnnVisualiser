@@ -12,6 +12,8 @@
 #include <functional>
 
 #include "irisdata.h"
+#include "distancedata.h"
+#include "distancesvector.h"
 
 
 class Model : public QObject
@@ -33,6 +35,7 @@ signals:
 private:
     void readDataFromCsv();
     void prepareCrossValidationData();
+    void setDistancesVector();
     double calculateDistance(const IrisData& first, const IrisData& second);
 
 
@@ -43,6 +46,7 @@ private:
     int minkowski_metric_param;
     double window_width;
     bool is_learning;
+    DistancesVector distances;
 
 };
 

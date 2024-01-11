@@ -5,6 +5,7 @@ DistancesVector::DistancesVector() {}
 void DistancesVector::pushBack(const DistanceData &distance_data) {
 
     distances.push_back(distance_data);
+    qDebug() << distance_data.getDistance();
 
 }
 
@@ -23,6 +24,7 @@ QVector<DistanceData> DistancesVector::getDecreasingSortedDistances(const int &s
     }
 
     std::sort(result.begin(), result.end());
-
+    std::reverse(result.begin(), result.end());
+    return result;
 
 }

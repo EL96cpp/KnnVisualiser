@@ -2,6 +2,7 @@
 #define DISTANCESVECTOR_H
 
 #include <QVector>
+#include <QDebug>
 #include <algorithm>
 
 #include "distancedata.h"
