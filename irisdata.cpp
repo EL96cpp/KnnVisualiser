@@ -6,8 +6,8 @@ IrisData::IrisData(const int& id,
                    const double &petal_length,
                    const double &petal_width,
                    const int &iris_type) : id(id), sepal_length(sepal_length), sepal_width(sepal_width),
-    petal_length(petal_length), petal_width(petal_width),
-    iris_type(iris_type) {}
+                                           petal_length(petal_length), petal_width(petal_width),
+                                           iris_type(iris_type) {}
 
 int IrisData::getId() const {
 

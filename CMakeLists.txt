@@ -20,6 +20,10 @@ set(PROJECT_SOURCES
         irisdata.h
         model.cpp
         model.h
+        distancedata.cpp
+        distancedata.h
+        distancesvector.cpp
+        distancesvector.h
         Images.qrc
         mainwindow.ui
 )
