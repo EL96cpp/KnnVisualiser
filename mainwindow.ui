@@ -36,7 +36,7 @@ background-image: url(:/background.jpg);
     <property name="styleSheet">
      <string notr="true">#groupBox {
 
-	background-color: rgba(7,103,119,210);
+	background-color: rgba(5, 87, 101, 215);
     border-style: outset;
     border-width: 2px;
     border-radius: 15px;
@@ -70,7 +70,7 @@ background-image: url(:/background.jpg);
        <widget class="QLabel" name="widthLabel">
         <property name="styleSheet">
          <string notr="true">color: rgb(204, 245, 234);
-background-color: rgb(2, 50, 57);</string>
+</string>
         </property>
         <property name="text">
          <string>Ширина окна</string>
@@ -94,7 +94,7 @@ background-color: rgb(2, 50, 57);</string>
        <widget class="QLabel" name="kernelLabel">
         <property name="styleSheet">
          <string notr="true">color: rgb(204, 245, 234);
-background-color: rgb(2, 50, 57);</string>
+</string>
         </property>
         <property name="text">
          <string>Функция ядра</string>
@@ -107,7 +107,7 @@ background-color: rgb(2, 50, 57);</string>
       <item row="1" column="1">
        <widget class="QComboBox" name="kernelComboBox">
         <property name="styleSheet">
-         <string notr="true">	background-color: rgb(2, 74, 82);
+         <string notr="true">	background-color: rgb(2, 50, 57);
 	color: rgb(204, 245, 234);
     border-style: outset;
     border-radius: 5px;</string>
@@ -143,7 +143,7 @@ background-color: rgb(2, 50, 57);</string>
        <widget class="QLabel" name="metricLabel">
         <property name="styleSheet">
          <string notr="true">color: rgb(204, 245, 234);
-background-color: rgb(2, 50, 57);</string>
+</string>
         </property>
         <property name="text">
          <string>Параметр метрики
@@ -157,7 +157,7 @@ background-color: rgb(2, 50, 57);</string>
       <item row="2" column="1">
        <widget class="QComboBox" name="metricComboBox">
         <property name="styleSheet">
-         <string notr="true">	background-color: rgb(2, 74, 82);
+         <string notr="true">	background-color: rgb(2, 50, 57);
 	color: rgb(204, 245, 234);
     border-style: outset;
     border-radius: 5px;</string>

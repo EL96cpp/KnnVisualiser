@@ -21,25 +21,28 @@ public:
     explicit Model(QObject *parent = nullptr);
 
 public slots:
-    //void startLearning();
+    void startLearning();
     void onSetKernelType(const QString& kernel_type);
     void onSetWindowWidth(const double &window_width);
-    void onSetMinkowskiMetric(const int& minkowski_metric);
+    void onSetMinkowskiMetric(const int& minkowski_metric_param);
 
 signals:
     void openCsvFileError();
+    void setIsLearning(const bool& is_learning); //Sends, when model starts/stops learning process
 
 private:
     void readDataFromCsv();
     void prepareCrossValidationData();
+    double calculateDistance();
 
 
 private:
     QVector<IrisData> dataset;
     QVector<QVector<IrisData>> cv_data;
     std::function<double(const double&)> kernel;
-    int minkowski_metric;
+    int minkowski_metric_param;
     double window_width;
+    bool is_learning;
 
 };
 

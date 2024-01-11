@@ -14,15 +14,41 @@ MainWindow::MainWindow(QWidget *parent)
     ui->windowWidthLineEdit->setValidator(dv);
     ui->windowWidthLineEdit->insert("1,0");
 
+
     connect(this, &MainWindow::setKernelType, model, &Model::onSetKernelType);
     connect(this, &MainWindow::setMinkowskiMetric, model, &Model::onSetMinkowskiMetric);
     connect(this, &MainWindow::setWindowWidth, model, &Model::onSetWindowWidth);
+    connect(this, &MainWindow::startLearning, model, &Model::startLearning);
+    connect(model, &Model::setIsLearning, this, &MainWindow::onSetIsLearning);
+
+    //Send initial values from ui to model
+    on_kernelComboBox_currentTextChanged(ui->kernelComboBox->currentText());
+    on_windowWidthLineEdit_textChanged(ui->windowWidthLineEdit->text());
+    on_metricComboBox_currentTextChanged(ui->metricComboBox->currentText());
 
 }
 
 MainWindow::~MainWindow() {
 
     delete ui;
+
+}
+
+void MainWindow::onSetIsLearning(const bool &is_learning) {
+
+    if (is_learning) {
+
+        ui->windowWidthLineEdit->setDisabled(true);
+        ui->kernelComboBox->setDisabled(true);
+        ui->metricComboBox->setDisabled(true);
+
+    } else {
+
+        ui->windowWidthLineEdit->setEnabled(true);
+        ui->kernelComboBox->setEnabled(true);
+        ui->metricComboBox->setEnabled(true);
+
+    }
 
 }
 
@@ -46,6 +72,13 @@ void MainWindow::on_metricComboBox_currentTextChanged(const QString &arg1) {
 
     QString copy = arg1[0];
     emit setMinkowskiMetric(copy.toInt());
+
+}
+
+
+void MainWindow::on_startLearnButton_clicked() {
+
+    emit startLearning();
 
 }
 

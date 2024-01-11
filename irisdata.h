@@ -15,6 +15,8 @@ public:
     double getPetalWidth();
     int getType();
 
+    double calculateDistance(const IrisData& other, const int& minkowski_metric_param);
+
 private:
     double sepal_length;
     double sepal_width;

@@ -37,10 +37,18 @@ double Gaussian(const double& x) {
 }
 
 Model::Model(QObject *parent)
-    : QObject{parent} {
+    : QObject{parent}, is_learning(false) {
 
     readDataFromCsv();
-    prepareCrossValidationData();
+
+}
+
+void Model::startLearning() {
+
+    emit setIsLearning(true);
+
+
+    emit setIsLearning(false);
 
 }
 
@@ -68,8 +76,6 @@ void Model::onSetKernelType(const QString &kernel_type) {
 
     }
 
-    qDebug() << kernel(0.5);
-
 }
 
 void Model::onSetWindowWidth(const double &window_width) {
@@ -78,9 +84,9 @@ void Model::onSetWindowWidth(const double &window_width) {
 
 }
 
-void Model::onSetMinkowskiMetric(const int &minkowski_metric) {
+void Model::onSetMinkowskiMetric(const int &minkowski_metric_param) {
 
-    this->minkowski_metric = minkowski_metric;
+    this->minkowski_metric_param = minkowski_metric_param;
 
 }
 
