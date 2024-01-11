@@ -48,7 +48,14 @@ void Model::startLearning() {
     emit setIsLearning(true);
 
     setDistancesVector();
+    QVector<DistanceData> data = distances.getDecreasingSortedDistances(149);
+    for (int i = 0; i < data.size(); ++i) {
 
+        qDebug() << data[i].getDistance();
+
+    }
+
+    qDebug() << data.size();
 
     emit setIsLearning(false);
 
@@ -190,6 +197,8 @@ void Model::prepareCrossValidationData() {
 
 void Model::setDistancesVector() {
 
+    distances.clear();
+
     for (int i = 0; i < dataset.size(); ++i) {
 
         for (int j = i+1; j < dataset.size(); ++j) {
@@ -209,6 +218,6 @@ double Model::calculateDistance(const IrisData &first, const IrisData &second) {
                  std::pow(std::abs(first.getPetalLength() - second.getPetalLength()), minkowski_metric_param) +
                  std::pow(std::abs(first.getPetalWidth() - second.getPetalWidth()), minkowski_metric_param);
 
-    return std::pow(sum, 1/minkowski_metric_param);
+    return std::pow(sum, 1.f/minkowski_metric_param);
 
 }

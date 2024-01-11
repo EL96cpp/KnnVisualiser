@@ -13,6 +13,7 @@ public:
     DistancesVector();
 
     void pushBack(const DistanceData& distance_data);
+    void clear();
     QVector<DistanceData> getDecreasingSortedDistances(const int& search_id);
 
 private:

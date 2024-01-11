@@ -5,7 +5,12 @@ DistancesVector::DistancesVector() {}
 void DistancesVector::pushBack(const DistanceData &distance_data) {
 
     distances.push_back(distance_data);
-    qDebug() << distance_data.getDistance();
+
+}
+
+void DistancesVector::clear() {
+
+    distances.clear();
 
 }
 
