@@ -105,6 +105,9 @@ void Model::readDataFromCsv() {
         //Read first line with headers, so we can work with actual data in while loop
         in.readLine();
 
+        //Id value for IrisData objects
+        int id = 1;
+
         while (!in.atEnd()) {
 
             QString line = in.readLine();
@@ -126,9 +129,10 @@ void Model::readDataFromCsv() {
 
             }
 
-            dataset.emplaceBack(string_list[0].toDouble(), string_list[1].toDouble(),
+            dataset.emplaceBack(id, string_list[0].toDouble(), string_list[1].toDouble(),
                                 string_list[2].toDouble(), string_list[3].toDouble(), iris_type);
 
+            ++id;
             line.clear();
             string_list.clear();
 
