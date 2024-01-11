@@ -13,6 +13,8 @@ public:
     bool checkIfIncludesId(const int& search_id);
     double getDistance();
 
+    bool operator < (const DistanceData& other) const;
+
 private:
     int first_id;
     int second_id;

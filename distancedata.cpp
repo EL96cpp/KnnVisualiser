@@ -17,3 +17,10 @@ double DistanceData::getDistance() {
     return distance;
 
 }
+
+bool DistanceData::operator <(const DistanceData &other) const {
+
+    return distance < other.distance;
+
+}
+
