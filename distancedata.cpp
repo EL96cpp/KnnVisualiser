@@ -18,6 +18,11 @@ double DistanceData::getDistance() const {
 
 }
 
+int DistanceData::getPairForId(const int &search_id) const
+{
+
+}
+
 bool DistanceData::operator <(const DistanceData &other) const {
 
     return distance < other.distance;
