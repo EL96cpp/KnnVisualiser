@@ -51,6 +51,28 @@ void Model::startLearning() {
     prepareCrossValidationData();
     setDistancesVector();
 
+    QVector<double> first_group_accuracies = getCvGroupAccuracies(0);
+    QVector<double> second_group_accuracies = getCvGroupAccuracies(1);
+    QVector<double> third_group_accuracies = getCvGroupAccuracies(2);
+    QVector<double> fourth_group_accuracies = getCvGroupAccuracies(3);
+    QVector<double> fifth_group_accuracies = getCvGroupAccuracies(4);
+
+    for (int i = 0; i < first_group_accuracies.size(); ++i) {
+
+        accuracy_results.push_back((first_group_accuracies[i] + second_group_accuracies[i] +
+                                    third_group_accuracies[i] + fourth_group_accuracies[i] +
+                                    fifth_group_accuracies[i]) / 5.0);
+
+    }
+
+    for (int i = 0; i < accuracy_results.size(); ++i) {
+
+        qDebug() << accuracy_results[i];
+
+    }
+
+    qDebug() << "===================";
+
     emit setIsLearning(false);
 
 }
