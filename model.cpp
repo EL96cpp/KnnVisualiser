@@ -215,3 +215,108 @@ double Model::calculateDistance(const IrisData &first, const IrisData &second) {
     return std::pow(sum, 1.f/minkowski_metric_param);
 
 }
+
+QVector<double> Model::getCvGroupAccuracies(const int &group_index) {
+
+    QVector<int> cv_group_ids;
+
+    for (int i = 0; i < cv_data[group_index].size(); ++i) {
+
+        cv_group_ids.push_back(cv_data[group_index][i].getId());
+
+    }
+
+    QVector<QVector<bool>> prediction_results;
+
+    for (int i = 0; i < cv_data[group_index].size(); ++i) {
+
+        int current_id = cv_data[group_index][i].getId();
+        int current_type = cv_data[group_index][i].getType();
+        QVector<DistanceData> current_distances = distances.getDecreasingSortedDistances(current_id, cv_group_ids);
+
+        double first_type_score = 0.0, second_type_score = 0.0, third_type_score = 0.0;
+
+        //Value with index i will store correctness of prediction for i+1 neighbours
+        QVector<bool> current_predictions;
+
+        for (int j = 0; j < max_number_of_neighbours; ++j) {
+
+            int pair_id = current_distances[j].getPairForId(current_id);
+            int pair_type = dataset[pair_id-1].getType();
+
+            switch(pair_type) {
+
+            case 1:
+                first_type_score += kernel(current_distances[j].getDistance()/window_width);
+                break;
+
+            case 2:
+                second_type_score += kernel(current_distances[j].getDistance()/window_width);
+                break;
+
+            case 3:
+                third_type_score += kernel(current_distances[j].getDistance()/window_width);
+                break;
+
+            }
+
+            int predicted_type = predictType(first_type_score, second_type_score, third_type_score);
+
+            current_predictions.push_back(current_type == predicted_type);
+
+        }
+
+        prediction_results.push_back(current_predictions);
+
+    }
+
+    QVector<double> cv_group_accuracies;
+
+    for (int i = 0; i < max_number_of_neighbours; ++i) {
+
+        double correct_predictions = 0.0;
+
+        for (int j = 0; j < prediction_results.size(); ++j) {
+
+            correct_predictions += prediction_results[j][i];
+
+        }
+
+        cv_group_accuracies.push_back(correct_predictions/prediction_results.size());
+
+    }
+
+    return cv_group_accuracies;
+
+}
+
+
+int Model::predictType(const double &first_type_score, const double &second_type_score, const double &third_type_score) {
+
+    if (first_type_score > second_type_score) {
+
+        if (first_type_score > third_type_score) {
+
+            return 1;
+
+        } else {
+
+            return 3;
+
+        }
+
+    } else {
+
+        if (second_type_score > third_type_score) {
+
+            return 2;
+
+        } else {
+
+            return 3;
+
+        }
+
+    }
+
+}

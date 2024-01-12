@@ -23,7 +23,7 @@ QVector<DistanceData> DistancesVector::getDecreasingSortedDistances(const int &s
         if (distances[i].checkIfIncludesId(search_id)) {
 
             //If cv_indexes vector contains pair_id, we don't need this distance value!
-            //(It means this is the distance between two test, but not train points!)
+            //(It means this is the distance between two test points!)
 
             int pair_id = distances[i].getPairForId(search_id);
 
@@ -38,7 +38,6 @@ QVector<DistanceData> DistancesVector::getDecreasingSortedDistances(const int &s
     }
 
     std::sort(result.begin(), result.end());
-    std::reverse(result.begin(), result.end());
     return result;
 
 }
