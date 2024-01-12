@@ -115,6 +115,12 @@ void Model::onSetMinkowskiMetric(const int &minkowski_metric_param) {
 
 }
 
+void Model::onSetMaximumNumberOfNeighbours(const int &max_number_of_neighbours) {
+
+    this->max_number_of_neighbours = max_number_of_neighbours;
+
+}
+
 void Model::readDataFromCsv() {
 
     QFile dataset_file("../Data/iris_csv.csv");

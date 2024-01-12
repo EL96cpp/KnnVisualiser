@@ -14,13 +14,14 @@ MainWindow::MainWindow(QWidget *parent)
     ui->windowWidthLineEdit->setValidator(dv);
     ui->windowWidthLineEdit->insert("1,0");
 
-    ui->maxNeighboursSpinBox->setRange(20, 100);
+    ui->maxNeighboursSpinBox->setRange(10, 100);
     ui->maxNeighboursSpinBox->setValue(30);
 
 
     connect(this, &MainWindow::setKernelType, model, &Model::onSetKernelType);
     connect(this, &MainWindow::setMinkowskiMetric, model, &Model::onSetMinkowskiMetric);
     connect(this, &MainWindow::setWindowWidth, model, &Model::onSetWindowWidth);
+    connect(this, &MainWindow::setMaximumNumberOfNeighbours, model, &Model::onSetMaximumNumberOfNeighbours);
     connect(this, &MainWindow::startLearning, model, &Model::startLearning);
     connect(model, &Model::setIsLearning, this, &MainWindow::onSetIsLearning);
 
@@ -28,6 +29,7 @@ MainWindow::MainWindow(QWidget *parent)
     on_kernelComboBox_currentTextChanged(ui->kernelComboBox->currentText());
     on_windowWidthLineEdit_textChanged(ui->windowWidthLineEdit->text());
     on_metricComboBox_currentTextChanged(ui->metricComboBox->currentText());
+    on_maxNeighboursSpinBox_valueChanged(ui->maxNeighboursSpinBox->value());
 
 }
 
@@ -82,6 +84,13 @@ void MainWindow::on_metricComboBox_currentTextChanged(const QString &arg1) {
 void MainWindow::on_startLearnButton_clicked() {
 
     emit startLearning();
+
+}
+
+
+void MainWindow::on_maxNeighboursSpinBox_valueChanged(int max_number_of_neighbours) {
+
+    emit setMaximumNumberOfNeighbours(max_number_of_neighbours);
 
 }
 
