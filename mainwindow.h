@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QDoubleValidator>
+#include <QIntValidator>
 
 #include "model.h"
 
@@ -30,10 +31,9 @@ public slots:
 private slots:
     void on_kernelComboBox_currentTextChanged(const QString &arg1);
     void on_windowWidthLineEdit_textChanged(const QString &arg1);
-
     void on_metricComboBox_currentTextChanged(const QString &arg1);
-
     void on_startLearnButton_clicked();
+
 
 private:
     Ui::MainWindow *ui;

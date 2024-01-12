@@ -29,8 +29,8 @@ background-image: url(:/background.jpg);
      <rect>
       <x>40</x>
       <y>60</y>
-      <width>411</width>
-      <height>141</height>
+      <width>431</width>
+      <height>181</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -61,8 +61,8 @@ background-image: url(:/background.jpg);
       <rect>
        <x>20</x>
        <y>20</y>
-       <width>371</width>
-       <height>107</height>
+       <width>391</width>
+       <height>141</height>
       </rect>
      </property>
      <layout class="QFormLayout" name="formLayout">
@@ -150,7 +150,7 @@ background-image: url(:/background.jpg);
 Минковского</string>
         </property>
         <property name="alignment">
-         <set>Qt::AlignCenter</set>
+         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
         </property>
        </widget>
       </item>
@@ -184,13 +184,34 @@ background-image: url(:/background.jpg);
         </item>
        </widget>
       </item>
+      <item row="3" column="0">
+       <widget class="QLabel" name="maxNeighboursLabel">
+        <property name="styleSheet">
+         <string notr="true">color: rgb(204, 245, 234);
+</string>
+        </property>
+        <property name="text">
+         <string>Максимальное число
+соседей</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1">
+       <widget class="QSpinBox" name="maxNeighboursSpinBox">
+        <property name="styleSheet">
+         <string notr="true">	background-color: rgb(2, 50, 57);
+	color: rgb(204, 245, 234);
+</string>
+        </property>
+       </widget>
+      </item>
      </layout>
     </widget>
    </widget>
    <widget class="QPushButton" name="startLearnButton">
     <property name="geometry">
      <rect>
-      <x>470</x>
+      <x>500</x>
       <y>170</y>
       <width>89</width>
       <height>25</height>

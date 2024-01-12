@@ -9,10 +9,13 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     setWindowTitle("KnnVisualiser");
 
-    auto dv = new QDoubleValidator(0.0, 5.0, 2); // [0, 5] with 2 decimals of precision
+    QDoubleValidator* dv = new QDoubleValidator(0.0, 5.0, 2); // [0, 5] with 2 decimals of precision
     dv->setNotation(QDoubleValidator::StandardNotation);
     ui->windowWidthLineEdit->setValidator(dv);
     ui->windowWidthLineEdit->insert("1,0");
+
+    ui->maxNeighboursSpinBox->setRange(20, 100);
+    ui->maxNeighboursSpinBox->setValue(30);
 
 
     connect(this, &MainWindow::setKernelType, model, &Model::onSetKernelType);
