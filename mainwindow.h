@@ -51,12 +51,13 @@ private slots:
     void on_predictWindowWidthLineEdit_textChanged(const QString &arg1);
     void on_predictKernelComboBox_currentTextChanged(const QString &arg1);
     void on_predictMetricComboBox_currentTextChanged(const QString &arg1);
-    void on_predictMaxNeighboursSpinBox_textChanged(const QString &arg1);
+    void on_predictMaxNeighboursSpinBox_valueChanged(int arg1);
     void on_sepalLengthEdit_textChanged(const QString &arg1);
     void on_sepalWidthEdit_textChanged(const QString &arg1);
     void on_petalLengthEdit_textChanged(const QString &arg1);
     void on_petalWidthEdit_textChanged(const QString &arg1);
     void on_predictButton_clicked();
+
 
 private:
     Ui::MainWindow *ui;

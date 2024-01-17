@@ -50,11 +50,22 @@ MainWindow::MainWindow(QWidget *parent)
     connect(this, &MainWindow::setPredictMaximumNumberOfNeighbours, model, &Model::onSetPredictionMaximumNumberOfNeighbours);
     connect(this, &MainWindow::startPrediction, model, &Model::startPrediction);
 
+    connect(this, &MainWindow::setSepalLength, model, &Model::onSetSepalLength);
+    connect(this, &MainWindow::setSepalWidth, model, &Model::onSetSepalWidth);
+    connect(this, &MainWindow::setPetalLength, model, &Model::onSetPetalLength);
+    connect(this, &MainWindow::setPetalWidth, model, &Model::onSetPetalWidth);
+
     //Send initial values from ui to model
     on_kernelComboBox_currentTextChanged(ui->kernelComboBox->currentText());
     on_windowWidthLineEdit_textChanged(ui->windowWidthLineEdit->text());
     on_metricComboBox_currentTextChanged(ui->metricComboBox->currentText());
     on_maxNeighboursSpinBox_valueChanged(ui->maxNeighboursSpinBox->value());
+
+    on_predictKernelComboBox_currentTextChanged(ui->predictKernelComboBox->currentText());
+    on_predictWindowWidthLineEdit_textChanged(ui->predictWindowWidthLineEdit->text());
+    on_predictMetricComboBox_currentTextChanged(ui->predictMetricComboBox->currentText());
+    on_predictMaxNeighboursSpinBox_valueChanged(ui->predictMaxNeighboursSpinBox->value());
+
 
 }
 
@@ -143,9 +154,9 @@ void MainWindow::on_predictMetricComboBox_currentTextChanged(const QString &mink
 }
 
 
-void MainWindow::on_predictMaxNeighboursSpinBox_textChanged(const QString &max_neighbours_value) {
+void MainWindow::on_predictMaxNeighboursSpinBox_valueChanged(int arg1) {
 
-    emit setPredictMaximumNumberOfNeighbours(max_neighbours_value.toInt());
+    emit setPredictMaximumNumberOfNeighbours(arg1);
 
 }
 
@@ -183,4 +194,5 @@ void MainWindow::on_predictButton_clicked() {
     emit startPrediction();
 
 }
+
 
