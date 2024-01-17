@@ -280,7 +280,7 @@ background-image: url(:/background.jpg);
        </widget>
       </item>
       <item row="0" column="1">
-       <widget class="QLineEdit" name="windowWidthLineEdit_4">
+       <widget class="QLineEdit" name="predictWindowWidthLineEdit">
         <property name="styleSheet">
          <string notr="true">    border-style: outset;
     border-radius: 5px;
@@ -304,7 +304,7 @@ background-image: url(:/background.jpg);
        </widget>
       </item>
       <item row="1" column="1">
-       <widget class="QComboBox" name="kernelComboBox_4">
+       <widget class="QComboBox" name="predictKernelComboBox">
         <property name="styleSheet">
          <string notr="true">	background-color: rgb(2, 50, 57);
 	color: rgb(204, 245, 234);
@@ -354,7 +354,7 @@ background-image: url(:/background.jpg);
        </widget>
       </item>
       <item row="2" column="1">
-       <widget class="QComboBox" name="metricComboBox_4">
+       <widget class="QComboBox" name="predictMetricComboBox">
         <property name="styleSheet">
          <string notr="true">	background-color: rgb(2, 50, 57);
 	color: rgb(204, 245, 234);
@@ -395,7 +395,7 @@ background-image: url(:/background.jpg);
        </widget>
       </item>
       <item row="3" column="1">
-       <widget class="QSpinBox" name="maxNeighboursSpinBox_4">
+       <widget class="QSpinBox" name="predictMaxNeighboursSpinBox">
         <property name="styleSheet">
          <string notr="true">	background-color: rgb(2, 50, 57);
 	color: rgb(204, 245, 234);
@@ -460,7 +460,7 @@ background-image: url(:/background.jpg);
       <string/>
      </property>
     </widget>
-    <widget class="QLabel" name="label_5">
+    <widget class="QLabel" name="irisTypeLabel">
      <property name="geometry">
       <rect>
        <x>450</x>
@@ -481,7 +481,7 @@ font: 14pt ;</string>
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-    <widget class="QWidget" name="">
+    <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
        <x>450</x>
@@ -542,7 +542,7 @@ font: 14pt ;</string>
       <item>
        <layout class="QVBoxLayout" name="verticalLayout_2">
         <item>
-         <widget class="QLineEdit" name="lineEdit">
+         <widget class="QLineEdit" name="sepalLengthEdit">
           <property name="styleSheet">
            <string notr="true">    border-style: outset;
     border-radius: 5px;
@@ -552,7 +552,7 @@ font: 14pt ;</string>
          </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="lineEdit_2">
+         <widget class="QLineEdit" name="sepalWidthEdit">
           <property name="styleSheet">
            <string notr="true">    border-style: outset;
     border-radius: 5px;
@@ -562,7 +562,7 @@ font: 14pt ;</string>
          </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="lineEdit_3">
+         <widget class="QLineEdit" name="petalLengthEdit">
           <property name="styleSheet">
            <string notr="true">    border-style: outset;
     border-radius: 5px;
@@ -572,7 +572,7 @@ font: 14pt ;</string>
          </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="lineEdit_4">
+         <widget class="QLineEdit" name="petalWidthEdit">
           <property name="styleSheet">
            <string notr="true">    border-style: outset;
     border-radius: 5px;

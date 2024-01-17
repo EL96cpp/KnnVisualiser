@@ -65,9 +65,9 @@ void MainWindow::on_kernelComboBox_currentTextChanged(const QString &kernel_type
 }
 
 
-void MainWindow::on_windowWidthLineEdit_textChanged(const QString &arg1) {
+void MainWindow::on_windowWidthLineEdit_textChanged(const QString &window_width) {
 
-    QString copy = arg1;
+    QString copy = window_width;
     emit setWindowWidth(copy.replace(",", ".").toDouble());
 
 }
@@ -92,5 +92,69 @@ void MainWindow::on_maxNeighboursSpinBox_valueChanged(int max_number_of_neighbou
 
     emit setMaximumNumberOfNeighbours(max_number_of_neighbours);
 
+}
+
+
+void MainWindow::on_predictWindowWidthLineEdit_textChanged(const QString &window_width) {
+
+    QString copy = window_width;
+    emit setPredictWindowWidth(copy.replace(",", ".").toDouble());
+
+}
+
+
+void MainWindow::on_predictKernelComboBox_currentTextChanged(const QString &kernel_type) {
+
+    emit setPredictKernelType(kernel_type);
+
+}
+
+
+void MainWindow::on_predictMetricComboBox_currentTextChanged(const QString &minkowski_metric_parameter) {
+
+    QString val = minkowski_metric_parameter[0];
+    emit setPredictMinkowskiMetric(val.toInt());
+
+}
+
+
+void MainWindow::on_predictMaxNeighboursSpinBox_textChanged(const QString &max_neighbours_value) {
+
+    emit setPredictMaximumNumberOfNeighbours(max_neighbours_value.toInt());
+
+}
+
+
+void MainWindow::on_sepalLengthEdit_textChanged(const QString &sepal_length) {
+
+    emit setSepalLength(sepal_length.toDouble());
+
+}
+
+
+void MainWindow::on_sepalWidthEdit_textChanged(const QString &sepal_width) {
+
+    emit setSepalWidth(sepal_width.toDouble());
+
+}
+
+
+void MainWindow::on_petalLengthEdit_textChanged(const QString &petal_length) {
+
+    emit setPetalLength(petal_length.toDouble());
+
+}
+
+
+void MainWindow::on_petalWidthEdit_textChanged(const QString &petal_width) {
+
+    emit setPetalWidth(petal_width.toDouble());
+
+}
+
+
+void MainWindow::on_predictButton_clicked()
+{
+    emit startPrediction();
 }
 

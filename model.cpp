@@ -121,6 +121,52 @@ void Model::onSetMaximumNumberOfNeighbours(const int &max_number_of_neighbours) 
 
 }
 
+void Model::startPrediction()
+{
+
+
+}
+
+void Model::onSetPredictionKernelType(const QString &kernel_type)
+{
+
+}
+
+void Model::onSetPredictionWindowWidth(const double &window_width)
+{
+
+}
+
+void Model::onSetPredictionMinkowskiMetric(const int &minkowski_metric_param)
+{
+
+}
+
+void Model::onSetPredictionMaximumNumberOfNeighbours(const int &max_number_of_neighbours)
+{
+
+}
+
+void Model::onSetSepalLength(const double &sepal_length)
+{
+
+}
+
+void Model::onSetSepalWidth(const double &sepal_width)
+{
+
+}
+
+void Model::onSetPetalLength(const double &petal_length)
+{
+
+}
+
+void Model::onSetPetalWidth(const double &petal_width)
+{
+
+}
+
 void Model::readDataFromCsv() {
 
     QFile dataset_file("../Data/iris_csv.csv");

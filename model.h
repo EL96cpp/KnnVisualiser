@@ -29,6 +29,17 @@ public slots:
     void onSetMinkowskiMetric(const int& minkowski_metric_param);
     void onSetMaximumNumberOfNeighbours(const int& max_number_of_neighbours);
 
+    void startPrediction();
+    void onSetPredictionKernelType(const QString& kernel_type);
+    void onSetPredictionWindowWidth(const double &window_width);
+    void onSetPredictionMinkowskiMetric(const int& minkowski_metric_param);
+    void onSetPredictionMaximumNumberOfNeighbours(const int& max_number_of_neighbours);
+    void onSetSepalLength(const double& sepal_length);
+    void onSetSepalWidth(const double& sepal_width);
+    void onSetPetalLength(const double& petal_length);
+    void onSetPetalWidth(const double& petal_width);
+
+
 signals:
     void openCsvFileError();
     void setIsLearning(const bool& is_learning); //Emits, when model starts/stops learning process
@@ -52,6 +63,14 @@ private:
     DistancesVector distances;
     QVector<double> accuracy_results;
     int max_number_of_neighbours = 30;
+
+    std::function<double(const double&)> predict_kernel;
+    int predict_minkowski_metric_param;
+    double predict_window_width;
+    int predict_max_number_of_neighbours = 30;
+
+
+
 
 };
 
