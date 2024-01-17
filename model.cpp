@@ -121,49 +121,79 @@ void Model::onSetMaximumNumberOfNeighbours(const int &max_number_of_neighbours) 
 
 }
 
-void Model::startPrediction()
-{
+void Model::startPrediction() {
+
+    emit setIsLearning(true);
 
 
-}
-
-void Model::onSetPredictionKernelType(const QString &kernel_type)
-{
+    emit setIsLearning(false);
 
 }
 
-void Model::onSetPredictionWindowWidth(const double &window_width)
-{
+void Model::onSetPredictionKernelType(const QString &kernel_type) {
+
+    if (kernel_type == "Прямоугольное") {
+
+        prediction_kernel = Rectangular;
+
+    } else if (kernel_type == "Треугольное") {
+
+        prediction_kernel = Triangle;
+
+    } else if (kernel_type == "Ядро Епанченкова") {
+
+        prediction_kernel = Epanchenkov;
+
+    } else if (kernel_type == "Биквадратное") {
+
+        prediction_kernel = Biquadratic;
+
+    } else if (kernel_type == "Гауссовское") {
+
+        prediction_kernel = Gaussian;
+
+    }
+}
+
+void Model::onSetPredictionWindowWidth(const double &window_width) {
+
+    this->prediction_window_width = window_width;
 
 }
 
-void Model::onSetPredictionMinkowskiMetric(const int &minkowski_metric_param)
-{
+void Model::onSetPredictionMinkowskiMetric(const int &minkowski_metric_param) {
+
+    this->prediction_minkowski_metric_param = minkowski_metric_param;
 
 }
 
-void Model::onSetPredictionMaximumNumberOfNeighbours(const int &max_number_of_neighbours)
-{
+void Model::onSetPredictionMaximumNumberOfNeighbours(const int &number_of_neighbours) {
+
+    this->prediction_number_of_neighbours = number_of_neighbours;
 
 }
 
-void Model::onSetSepalLength(const double &sepal_length)
-{
+void Model::onSetSepalLength(const double &sepal_length) {
+
+    this->sepal_length = sepal_length;
 
 }
 
-void Model::onSetSepalWidth(const double &sepal_width)
-{
+void Model::onSetSepalWidth(const double &sepal_width) {
+
+    this->sepal_width = sepal_width;
 
 }
 
-void Model::onSetPetalLength(const double &petal_length)
-{
+void Model::onSetPetalLength(const double &petal_length) {
+
+    this->petal_length = petal_length;
 
 }
 
-void Model::onSetPetalWidth(const double &petal_width)
-{
+void Model::onSetPetalWidth(const double &petal_width) {
+
+    this->petal_width = petal_width;
 
 }
 

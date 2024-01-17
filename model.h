@@ -62,15 +62,17 @@ private:
     bool is_learning;
     DistancesVector distances;
     QVector<double> accuracy_results;
-    int max_number_of_neighbours = 30;
+    int max_number_of_neighbours;
 
-    std::function<double(const double&)> predict_kernel;
-    int predict_minkowski_metric_param;
-    double predict_window_width;
-    int predict_max_number_of_neighbours = 30;
+    std::function<double(const double&)> prediction_kernel;
+    int prediction_minkowski_metric_param;
+    double prediction_window_width;
+    int prediction_number_of_neighbours;
 
-
-
+    double sepal_length;
+    double sepal_width;
+    double petal_length;
+    double petal_width;
 
 };
 
