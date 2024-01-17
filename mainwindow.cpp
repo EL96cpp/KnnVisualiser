@@ -17,6 +17,25 @@ MainWindow::MainWindow(QWidget *parent)
     ui->maxNeighboursSpinBox->setRange(10, 100);
     ui->maxNeighboursSpinBox->setValue(30);
 
+    ui->predictWindowWidthLineEdit->setValidator(dv);
+    ui->predictWindowWidthLineEdit->insert("1,0");
+
+    ui->predictMaxNeighboursSpinBox->setRange(1, 150);
+    ui->predictMaxNeighboursSpinBox->setValue(1);
+
+    QDoubleValidator* iris_validator = new QDoubleValidator(0.1, 10.0, 2);
+    iris_validator->setNotation(QDoubleValidator::StandardNotation);
+
+    ui->sepalLengthEdit->setValidator(iris_validator);
+    ui->sepalWidthEdit->setValidator(iris_validator);
+    ui->petalLengthEdit->setValidator(iris_validator);
+    ui->petalWidthEdit->setValidator(iris_validator);
+
+    ui->sepalLengthEdit->insert("1,0");
+    ui->sepalWidthEdit->insert("1,0");
+    ui->petalLengthEdit->insert("1,0");
+    ui->petalWidthEdit->insert("1,0");
+
 
     connect(this, &MainWindow::setKernelType, model, &Model::onSetKernelType);
     connect(this, &MainWindow::setMinkowskiMetric, model, &Model::onSetMinkowskiMetric);
@@ -24,6 +43,12 @@ MainWindow::MainWindow(QWidget *parent)
     connect(this, &MainWindow::setMaximumNumberOfNeighbours, model, &Model::onSetMaximumNumberOfNeighbours);
     connect(this, &MainWindow::startLearning, model, &Model::startLearning);
     connect(model, &Model::setIsLearning, this, &MainWindow::onSetIsLearning);
+
+    connect(this, &MainWindow::setPredictKernelType, model, &Model::onSetPredictionKernelType);
+    connect(this, &MainWindow::setPredictMinkowskiMetric, model, &Model::onSetPredictionMinkowskiMetric);
+    connect(this, &MainWindow::setPredictWindowWidth, model, &Model::onSetPredictionWindowWidth);
+    connect(this, &MainWindow::setPredictMaximumNumberOfNeighbours, model, &Model::onSetPredictionMaximumNumberOfNeighbours);
+    connect(this, &MainWindow::startPrediction, model, &Model::startPrediction);
 
     //Send initial values from ui to model
     on_kernelComboBox_currentTextChanged(ui->kernelComboBox->currentText());
@@ -153,8 +178,9 @@ void MainWindow::on_petalWidthEdit_textChanged(const QString &petal_width) {
 }
 
 
-void MainWindow::on_predictButton_clicked()
-{
+void MainWindow::on_predictButton_clicked() {
+
     emit startPrediction();
+
 }
 
