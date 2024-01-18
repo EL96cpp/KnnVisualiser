@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QDoubleValidator>
 #include <QIntValidator>
+#include <QMessageBox>
 
 #include "model.h"
 
@@ -47,6 +48,8 @@ private slots:
     void on_sepalWidthLineEdit_textChanged(const QString &sepal_width);
     void on_petalLengthLineEdit_textChanged(const QString &petal_length);
     void on_petalWidthLineEdit_textChanged(const QString &petal_width);
+
+    void on_predictButton_clicked();
 
 private:
     Ui::MainWindow *ui;

@@ -12,7 +12,7 @@ MainWindow::MainWindow(QWidget *parent)
     QDoubleValidator* window_validator = new QDoubleValidator(0.00, 5.00, 2); // [0, 5] with 2 decimals of precision
     window_validator->setNotation(QDoubleValidator::StandardNotation);
     ui->windowWidthLineEdit->setValidator(window_validator);
-    ui->windowWidthLineEdit->insert("1,00");
+    ui->windowWidthLineEdit->insert("1,0");
 
     QDoubleValidator* iris_validator = new QDoubleValidator(0.1, 9.9, 1);
     iris_validator->setNotation(QDoubleValidator::StandardNotation);
@@ -137,6 +137,26 @@ void MainWindow::on_petalWidthLineEdit_textChanged(const QString &petal_width) {
 
     QString copy = petal_width;
     emit setPetalWidth(copy.replace(",", ".").toDouble());
+
+}
+
+
+void MainWindow::on_predictButton_clicked() {
+
+    if (ui->sepalLengthLineEdit->text().isEmpty() || ui->sepalWidthLineEdit->text().isEmpty() ||
+        ui->petalLengthLineEdit->text().isEmpty() || ui->petalWidthLineEdit->text().isEmpty() ||
+        ui->windowWidthLineEdit->text().isEmpty()) {
+
+        QMessageBox::warning(this, "Prediction error!", "Для обучения модели заполните все необходимые поля!");
+
+
+    } else {
+
+
+
+
+    }
+
 
 }
 

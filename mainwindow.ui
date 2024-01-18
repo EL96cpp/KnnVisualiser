@@ -855,6 +855,9 @@ font: 18pt ;</string>
       <height>650</height>
      </size>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(224, 253, 255);</string>
+    </property>
    </widget>
   </widget>
  </widget>
