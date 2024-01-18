@@ -6,9 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1365</width>
-    <height>905</height>
+    <width>1300</width>
+    <height>800</height>
    </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
@@ -24,17 +30,35 @@ background-image: url(:/background.jpg);
    <property name="styleSheet">
     <string notr="true"/>
    </property>
-   <widget class="QGroupBox" name="groupBox">
+   <widget class="QGroupBox" name="predictionGroupBox">
     <property name="geometry">
      <rect>
-      <x>50</x>
-      <y>30</y>
-      <width>481</width>
-      <height>291</height>
+      <x>770</x>
+      <y>60</y>
+      <width>471</width>
+      <height>650</height>
      </rect>
     </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>0</width>
+      <height>650</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>16777215</width>
+      <height>650</height>
+     </size>
+    </property>
     <property name="styleSheet">
-     <string notr="true">#groupBox {
+     <string notr="true">#predictionGroupBox {
 
 	background-color: rgba(5, 87, 101, 215);
     border-style: outset;
@@ -46,171 +70,587 @@ background-image: url(:/background.jpg);
     <property name="title">
      <string/>
     </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-    <widget class="QWidget" name="layoutWidget">
+    <widget class="Line" name="line">
      <property name="geometry">
       <rect>
        <x>30</x>
-       <y>20</y>
-       <width>391</width>
-       <height>131</height>
+       <y>460</y>
+       <width>421</width>
+       <height>20</height>
       </rect>
      </property>
-     <layout class="QFormLayout" name="formLayout">
-      <item row="0" column="0">
-       <widget class="QLabel" name="widthLabel">
-        <property name="styleSheet">
-         <string notr="true">color: rgb(204, 245, 234);
+     <property name="frameShadow">
+      <enum>QFrame::Sunken</enum>
+     </property>
+     <property name="lineWidth">
+      <number>1</number>
+     </property>
+     <property name="midLineWidth">
+      <number>0</number>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+    <widget class="QWidget" name="">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>210</y>
+       <width>421</width>
+       <height>111</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_8">
+        <item>
+         <widget class="QLabel" name="sepalLengthLabel">
+          <property name="styleSheet">
+           <string notr="true">color: rgb(204, 245, 234);
 </string>
-        </property>
-        <property name="text">
-         <string>Ширина окна</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="1">
-       <widget class="QLineEdit" name="windowWidthLineEdit">
-        <property name="styleSheet">
-         <string notr="true">    border-style: outset;
+          </property>
+          <property name="text">
+           <string>Sepal lenght</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="sepalLengthLineEdit">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>250</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>250</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">    border-style: outset;
     border-radius: 5px;
 	color: rgb(204, 245, 234);
 	background-color: rgb(2, 50, 57);</string>
-        </property>
-       </widget>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </item>
-      <item row="1" column="0">
-       <widget class="QLabel" name="kernelLabel">
-        <property name="styleSheet">
-         <string notr="true">color: rgb(204, 245, 234);
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_7">
+        <item>
+         <widget class="QLabel" name="sepalWidthLabel">
+          <property name="styleSheet">
+           <string notr="true">color: rgb(204, 245, 234);
 </string>
+          </property>
+          <property name="text">
+           <string>Sepal width</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="sepalWidthLineEdit">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>250</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>250</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">    border-style: outset;
+    border-radius: 5px;
+	color: rgb(204, 245, 234);
+	background-color: rgb(2, 50, 57);</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_6">
+        <item>
+         <widget class="QLabel" name="petalLengthLabel">
+          <property name="styleSheet">
+           <string notr="true">color: rgb(204, 245, 234);
+</string>
+          </property>
+          <property name="text">
+           <string>Petal length</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="petalLengthLineEdit">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>250</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>250</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">    border-style: outset;
+    border-radius: 5px;
+	color: rgb(204, 245, 234);
+	background-color: rgb(2, 50, 57);</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_5">
+        <item>
+         <widget class="QLabel" name="petalWidthLabel">
+          <property name="styleSheet">
+           <string notr="true">color: rgb(204, 245, 234);
+</string>
+          </property>
+          <property name="text">
+           <string>Petal width</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="petalWidthLineEdit">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>250</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>250</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">    border-style: outset;
+    border-radius: 5px;
+	color: rgb(204, 245, 234);
+	background-color: rgb(2, 50, 57);</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QWidget" name="">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>40</y>
+       <width>421</width>
+       <height>134</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_2">
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_11">
+        <item>
+         <widget class="QLabel" name="widthLabel">
+          <property name="styleSheet">
+           <string notr="true">color: rgb(204, 245, 234);
+</string>
+          </property>
+          <property name="text">
+           <string>Ширина окна</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="windowWidthLineEdit">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>250</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>250</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">    border-style: outset;
+    border-radius: 5px;
+	color: rgb(204, 245, 234);
+	background-color: rgb(2, 50, 57);</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_10">
+        <item>
+         <widget class="QLabel" name="kernelLabel">
+          <property name="styleSheet">
+           <string notr="true">color: rgb(204, 245, 234);
+</string>
+          </property>
+          <property name="text">
+           <string>Функция ядра</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="kernelComboBox">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>250</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>250</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">	background-color: rgb(2, 50, 57);
+	color: rgb(204, 245, 234);
+    border-style: outset;
+    border-radius: 5px;</string>
+          </property>
+          <item>
+           <property name="text">
+            <string>Прямоугольное</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Треугольное</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Ядро Епанченкова</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Биквадратное</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Гауссовское</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_9">
+        <item>
+         <widget class="QLabel" name="metricLabel">
+          <property name="styleSheet">
+           <string notr="true">color: rgb(204, 245, 234);
+</string>
+          </property>
+          <property name="text">
+           <string>Параметр метрики
+Минковского</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="metricComboBox">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>250</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>250</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">	background-color: rgb(2, 50, 57);
+	color: rgb(204, 245, 234);
+    border-style: outset;
+    border-radius: 5px;</string>
+          </property>
+          <item>
+           <property name="text">
+            <string>1 (Манхеттенская метрика)</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>2 (Евклидова метрика)</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>4</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>8</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout">
+        <item>
+         <widget class="QLabel" name="maxNeighboursLabel">
+          <property name="styleSheet">
+           <string notr="true">color: rgb(204, 245, 234);
+</string>
+          </property>
+          <property name="text">
+           <string>Максимальное число
+соседей</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QSpinBox" name="maxNeighboursSpinBox">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>250</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>250</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">	background-color: rgb(2, 50, 57);
+	color: rgb(204, 245, 234);
+</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+    <widget class="Line" name="line_2">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>180</y>
+       <width>421</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Sunken</enum>
+     </property>
+     <property name="lineWidth">
+      <number>1</number>
+     </property>
+     <property name="midLineWidth">
+      <number>0</number>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+    <widget class="QWidget" name="">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>580</y>
+       <width>421</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <item>
+       <widget class="QLabel" name="typeLabel">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>200</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>200</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(0, 70, 82);
+color: rgb(204, 245, 234);
+font: 14pt ;</string>
         </property>
         <property name="text">
-         <string>Функция ядра</string>
+         <string>Тип цветка:</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
        </widget>
       </item>
-      <item row="1" column="1">
-       <widget class="QComboBox" name="kernelComboBox">
+      <item>
+       <widget class="QGroupBox" name="predictResultBox">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+          <horstretch>50</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>200</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>200</width>
+          <height>16777215</height>
+         </size>
+        </property>
         <property name="styleSheet">
-         <string notr="true">	background-color: rgb(2, 50, 57);
-	color: rgb(204, 245, 234);
+         <string notr="true">#predictResultBox {
+
+	background-color: rgba(5, 87, 101, 215);
     border-style: outset;
-    border-radius: 5px;</string>
+    border-width: 2px;
+    border-radius: 5px;
+
+}</string>
         </property>
-        <item>
-         <property name="text">
-          <string>Прямоугольное</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Треугольное</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Ядро Епанченкова</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Биквадратное</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Гауссовское</string>
-         </property>
-        </item>
-       </widget>
-      </item>
-      <item row="2" column="0">
-       <widget class="QLabel" name="metricLabel">
-        <property name="styleSheet">
-         <string notr="true">color: rgb(204, 245, 234);
-</string>
+        <property name="title">
+         <string/>
         </property>
-        <property name="text">
-         <string>Параметр метрики
-Минковского</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="1">
-       <widget class="QComboBox" name="metricComboBox">
-        <property name="styleSheet">
-         <string notr="true">	background-color: rgb(2, 50, 57);
-	color: rgb(204, 245, 234);
-    border-style: outset;
-    border-radius: 5px;</string>
-        </property>
-        <item>
-         <property name="text">
-          <string>1 (Манхеттенская метрика)</string>
+        <widget class="QLabel" name="predictionValueLabel">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>0</y>
+           <width>181</width>
+           <height>41</height>
+          </rect>
          </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>2 (Евклидова метрика)</string>
+         <property name="styleSheet">
+          <string notr="true">color: rgb(224, 253, 255);
+font: 18pt ;</string>
          </property>
-        </item>
-        <item>
          <property name="text">
-          <string>4</string>
+          <string/>
          </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>8</string>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
          </property>
-        </item>
-       </widget>
-      </item>
-      <item row="3" column="0">
-       <widget class="QLabel" name="maxNeighboursLabel">
-        <property name="styleSheet">
-         <string notr="true">color: rgb(204, 245, 234);
-</string>
-        </property>
-        <property name="text">
-         <string>Максимальное число
-соседей</string>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="1">
-       <widget class="QSpinBox" name="maxNeighboursSpinBox">
-        <property name="styleSheet">
-         <string notr="true">	background-color: rgb(2, 50, 57);
-	color: rgb(204, 245, 234);
-</string>
-        </property>
+        </widget>
        </widget>
       </item>
      </layout>
     </widget>
-    <widget class="QPushButton" name="startLearnButton">
+    <widget class="QWidget" name="">
      <property name="geometry">
       <rect>
-       <x>320</x>
-       <y>240</y>
-       <width>141</width>
-       <height>25</height>
+       <x>280</x>
+       <y>490</y>
+       <width>161</width>
+       <height>71</height>
       </rect>
      </property>
-     <property name="styleSheet">
-      <string notr="true">#startLearnButton {
+     <layout class="QVBoxLayout" name="verticalLayout_3">
+      <item>
+       <widget class="QPushButton" name="startLearnButton">
+        <property name="styleSheet">
+         <string notr="true">#startLearnButton {
 
 	background-color: rgb(3, 73, 80);
 	color: rgb(204, 245, 234);
@@ -227,195 +667,16 @@ background-image: url(:/background.jpg);
 	color: rgb(255, 255, 255);
 
 }</string>
-     </property>
-     <property name="text">
-      <string>Построить график</string>
-     </property>
-    </widget>
-   </widget>
-   <widget class="QGroupBox" name="predictionGroupBox">
-    <property name="geometry">
-     <rect>
-      <x>580</x>
-      <y>30</y>
-      <width>721</width>
-      <height>291</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">#predictionGroupBox {
-
-	background-color: rgba(5, 87, 101, 215);
-    border-style: outset;
-    border-width: 2px;
-    border-radius: 15px;
-
-}</string>
-    </property>
-    <property name="title">
-     <string/>
-    </property>
-    <widget class="QWidget" name="layoutWidget_4">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>20</y>
-       <width>391</width>
-       <height>121</height>
-      </rect>
-     </property>
-     <layout class="QFormLayout" name="formLayout_4">
-      <item row="0" column="0">
-       <widget class="QLabel" name="widthLabel_4">
-        <property name="styleSheet">
-         <string notr="true">color: rgb(204, 245, 234);
-</string>
         </property>
         <property name="text">
-         <string>Ширина окна</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
+         <string>Построить график</string>
         </property>
        </widget>
       </item>
-      <item row="0" column="1">
-       <widget class="QLineEdit" name="predictWindowWidthLineEdit">
+      <item>
+       <widget class="QPushButton" name="predictButton">
         <property name="styleSheet">
-         <string notr="true">    border-style: outset;
-    border-radius: 5px;
-	color: rgb(204, 245, 234);
-	background-color: rgb(2, 50, 57);</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="0">
-       <widget class="QLabel" name="kernelLabel_4">
-        <property name="styleSheet">
-         <string notr="true">color: rgb(204, 245, 234);
-</string>
-        </property>
-        <property name="text">
-         <string>Функция ядра</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="1">
-       <widget class="QComboBox" name="predictKernelComboBox">
-        <property name="styleSheet">
-         <string notr="true">	background-color: rgb(2, 50, 57);
-	color: rgb(204, 245, 234);
-    border-style: outset;
-    border-radius: 5px;</string>
-        </property>
-        <item>
-         <property name="text">
-          <string>Прямоугольное</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Треугольное</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Ядро Епанченкова</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Биквадратное</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Гауссовское</string>
-         </property>
-        </item>
-       </widget>
-      </item>
-      <item row="2" column="0">
-       <widget class="QLabel" name="metricLabel_4">
-        <property name="styleSheet">
-         <string notr="true">color: rgb(204, 245, 234);
-</string>
-        </property>
-        <property name="text">
-         <string>Параметр метрики
-Минковского</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="1">
-       <widget class="QComboBox" name="predictMetricComboBox">
-        <property name="styleSheet">
-         <string notr="true">	background-color: rgb(2, 50, 57);
-	color: rgb(204, 245, 234);
-    border-style: outset;
-    border-radius: 5px;</string>
-        </property>
-        <item>
-         <property name="text">
-          <string>1 (Манхеттенская метрика)</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>2 (Евклидова метрика)</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>4</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>8</string>
-         </property>
-        </item>
-       </widget>
-      </item>
-      <item row="3" column="0">
-       <widget class="QLabel" name="maxNeighboursLabel_4">
-        <property name="styleSheet">
-         <string notr="true">color: rgb(204, 245, 234);
-</string>
-        </property>
-        <property name="text">
-         <string>Число соседей</string>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="1">
-       <widget class="QSpinBox" name="predictMaxNeighboursSpinBox">
-        <property name="styleSheet">
-         <string notr="true">	background-color: rgb(2, 50, 57);
-	color: rgb(204, 245, 234);
-</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
-    <widget class="QPushButton" name="predictButton">
-     <property name="geometry">
-      <rect>
-       <x>560</x>
-       <y>240</y>
-       <width>131</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">#predictButton {
+         <string notr="true">#predictButton {
 
 	background-color: rgb(3, 73, 80);
 	color: rgb(204, 245, 234);
@@ -432,159 +693,169 @@ background-image: url(:/background.jpg);
 	color: rgb(255, 255, 255);
 
 }</string>
-     </property>
-     <property name="text">
-      <string>Предсказать тип</string>
-     </property>
+        </property>
+        <property name="text">
+         <string>Предсказать тип</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </widget>
-    <widget class="QGroupBox" name="predictResultBox">
+    <widget class="QWidget" name="">
      <property name="geometry">
       <rect>
-       <x>450</x>
-       <y>190</y>
-       <width>231</width>
-       <height>31</height>
+       <x>30</x>
+       <y>340</y>
+       <width>421</width>
+       <height>91</height>
       </rect>
      </property>
-     <property name="styleSheet">
-      <string notr="true">#predictResultBox {
-
-	background-color: rgba(5, 87, 101, 215);
-    border-style: outset;
-    border-width: 2px;
-    border-radius: 5px;
-
-}</string>
-     </property>
-     <property name="title">
-      <string/>
-     </property>
-    </widget>
-    <widget class="QLabel" name="irisTypeLabel">
-     <property name="geometry">
-      <rect>
-       <x>450</x>
-       <y>150</y>
-       <width>111</width>
-       <height>31</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">background-color: rgb(0, 70, 82);
-color: rgb(204, 245, 234);
-font: 14pt ;</string>
-     </property>
-     <property name="text">
-      <string>Тип цветка:</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
-    </widget>
-    <widget class="QWidget" name="layoutWidget">
-     <property name="geometry">
-      <rect>
-       <x>450</x>
-       <y>20</y>
-       <width>191</width>
-       <height>121</height>
-      </rect>
-     </property>
-     <layout class="QHBoxLayout" name="horizontalLayout">
+     <layout class="QVBoxLayout" name="verticalLayout_4">
       <item>
-       <layout class="QVBoxLayout" name="verticalLayout">
+       <layout class="QHBoxLayout" name="horizontalLayout_3">
         <item>
-         <widget class="QLabel" name="label">
+         <widget class="QLabel" name="firstParameterLabel">
           <property name="styleSheet">
-           <string notr="true">color: rgb(204, 245, 234);
-</string>
+           <string notr="true">color: rgb(204, 245, 234);</string>
           </property>
           <property name="text">
-           <string>Sepal lenght</string>
+           <string>Первый параметр
+обучения</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QLabel" name="label_2">
+         <widget class="QComboBox" name="firstParameterComboBox">
+          <property name="minimumSize">
+           <size>
+            <width>250</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>250</width>
+            <height>16777215</height>
+           </size>
+          </property>
           <property name="styleSheet">
-           <string notr="true">color: rgb(204, 245, 234);
-</string>
+           <string notr="true">	background-color: rgb(2, 50, 57);
+	color: rgb(204, 245, 234);
+    border-style: outset;
+    border-radius: 5px;</string>
           </property>
-          <property name="text">
-           <string>Sepal width</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="label_3">
-          <property name="styleSheet">
-           <string notr="true">color: rgb(204, 245, 234);
-</string>
-          </property>
-          <property name="text">
-           <string>Petal length</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="label_4">
-          <property name="styleSheet">
-           <string notr="true">color: rgb(204, 245, 234);
-</string>
-          </property>
-          <property name="text">
-           <string>Petal width</string>
-          </property>
+          <item>
+           <property name="text">
+            <string>Sepal length</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Sepal width</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Petal length</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Petal width</string>
+           </property>
+          </item>
          </widget>
         </item>
        </layout>
       </item>
       <item>
-       <layout class="QVBoxLayout" name="verticalLayout_2">
+       <layout class="QHBoxLayout" name="horizontalLayout_4">
         <item>
-         <widget class="QLineEdit" name="sepalLengthEdit">
+         <widget class="QLabel" name="secondParameterLabel">
           <property name="styleSheet">
-           <string notr="true">    border-style: outset;
-    border-radius: 5px;
-	color: rgb(204, 245, 234);
-	background-color: rgb(2, 50, 57);</string>
+           <string notr="true">color: rgb(204, 245, 234);</string>
+          </property>
+          <property name="text">
+           <string>Второй параметр
+обучения</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="sepalWidthEdit">
-          <property name="styleSheet">
-           <string notr="true">    border-style: outset;
-    border-radius: 5px;
-	color: rgb(204, 245, 234);
-	background-color: rgb(2, 50, 57);</string>
+         <widget class="QComboBox" name="secondParameterComboBox">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
           </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLineEdit" name="petalLengthEdit">
-          <property name="styleSheet">
-           <string notr="true">    border-style: outset;
-    border-radius: 5px;
-	color: rgb(204, 245, 234);
-	background-color: rgb(2, 50, 57);</string>
+          <property name="minimumSize">
+           <size>
+            <width>250</width>
+            <height>0</height>
+           </size>
           </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLineEdit" name="petalWidthEdit">
-          <property name="styleSheet">
-           <string notr="true">    border-style: outset;
-    border-radius: 5px;
-	color: rgb(204, 245, 234);
-	background-color: rgb(2, 50, 57);</string>
+          <property name="maximumSize">
+           <size>
+            <width>250</width>
+            <height>16777215</height>
+           </size>
           </property>
+          <property name="styleSheet">
+           <string notr="true">	background-color: rgb(2, 50, 57);
+	color: rgb(204, 245, 234);
+    border-style: outset;
+    border-radius: 5px;</string>
+          </property>
+          <item>
+           <property name="text">
+            <string>Petal length</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Petal width</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Sepal width</string>
+           </property>
+          </item>
          </widget>
         </item>
        </layout>
       </item>
      </layout>
     </widget>
+   </widget>
+   <widget class="QGraphicsView" name="graphicsView">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>60</y>
+      <width>650</width>
+      <height>650</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>650</width>
+      <height>650</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>650</width>
+      <height>650</height>
+     </size>
+    </property>
    </widget>
   </widget>
  </widget>
