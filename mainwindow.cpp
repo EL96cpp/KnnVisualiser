@@ -9,10 +9,18 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     setWindowTitle("KnnVisualiser");
 
-    QDoubleValidator* dv = new QDoubleValidator(0.0, 5.0, 2); // [0, 5] with 2 decimals of precision
-    dv->setNotation(QDoubleValidator::StandardNotation);
-    ui->windowWidthLineEdit->setValidator(dv);
-    ui->windowWidthLineEdit->insert("1,0");
+    QDoubleValidator* window_validator = new QDoubleValidator(0.00, 5.00, 2); // [0, 5] with 2 decimals of precision
+    window_validator->setNotation(QDoubleValidator::StandardNotation);
+    ui->windowWidthLineEdit->setValidator(window_validator);
+    ui->windowWidthLineEdit->insert("1,00");
+
+    QDoubleValidator* iris_validator = new QDoubleValidator(0.1, 9.9, 1);
+    iris_validator->setNotation(QDoubleValidator::StandardNotation);
+    ui->sepalLengthLineEdit->setValidator(iris_validator);
+    ui->sepalWidthLineEdit->setValidator(iris_validator);
+    ui->petalLengthLineEdit->setValidator(iris_validator);
+    ui->petalWidthLineEdit->setValidator(iris_validator);
+
 
     ui->neighboursSpinBox->setRange(1, 120);
     ui->neighboursSpinBox->setValue(1);
@@ -23,6 +31,12 @@ MainWindow::MainWindow(QWidget *parent)
     connect(this, &MainWindow::setWindowWidth, model, &Model::onSetWindowWidth);
     connect(this, &MainWindow::setNumberOfNeighbours, model, &Model::onSetNumberOfNeighbours);
     connect(this, &MainWindow::startLearning, model, &Model::startLearning);
+
+    connect(this, &MainWindow::setSepalLength, model, &Model::onSetSepalLength);
+    connect(this, &MainWindow::setSepalWidth, model, &Model::onSetSepalWidth);
+    connect(this, &MainWindow::setPetalLength, model, &Model::onSetPetalLength);
+    connect(this, &MainWindow::setPetalWidth, model, &Model::onSetPetalWidth);
+
     connect(model, &Model::setIsLearning, this, &MainWindow::onSetIsLearning);
 
     //Send initial values from ui to model
@@ -88,9 +102,41 @@ void MainWindow::on_startLearnButton_clicked() {
 }
 
 
-void MainWindow::on_neighboursSpinBox_valueChanged(int max_number_of_neighbours) {
+void MainWindow::on_neighboursSpinBox_valueChanged(int number_of_neighbours) {
 
-    emit setNumberOfNeighbours(max_number_of_neighbours);
+    emit setNumberOfNeighbours(number_of_neighbours);
+
+}
+
+
+void MainWindow::on_sepalLengthLineEdit_textChanged(const QString &sepal_length) {
+
+    QString copy = sepal_length;
+    emit setSepalLength(copy.replace(",", ".").toDouble());
+
+}
+
+
+void MainWindow::on_sepalWidthLineEdit_textChanged(const QString &sepal_width) {
+
+    QString copy = sepal_width;
+    emit setSepalWidth(copy.replace(",", ".").toDouble());
+
+}
+
+
+void MainWindow::on_petalLengthLineEdit_textChanged(const QString &petal_length) {
+
+    QString copy = petal_length;
+    emit setPetalLength(copy.replace(",", ".").toDouble());
+
+}
+
+
+void MainWindow::on_petalWidthLineEdit_textChanged(const QString &petal_width) {
+
+    QString copy = petal_width;
+    emit setPetalWidth(copy.replace(",", ".").toDouble());
 
 }
 

@@ -115,9 +115,33 @@ void Model::onSetMinkowskiMetric(const int &minkowski_metric_param) {
 
 }
 
-void Model::onSetNumberOfNeighbours(const int &max_number_of_neighbours) {
+void Model::onSetNumberOfNeighbours(const int &number_of_neighbours) {
 
-    this->max_number_of_neighbours = max_number_of_neighbours;
+    this->number_of_neighbours = number_of_neighbours;
+
+}
+
+void Model::onSetSepalLength(const double &sepal_length) {
+
+    this->sepal_length = sepal_length;
+
+}
+
+void Model::onSetSepalWidth(const double &sepal_width) {
+
+    this->sepal_width = sepal_width;
+
+}
+
+void Model::onSetPetalLength(const double &petal_length) {
+
+    this->petal_length = petal_length;
+
+}
+
+void Model::onSetPetalWidth(const double &petal_width) {
+
+    this->petal_width = petal_width;
 
 }
 
@@ -267,7 +291,7 @@ QVector<double> Model::getCvGroupAccuracies(const int &group_index) {
         //Value with index i will store correctness of prediction for i+1 neighbours
         QVector<bool> current_predictions;
 
-        for (int j = 0; j < max_number_of_neighbours; ++j) {
+        for (int j = 0; j < number_of_neighbours; ++j) {
 
             int pair_id = current_distances[j].getPairForId(current_id);
             int pair_type = dataset[pair_id-1].getType();
@@ -300,7 +324,7 @@ QVector<double> Model::getCvGroupAccuracies(const int &group_index) {
 
     QVector<double> cv_group_accuracies;
 
-    for (int i = 0; i < max_number_of_neighbours; ++i) {
+    for (int i = 0; i < number_of_neighbours; ++i) {
 
         double correct_predictions = 0.0;
 

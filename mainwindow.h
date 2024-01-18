@@ -23,7 +23,13 @@ signals:
     void setKernelType(const QString& kernel_type);
     void setWindowWidth(const double& window_width);
     void setMinkowskiMetric(const int& minkowski_metric);
-    void setNumberOfNeighbours(const int& max_number_of_neighbours);
+    void setNumberOfNeighbours(const int& number_of_neighbours);
+
+    void setSepalLength(const double& sepal_length);
+    void setSepalWidth(const double& sepal_width);
+    void setPetalLength(const double& petal_length);
+    void setPetalWidth(const double& petal_width);
+
     void startLearning();
 
 public slots:
@@ -33,10 +39,14 @@ private slots:
     void on_kernelComboBox_currentTextChanged(const QString &arg1);
     void on_windowWidthLineEdit_textChanged(const QString &arg1);
     void on_metricComboBox_currentTextChanged(const QString &arg1);
+    void on_neighboursSpinBox_valueChanged(int number_of_neighbours);
     void on_startLearnButton_clicked();
 
 
-    void on_neighboursSpinBox_valueChanged(int arg1);
+    void on_sepalLengthLineEdit_textChanged(const QString &sepal_length);
+    void on_sepalWidthLineEdit_textChanged(const QString &sepal_width);
+    void on_petalLengthLineEdit_textChanged(const QString &petal_length);
+    void on_petalWidthLineEdit_textChanged(const QString &petal_width);
 
 private:
     Ui::MainWindow *ui;

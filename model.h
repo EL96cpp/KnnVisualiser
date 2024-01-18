@@ -27,7 +27,12 @@ public slots:
     void onSetKernelType(const QString& kernel_type);
     void onSetWindowWidth(const double &window_width);
     void onSetMinkowskiMetric(const int& minkowski_metric_param);
-    void onSetNumberOfNeighbours(const int& max_number_of_neighbours);
+    void onSetNumberOfNeighbours(const int& number_of_neighbours);
+
+    void onSetSepalLength(const double& sepal_length);
+    void onSetSepalWidth(const double& sepal_width);
+    void onSetPetalLength(const double& petal_length);
+    void onSetPetalWidth(const double& petal_width);
 
 signals:
     void openCsvFileError();
@@ -51,7 +56,12 @@ private:
     bool is_learning;
     DistancesVector distances;
     QVector<double> accuracy_results;
-    int max_number_of_neighbours = 30;
+    int number_of_neighbours;
+
+    double sepal_length;
+    double sepal_width;
+    double petal_length;
+    double petal_width;
 
 };
 
