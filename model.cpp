@@ -115,7 +115,7 @@ void Model::onSetMinkowskiMetric(const int &minkowski_metric_param) {
 
 }
 
-void Model::onSetMaximumNumberOfNeighbours(const int &max_number_of_neighbours) {
+void Model::onSetNumberOfNeighbours(const int &max_number_of_neighbours) {
 
     this->max_number_of_neighbours = max_number_of_neighbours;
 

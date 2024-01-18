@@ -27,7 +27,7 @@ public slots:
     void onSetKernelType(const QString& kernel_type);
     void onSetWindowWidth(const double &window_width);
     void onSetMinkowskiMetric(const int& minkowski_metric_param);
-    void onSetMaximumNumberOfNeighbours(const int& max_number_of_neighbours);
+    void onSetNumberOfNeighbours(const int& max_number_of_neighbours);
 
 signals:
     void openCsvFileError();

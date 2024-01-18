@@ -92,7 +92,7 @@ background-image: url(:/background.jpg);
       <enum>Qt::Horizontal</enum>
      </property>
     </widget>
-    <widget class="QWidget" name="">
+    <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
        <x>30</x>
@@ -276,7 +276,7 @@ background-image: url(:/background.jpg);
       </item>
      </layout>
     </widget>
-    <widget class="QWidget" name="">
+    <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
        <x>30</x>
@@ -473,19 +473,18 @@ background-image: url(:/background.jpg);
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout">
         <item>
-         <widget class="QLabel" name="maxNeighboursLabel">
+         <widget class="QLabel" name="neighboursLabel">
           <property name="styleSheet">
            <string notr="true">color: rgb(204, 245, 234);
 </string>
           </property>
           <property name="text">
-           <string>Максимальное число
-соседей</string>
+           <string>Число соседей</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QSpinBox" name="maxNeighboursSpinBox">
+         <widget class="QSpinBox" name="neighboursSpinBox">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
             <horstretch>0</horstretch>
@@ -537,7 +536,7 @@ background-image: url(:/background.jpg);
       <enum>Qt::Horizontal</enum>
      </property>
     </widget>
-    <widget class="QWidget" name="">
+    <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
        <x>30</x>
@@ -637,7 +636,7 @@ font: 18pt ;</string>
       </item>
      </layout>
     </widget>
-    <widget class="QWidget" name="">
+    <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
        <x>280</x>
@@ -701,7 +700,7 @@ font: 18pt ;</string>
       </item>
      </layout>
     </widget>
-    <widget class="QWidget" name="">
+    <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
        <x>30</x>

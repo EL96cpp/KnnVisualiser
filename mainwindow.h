@@ -23,7 +23,7 @@ signals:
     void setKernelType(const QString& kernel_type);
     void setWindowWidth(const double& window_width);
     void setMinkowskiMetric(const int& minkowski_metric);
-    void setMaximumNumberOfNeighbours(const int& max_number_of_neighbours);
+    void setNumberOfNeighbours(const int& max_number_of_neighbours);
     void startLearning();
 
 public slots:
@@ -36,7 +36,7 @@ private slots:
     void on_startLearnButton_clicked();
 
 
-    void on_maxNeighboursSpinBox_valueChanged(int arg1);
+    void on_neighboursSpinBox_valueChanged(int arg1);
 
 private:
     Ui::MainWindow *ui;
