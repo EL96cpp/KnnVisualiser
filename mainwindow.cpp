@@ -98,7 +98,15 @@ void MainWindow::on_metricComboBox_currentTextChanged(const QString &arg1) {
 
 void MainWindow::on_startLearnButton_clicked() {
 
-    emit startLearning();
+    if (ui->windowWidthLineEdit->text().isEmpty()) {
+
+        QMessageBox::warning(this, "Plot building error!", "Для обучения модели заполните все необходимые поля!");
+
+    } else {
+
+        emit startLearning();
+
+    }
 
 }
 
