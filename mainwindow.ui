@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1300</width>
-    <height>800</height>
+    <width>1339</width>
+    <height>835</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -33,10 +33,10 @@ background-image: url(:/background.jpg);
    <widget class="QGroupBox" name="predictionGroupBox">
     <property name="geometry">
      <rect>
-      <x>770</x>
+      <x>790</x>
       <y>60</y>
-      <width>471</width>
-      <height>650</height>
+      <width>511</width>
+      <height>700</height>
      </rect>
     </property>
     <property name="sizePolicy">
@@ -48,13 +48,13 @@ background-image: url(:/background.jpg);
     <property name="minimumSize">
      <size>
       <width>0</width>
-      <height>650</height>
+      <height>700</height>
      </size>
     </property>
     <property name="maximumSize">
      <size>
       <width>16777215</width>
-      <height>650</height>
+      <height>700</height>
      </size>
     </property>
     <property name="styleSheet">
@@ -73,9 +73,9 @@ background-image: url(:/background.jpg);
     <widget class="Line" name="line">
      <property name="geometry">
       <rect>
-       <x>30</x>
-       <y>460</y>
-       <width>421</width>
+       <x>20</x>
+       <y>480</y>
+       <width>461</width>
        <height>20</height>
       </rect>
      </property>
@@ -95,10 +95,10 @@ background-image: url(:/background.jpg);
     <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
-       <x>30</x>
-       <y>270</y>
-       <width>421</width>
-       <height>181</height>
+       <x>20</x>
+       <y>260</y>
+       <width>451</width>
+       <height>201</height>
       </rect>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout">
@@ -125,13 +125,13 @@ background-image: url(:/background.jpg);
           </property>
           <property name="minimumSize">
            <size>
-            <width>250</width>
+            <width>210</width>
             <height>0</height>
            </size>
           </property>
           <property name="maximumSize">
            <size>
-            <width>250</width>
+            <width>210</width>
             <height>16777215</height>
            </size>
           </property>
@@ -140,6 +140,59 @@ background-image: url(:/background.jpg);
     border-radius: 5px;
 	color: rgb(204, 245, 234);
 	background-color: rgb(2, 50, 57);</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="sepalLengthCheckBox">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>3</width>
+            <height>3</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>30</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="sizeIncrement">
+           <size>
+            <width>30</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="toolTip">
+           <string/>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">#sepalLengthCheckBox::indicator::checked {
+	
+	width: 20px;
+	height: 20px;
+	background-color: rgb(2, 50, 57);
+	image: url(&quot;:/check_box_mark.png&quot;);
+
+}
+
+#sepalLengthCheckBox::indicator::unchecked {
+
+	width: 20px;
+	height: 20px;
+	background-color: rgb(2, 50, 57);
+
+}
+</string>
+          </property>
+          <property name="text">
+           <string/>
           </property>
          </widget>
         </item>
@@ -168,13 +221,13 @@ background-image: url(:/background.jpg);
           </property>
           <property name="minimumSize">
            <size>
-            <width>250</width>
+            <width>210</width>
             <height>0</height>
            </size>
           </property>
           <property name="maximumSize">
            <size>
-            <width>250</width>
+            <width>210</width>
             <height>16777215</height>
            </size>
           </property>
@@ -183,6 +236,58 @@ background-image: url(:/background.jpg);
     border-radius: 5px;
 	color: rgb(204, 245, 234);
 	background-color: rgb(2, 50, 57);</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="sepalWidthCheckBox">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>3</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>30</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="sizeIncrement">
+           <size>
+            <width>30</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="toolTip">
+           <string/>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">#sepalWidthCheckBox::indicator::unchecked {
+
+	width: 20px;
+	height: 20px;
+	background-color: rgb(2, 50, 57);
+
+}
+
+#sepalWidthCheckBox::indicator::checked {
+
+	width: 20px;
+	height: 20px;
+	background-color: rgb(2, 50, 57);
+	image: url(&quot;:/check_box_mark.png&quot;);
+
+}</string>
+          </property>
+          <property name="text">
+           <string/>
           </property>
          </widget>
         </item>
@@ -211,13 +316,13 @@ background-image: url(:/background.jpg);
           </property>
           <property name="minimumSize">
            <size>
-            <width>250</width>
+            <width>210</width>
             <height>0</height>
            </size>
           </property>
           <property name="maximumSize">
            <size>
-            <width>250</width>
+            <width>210</width>
             <height>16777215</height>
            </size>
           </property>
@@ -226,6 +331,59 @@ background-image: url(:/background.jpg);
     border-radius: 5px;
 	color: rgb(204, 245, 234);
 	background-color: rgb(2, 50, 57);</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="petalLengthCheckBox">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>3</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>30</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="sizeIncrement">
+           <size>
+            <width>30</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="toolTip">
+           <string/>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">
+#petalLengthCheckBox::indicator::unchecked {
+
+	width: 20px;
+	height: 20px;
+	background-color: rgb(2, 50, 57);
+
+}
+
+#petalLengthCheckBox::indicator::checked {
+
+	width: 20px;
+	height: 20px;
+	background-color: rgb(2, 50, 57);
+	image: url(&quot;:/check_box_mark.png&quot;);
+
+}</string>
+          </property>
+          <property name="text">
+           <string/>
           </property>
          </widget>
         </item>
@@ -254,13 +412,13 @@ background-image: url(:/background.jpg);
           </property>
           <property name="minimumSize">
            <size>
-            <width>250</width>
+            <width>210</width>
             <height>0</height>
            </size>
           </property>
           <property name="maximumSize">
            <size>
-            <width>250</width>
+            <width>210</width>
             <height>16777215</height>
            </size>
           </property>
@@ -272,6 +430,59 @@ background-image: url(:/background.jpg);
           </property>
          </widget>
         </item>
+        <item>
+         <widget class="QCheckBox" name="petalWidthCheckBox">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>3</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>30</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="sizeIncrement">
+           <size>
+            <width>30</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="toolTip">
+           <string/>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">
+#petalWidthCheckBox::indicator::unchecked {
+
+	width: 20px;
+	height: 20px;
+	background-color: rgb(2, 50, 57);
+
+}
+
+#petalWidthCheckBox::indicator::checked {
+
+	width: 20px;
+	height: 20px;
+	background-color: rgb(2, 50, 57);
+	image: url(&quot;:/check_box_mark.png&quot;);
+
+}</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
        </layout>
       </item>
      </layout>
@@ -279,9 +490,9 @@ background-image: url(:/background.jpg);
     <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
-       <x>30</x>
-       <y>30</y>
-       <width>421</width>
+       <x>20</x>
+       <y>20</y>
+       <width>454</width>
        <height>191</height>
       </rect>
      </property>
@@ -573,7 +784,7 @@ background-image: url(:/background.jpg);
           </item>
           <item>
            <property name="text">
-            <string>Setap width - Petal width</string>
+            <string>Sepal width - Petal width</string>
            </property>
           </item>
           <item>
@@ -590,9 +801,9 @@ background-image: url(:/background.jpg);
     <widget class="Line" name="line_2">
      <property name="geometry">
       <rect>
-       <x>30</x>
-       <y>240</y>
-       <width>421</width>
+       <x>20</x>
+       <y>220</y>
+       <width>461</width>
        <height>20</height>
       </rect>
      </property>
@@ -613,8 +824,8 @@ background-image: url(:/background.jpg);
      <property name="geometry">
       <rect>
        <x>30</x>
-       <y>580</y>
-       <width>421</width>
+       <y>620</y>
+       <width>471</width>
        <height>41</height>
       </rect>
      </property>
@@ -712,9 +923,9 @@ font: 18pt ;</string>
     <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
-       <x>280</x>
-       <y>490</y>
-       <width>161</width>
+       <x>310</x>
+       <y>520</y>
+       <width>178</width>
        <height>71</height>
       </rect>
      </property>
@@ -773,14 +984,35 @@ font: 18pt ;</string>
       </item>
      </layout>
     </widget>
+    <widget class="QLabel" name="label">
+     <property name="geometry">
+      <rect>
+       <x>410</x>
+       <y>240</y>
+       <width>91</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(204, 245, 234);
+font: 9pt ;</string>
+     </property>
+     <property name="text">
+      <string>Использовать
+параметр</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
    </widget>
    <widget class="QGraphicsView" name="graphicsView">
     <property name="geometry">
      <rect>
-      <x>60</x>
+      <x>50</x>
       <y>60</y>
-      <width>650</width>
-      <height>650</height>
+      <width>700</width>
+      <height>700</height>
      </rect>
     </property>
     <property name="sizePolicy">
@@ -791,14 +1023,14 @@ font: 18pt ;</string>
     </property>
     <property name="minimumSize">
      <size>
-      <width>650</width>
-      <height>650</height>
+      <width>700</width>
+      <height>700</height>
      </size>
     </property>
     <property name="maximumSize">
      <size>
-      <width>650</width>
-      <height>650</height>
+      <width>700</width>
+      <height>700</height>
      </size>
     </property>
     <property name="styleSheet">

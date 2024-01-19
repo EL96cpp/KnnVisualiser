@@ -266,11 +266,8 @@ void Model::setDistancesVector() {
 
 double Model::calculateDistance(const IrisData &first, const IrisData &second) {
 
-    double sum = std::pow(std::abs(first.getSepalLength() - second.getSepalLength()), minkowski_metric_param) +
-                 std::pow(std::abs(first.getSepalWidth() - second.getSepalWidth()), minkowski_metric_param) +
-                 std::pow(std::abs(first.getPetalLength() - second.getPetalLength()), minkowski_metric_param) +
-                 std::pow(std::abs(first.getPetalWidth() - second.getPetalWidth()), minkowski_metric_param);
-
+    double sum = std::pow(std::abs(first.getFeatureByIndex(first_feature_index) - second.getFeatureByIndex(first_feature_index)), minkowski_metric_param) +
+                 std::pow(std::abs(first.getFeatureByIndex(second_feature_index) - second.getFeatureByIndex(second_feature_index)), minkowski_metric_param);
     return std::pow(sum, 1.f/minkowski_metric_param);
 
 }

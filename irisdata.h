@@ -16,10 +16,7 @@ public:
              const double& petal_length, const double& petal_width, const IrisType& iris_type);
 
     int getId() const;
-    double getSepalLength() const;
-    double getSepalWidth() const;
-    double getPetalLength() const;
-    double getPetalWidth() const;
+    double getFeatureByIndex(const int& feature_index) const;
     IrisType getType() const;
 
 private:

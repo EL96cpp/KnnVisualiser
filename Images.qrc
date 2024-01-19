@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/">
         <file>background.jpg</file>
+        <file>check_box_mark.png</file>
     </qresource>
 </RCC>

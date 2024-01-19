@@ -15,29 +15,26 @@ int IrisData::getId() const {
 
 }
 
-double IrisData::getSepalLength() const {
+double IrisData::getFeatureByIndex(const int &feature_index) const {
 
-    return sepal_length;
+    switch(feature_index) {
 
-}
+    case 0:
+        return sepal_length;
 
-double IrisData::getSepalWidth() const {
+    case 1:
+        return sepal_width;
 
-    return sepal_width;
+    case 2:
+        return petal_length;
 
-}
+    case 3:
+        return petal_width;
 
-double IrisData::getPetalLength() const {
-
-    return petal_length;
-
-}
-
-double IrisData::getPetalWidth() const {
-
-    return petal_width;
+    }
 
 }
+
 
 IrisType IrisData::getType() const {
 
