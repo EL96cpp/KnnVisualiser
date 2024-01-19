@@ -25,6 +25,7 @@ signals:
     void setWindowWidth(const double& window_width);
     void setMinkowskiMetric(const int& minkowski_metric);
     void setNumberOfNeighbours(const int& number_of_neighbours);
+    void setFeatureIndexes(const int& first_feature_index, const int& second_feature_index);
 
     void setSepalLength(const double& sepal_length);
     void setSepalWidth(const double& sepal_width);
@@ -51,6 +52,8 @@ private slots:
 
     void on_predictButton_clicked();
 
+
+    void on_featuresComboBox_currentTextChanged(const QString &arg1);
 
 private:
     Ui::MainWindow *ui;

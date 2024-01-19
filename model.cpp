@@ -121,6 +121,13 @@ void Model::onSetNumberOfNeighbours(const int &number_of_neighbours) {
 
 }
 
+void Model::onSetFeatureIndexes(const int &first_feature_index, const int &second_feature_index) {
+
+    this->first_feature_index = first_feature_index;
+    this->second_feature_index = second_feature_index;
+
+}
+
 void Model::onSetSepalLength(const double &sepal_length) {
 
     this->sepal_length = sepal_length;

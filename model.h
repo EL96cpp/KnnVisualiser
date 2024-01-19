@@ -28,6 +28,7 @@ public slots:
     void onSetWindowWidth(const double &window_width);
     void onSetMinkowskiMetric(const int& minkowski_metric_param);
     void onSetNumberOfNeighbours(const int& number_of_neighbours);
+    void onSetFeatureIndexes(const int& first_feature_index, const int& second_feature_index);
 
     void onSetSepalLength(const double& sepal_length);
     void onSetSepalWidth(const double& sepal_width);
@@ -57,6 +58,9 @@ private:
     DistancesVector distances;
     QVector<double> accuracy_results;
     int number_of_neighbours;
+
+    int first_feature_index;
+    int second_feature_index;
 
     double sepal_length;
     double sepal_width;

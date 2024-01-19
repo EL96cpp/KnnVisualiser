@@ -30,6 +30,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(this, &MainWindow::setMinkowskiMetric, model, &Model::onSetMinkowskiMetric);
     connect(this, &MainWindow::setWindowWidth, model, &Model::onSetWindowWidth);
     connect(this, &MainWindow::setNumberOfNeighbours, model, &Model::onSetNumberOfNeighbours);
+    connect(this, &MainWindow::setFeatureIndexes, model, &Model::onSetFeatureIndexes);
     connect(this, &MainWindow::startLearning, model, &Model::startLearning);
 
     connect(this, &MainWindow::setSepalLength, model, &Model::onSetSepalLength);
@@ -160,3 +161,33 @@ void MainWindow::on_predictButton_clicked() {
 
 }
 
+
+void MainWindow::on_featuresComboBox_currentTextChanged(const QString &features) {
+
+    if (features == "Sepal length - Sepal width") {
+
+        emit setFeatureIndexes(0, 1);
+
+    } else if (features == "Sepal length - Petal length") {
+
+        emit setFeatureIndexes(0, 2);
+
+    } else if (features == "Sepal length - Petal width") {
+
+        emit setFeatureIndexes(0, 3);
+
+    } else if (features == "Sepal width - Petal length") {
+
+        emit setFeatureIndexes(1, 2);
+
+    } else if (features == "Sepal width - Petal width") {
+
+        emit setFeatureIndexes(1, 3);
+
+    } else if (features == "Petal length - Petal width") {
+
+        emit setFeatureIndexes(2, 3);
+
+    }
+
+}

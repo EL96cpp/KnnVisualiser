@@ -515,7 +515,7 @@ background-image: url(:/background.jpg);
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout_3">
         <item>
-         <widget class="QLabel" name="parametersLabel">
+         <widget class="QLabel" name="featuresLabel">
           <property name="styleSheet">
            <string notr="true">color: rgb(204, 245, 234);
 </string>
@@ -526,7 +526,7 @@ background-image: url(:/background.jpg);
          </widget>
         </item>
         <item>
-         <widget class="QComboBox" name="parametersComboBox">
+         <widget class="QComboBox" name="featuresComboBox">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
             <horstretch>0</horstretch>
