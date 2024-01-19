@@ -175,19 +175,19 @@ void Model::readDataFromCsv() {
             QString line = in.readLine();
             QStringList string_list = line.split(",");
             QString iris_type_string = string_list[4];
-            int iris_type;
+            IrisType iris_type;
 
             if (iris_type_string.compare("Iris-setosa") == 0) {
 
-                iris_type = 1;
+                iris_type = IrisType::SETOSA;
 
             } else if (iris_type_string.compare("Iris-versicolor") == 0) {
 
-                iris_type = 2;
+                iris_type = IrisType::VERSICOLOR;
 
             } else if (iris_type_string.compare("Iris-virginica") == 0) {
 
-                iris_type = 3;
+                iris_type = IrisType::VIRGINICA;
 
             }
 
@@ -290,7 +290,7 @@ QVector<double> Model::getCvGroupAccuracies(const int &group_index) {
     for (int i = 0; i < cv_data[group_index].size(); ++i) {
 
         int current_id = cv_data[group_index][i].getId();
-        int current_type = cv_data[group_index][i].getType();
+        IrisType current_type = cv_data[group_index][i].getType();
         QVector<DistanceData> current_distances = distances.getDecreasingSortedDistances(current_id, cv_group_ids);
 
         double first_type_score = 0.0, second_type_score = 0.0, third_type_score = 0.0;
@@ -301,25 +301,25 @@ QVector<double> Model::getCvGroupAccuracies(const int &group_index) {
         for (int j = 0; j < number_of_neighbours; ++j) {
 
             int pair_id = current_distances[j].getPairForId(current_id);
-            int pair_type = dataset[pair_id-1].getType();
+            IrisType pair_type = dataset[pair_id-1].getType();
 
             switch(pair_type) {
 
-            case 1:
+            case IrisType::SETOSA:
                 first_type_score += kernel(current_distances[j].getDistance()/window_width);
                 break;
 
-            case 2:
+            case IrisType::VERSICOLOR:
                 second_type_score += kernel(current_distances[j].getDistance()/window_width);
                 break;
 
-            case 3:
+            case IrisType::VIRGINICA:
                 third_type_score += kernel(current_distances[j].getDistance()/window_width);
                 break;
 
             }
 
-            int predicted_type = predictType(first_type_score, second_type_score, third_type_score);
+            IrisType predicted_type = predictType(first_type_score, second_type_score, third_type_score);
 
             current_predictions.push_back(current_type == predicted_type);
 
@@ -350,29 +350,29 @@ QVector<double> Model::getCvGroupAccuracies(const int &group_index) {
 }
 
 
-int Model::predictType(const double &first_type_score, const double &second_type_score, const double &third_type_score) {
+IrisType Model::predictType(const double &setosa_score, const double &versicolor_score, const double &virginica_score) {
 
-    if (first_type_score > second_type_score) {
+    if (setosa_score > versicolor_score) {
 
-        if (first_type_score > third_type_score) {
+        if (setosa_score > virginica_score) {
 
-            return 1;
+            return IrisType::SETOSA;
 
         } else {
 
-            return 3;
+            return IrisType::VIRGINICA;
 
         }
 
     } else {
 
-        if (second_type_score > third_type_score) {
+        if (versicolor_score > virginica_score) {
 
-            return 2;
+            return IrisType::VERSICOLOR;
 
         } else {
 
-            return 3;
+            return IrisType::VIRGINICA;
 
         }
 

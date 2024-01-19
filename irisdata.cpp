@@ -5,7 +5,7 @@ IrisData::IrisData(const int& id,
                    const double &sepal_width,
                    const double &petal_length,
                    const double &petal_width,
-                   const int &iris_type) : id(id), sepal_length(sepal_length), sepal_width(sepal_width),
+                   const IrisType &iris_type) : id(id), sepal_length(sepal_length), sepal_width(sepal_width),
                                            petal_length(petal_length), petal_width(petal_width),
                                            iris_type(iris_type) {}
 
@@ -39,7 +39,7 @@ double IrisData::getPetalWidth() const {
 
 }
 
-int IrisData::getType() const {
+IrisType IrisData::getType() const {
 
     return iris_type;
 

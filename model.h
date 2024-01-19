@@ -45,7 +45,7 @@ private:
     void setDistancesVector();
     double calculateDistance(const IrisData& first, const IrisData& second);
     QVector<double> getCvGroupAccuracies(const int& group_index);
-    int predictType(const double& first_type_score, const double& second_type_score, const double& third_type_score);
+    IrisType predictType(const double& setosa_score, const double& versicolor_score, const double& virginica_score);
 
 
 private:
