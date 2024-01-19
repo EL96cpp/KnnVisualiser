@@ -152,8 +152,12 @@ void MainWindow::on_petalWidthLineEdit_textChanged(const QString &petal_width) {
 
 void MainWindow::on_predictButton_clicked() {
 
-    if (ui->sepalLengthLineEdit->text().isEmpty() || ui->sepalWidthLineEdit->text().isEmpty() ||
-        ui->petalLengthLineEdit->text().isEmpty() || ui->petalWidthLineEdit->text().isEmpty() ||
+    if ((ui->sepalLengthLineEdit->text().isEmpty() && ui->sepalLengthCheckBox->checkState() == Qt::Checked)||
+        (ui->sepalWidthLineEdit->text().isEmpty() && ui->sepalWidthCheckBox->checkState() == Qt::Checked)||
+        (ui->petalLengthLineEdit->text().isEmpty() && ui->petalLengthCheckBox->checkState() == Qt::Checked)||
+        (ui->petalWidthLineEdit->text().isEmpty() && ui->petalWidthCheckBox->checkState() == Qt::Checked)||
+        (ui->sepalLengthCheckBox->checkState() == Qt::Unchecked && ui->sepalWidthCheckBox->checkState() == Qt::Unchecked &&
+        ui->petalLengthCheckBox->checkState() == Qt::Unchecked && ui->petalWidthCheckBox->checkState() == Qt::Unchecked) ||
         ui->windowWidthLineEdit->text().isEmpty()) {
 
         QMessageBox::warning(this, "Prediction error!", "Для обучения модели заполните все необходимые поля!");
