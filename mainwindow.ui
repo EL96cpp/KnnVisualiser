@@ -96,9 +96,9 @@ background-image: url(:/background.jpg);
      <property name="geometry">
       <rect>
        <x>30</x>
-       <y>210</y>
+       <y>270</y>
        <width>421</width>
-       <height>111</height>
+       <height>181</height>
       </rect>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout">
@@ -280,9 +280,9 @@ background-image: url(:/background.jpg);
      <property name="geometry">
       <rect>
        <x>30</x>
-       <y>40</y>
+       <y>30</y>
        <width>421</width>
-       <height>134</height>
+       <height>191</height>
       </rect>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -512,13 +512,86 @@ background-image: url(:/background.jpg);
         </item>
        </layout>
       </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_3">
+        <item>
+         <widget class="QLabel" name="parametersLabel">
+          <property name="styleSheet">
+           <string notr="true">color: rgb(204, 245, 234);
+</string>
+          </property>
+          <property name="text">
+           <string>Параметры обучения</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="parametersComboBox">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>250</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>250</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">	background-color: rgb(2, 50, 57);
+	color: rgb(204, 245, 234);
+    border-style: outset;
+    border-radius: 5px;</string>
+          </property>
+          <item>
+           <property name="text">
+            <string>Sepal length - Sepal width</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Sepal length - Petal length</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Sepal length - Petal width</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Sepal width - Petal length</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Setap width - Petal width</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Petal length - Petal width</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+       </layout>
+      </item>
      </layout>
     </widget>
     <widget class="Line" name="line_2">
      <property name="geometry">
       <rect>
        <x>30</x>
-       <y>180</y>
+       <y>240</y>
        <width>421</width>
        <height>20</height>
       </rect>
@@ -697,133 +770,6 @@ font: 18pt ;</string>
          <string>Предсказать тип</string>
         </property>
        </widget>
-      </item>
-     </layout>
-    </widget>
-    <widget class="QWidget" name="layoutWidget">
-     <property name="geometry">
-      <rect>
-       <x>30</x>
-       <y>340</y>
-       <width>421</width>
-       <height>91</height>
-      </rect>
-     </property>
-     <layout class="QVBoxLayout" name="verticalLayout_4">
-      <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_3">
-        <item>
-         <widget class="QLabel" name="firstParameterLabel">
-          <property name="styleSheet">
-           <string notr="true">color: rgb(204, 245, 234);</string>
-          </property>
-          <property name="text">
-           <string>Первый параметр
-обучения</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QComboBox" name="firstParameterComboBox">
-          <property name="minimumSize">
-           <size>
-            <width>250</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>250</width>
-            <height>16777215</height>
-           </size>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">	background-color: rgb(2, 50, 57);
-	color: rgb(204, 245, 234);
-    border-style: outset;
-    border-radius: 5px;</string>
-          </property>
-          <item>
-           <property name="text">
-            <string>Sepal length</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Sepal width</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Petal length</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Petal width</string>
-           </property>
-          </item>
-         </widget>
-        </item>
-       </layout>
-      </item>
-      <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_4">
-        <item>
-         <widget class="QLabel" name="secondParameterLabel">
-          <property name="styleSheet">
-           <string notr="true">color: rgb(204, 245, 234);</string>
-          </property>
-          <property name="text">
-           <string>Второй параметр
-обучения</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QComboBox" name="secondParameterComboBox">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="minimumSize">
-           <size>
-            <width>250</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>250</width>
-            <height>16777215</height>
-           </size>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">	background-color: rgb(2, 50, 57);
-	color: rgb(204, 245, 234);
-    border-style: outset;
-    border-radius: 5px;</string>
-          </property>
-          <item>
-           <property name="text">
-            <string>Petal length</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Petal width</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Sepal width</string>
-           </property>
-          </item>
-         </widget>
-        </item>
-       </layout>
       </item>
      </layout>
     </widget>

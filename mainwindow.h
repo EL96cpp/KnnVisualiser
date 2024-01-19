@@ -51,6 +51,7 @@ private slots:
 
     void on_predictButton_clicked();
 
+
 private:
     Ui::MainWindow *ui;
     Model* model;
