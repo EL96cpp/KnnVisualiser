@@ -123,6 +123,16 @@ void MainWindow::on_sepalLengthLineEdit_textChanged(const QString &sepal_length)
     QString copy = sepal_length;
     emit setSepalLength(copy.replace(",", ".").toDouble());
 
+    if (ui->sepalLengthLineEdit->text().isEmpty()) {
+
+        ui->sepalLengthCheckBox->setCheckState(Qt::Unchecked);
+
+    } else {
+
+        ui->sepalLengthCheckBox->setCheckState(Qt::Checked);
+
+    }
+
 }
 
 
@@ -130,6 +140,16 @@ void MainWindow::on_sepalWidthLineEdit_textChanged(const QString &sepal_width) {
 
     QString copy = sepal_width;
     emit setSepalWidth(copy.replace(",", ".").toDouble());
+
+    if (ui->sepalWidthLineEdit->text().isEmpty()) {
+
+        ui->sepalWidthCheckBox->setCheckState(Qt::Unchecked);
+
+    } else {
+
+        ui->sepalWidthCheckBox->setCheckState(Qt::Checked);
+
+    }
 
 }
 
@@ -139,6 +159,16 @@ void MainWindow::on_petalLengthLineEdit_textChanged(const QString &petal_length)
     QString copy = petal_length;
     emit setPetalLength(copy.replace(",", ".").toDouble());
 
+    if (ui->petalLengthLineEdit->text().isEmpty()) {
+
+        ui->petalLengthCheckBox->setCheckState(Qt::Unchecked);
+
+    } else {
+
+        ui->petalLengthCheckBox->setCheckState(Qt::Checked);
+
+    }
+
 }
 
 
@@ -146,6 +176,16 @@ void MainWindow::on_petalWidthLineEdit_textChanged(const QString &petal_width) {
 
     QString copy = petal_width;
     emit setPetalWidth(copy.replace(",", ".").toDouble());
+
+    if (ui->petalWidthLineEdit->text().isEmpty()) {
+
+        ui->petalWidthCheckBox->setCheckState(Qt::Unchecked);
+
+    } else {
+
+        ui->petalWidthCheckBox->setCheckState(Qt::Checked);
+
+    }
 
 }
 
