@@ -824,7 +824,7 @@ background-image: url(:/background.jpg);
      <property name="geometry">
       <rect>
        <x>30</x>
-       <y>620</y>
+       <y>600</y>
        <width>471</width>
        <height>41</height>
       </rect>
@@ -923,39 +923,13 @@ font: 18pt ;</string>
     <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
-       <x>310</x>
-       <y>520</y>
+       <x>300</x>
+       <y>510</y>
        <width>178</width>
        <height>71</height>
       </rect>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_3">
-      <item>
-       <widget class="QPushButton" name="startLearnButton">
-        <property name="styleSheet">
-         <string notr="true">#startLearnButton {
-
-	background-color: rgb(3, 73, 80);
-	color: rgb(204, 245, 234);
-    border-style: outset;
-    border-width: 1px;
-	border-color: rbg(154, 173, 176);
-    border-radius: 5px;
-
-}
-
-#startLearnButton:hover {
-
-	background-color: rgb(79, 128, 133);
-	color: rgb(255, 255, 255);
-
-}</string>
-        </property>
-        <property name="text">
-         <string>Построить график</string>
-        </property>
-       </widget>
-      </item>
       <item>
        <widget class="QPushButton" name="predictButton">
         <property name="styleSheet">

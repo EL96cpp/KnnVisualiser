@@ -31,7 +31,6 @@ MainWindow::MainWindow(QWidget *parent)
     connect(this, &MainWindow::setWindowWidth, model, &Model::onSetWindowWidth);
     connect(this, &MainWindow::setNumberOfNeighbours, model, &Model::onSetNumberOfNeighbours);
     connect(this, &MainWindow::setPlotBuildingFeatures, model, &Model::onSetPlotBuildingFeatures);
-    connect(this, &MainWindow::startBuildingPlot, model, &Model::startBuildingPlot);
 
     connect(this, &MainWindow::setSepalLength, model, &Model::onSetSepalLength);
     connect(this, &MainWindow::setSepalWidth, model, &Model::onSetSepalWidth);
@@ -45,9 +44,6 @@ MainWindow::MainWindow(QWidget *parent)
     on_windowWidthLineEdit_textChanged(ui->windowWidthLineEdit->text());
     on_metricComboBox_currentTextChanged(ui->metricComboBox->currentText());
     on_neighboursSpinBox_valueChanged(ui->neighboursSpinBox->value());
-
-    on_featuresComboBox_currentTextChanged(ui->featuresComboBox->currentText());
-
 
 }
 
@@ -95,21 +91,6 @@ void MainWindow::on_metricComboBox_currentTextChanged(const QString &arg1) {
 
     QString copy = arg1[0];
     emit setMinkowskiMetric(copy.toInt());
-
-}
-
-
-void MainWindow::on_startLearnButton_clicked() {
-
-    if (ui->windowWidthLineEdit->text().isEmpty()) {
-
-        QMessageBox::warning(this, "Plot building error!", "Для обучения модели заполните все необходимые поля!");
-
-    } else {
-
-        emit startBuildingPlot();
-
-    }
 
 }
 
@@ -219,29 +200,71 @@ void MainWindow::on_predictButton_clicked() {
 
 void MainWindow::on_featuresComboBox_currentTextChanged(const QString &features) {
 
+    //This function disables checkBoxes for features, selected in featuresComboBox, in
+    //checked state, so user won't be able to start algorythm
+    //without providing features, necessary for building plot
+
+    //We make all CheckBoxes active, in case some of them were
+    //previously disabled by this function
+    ui->sepalLengthCheckBox->setEnabled(true);
+    ui->sepalWidthCheckBox->setEnabled(true);
+    ui->petalLengthCheckBox->setEnabled(true);
+    ui->petalWidthCheckBox->setEnabled(true);
+
     if (features == "Sepal length - Sepal width") {
 
         emit setPlotBuildingFeatures(FeatureType::SEPAL_LENGTH, FeatureType::SEPAL_WIDTH);
+
+        ui->sepalLengthCheckBox->setCheckState(Qt::Checked);
+        ui->sepalWidthCheckBox->setCheckState(Qt::Checked);
+        ui->sepalLengthCheckBox->setEnabled(false);
+        ui->sepalWidthCheckBox->setEnabled(false);
+
 
     } else if (features == "Sepal length - Petal length") {
 
         emit setPlotBuildingFeatures(FeatureType::SEPAL_LENGTH, FeatureType::PETAL_LENGTH);
 
+        ui->sepalLengthCheckBox->setCheckState(Qt::Checked);
+        ui->petalLengthCheckBox->setCheckState(Qt::Checked);
+        ui->sepalLengthCheckBox->setEnabled(false);
+        ui->petalLengthCheckBox->setEnabled(false);
+
     } else if (features == "Sepal length - Petal width") {
 
         emit setPlotBuildingFeatures(FeatureType::SEPAL_LENGTH, FeatureType::PETAL_WIDTH);
+
+        ui->sepalLengthCheckBox->setCheckState(Qt::Checked);
+        ui->petalWidthCheckBox->setCheckState(Qt::Checked);
+        ui->sepalLengthCheckBox->setEnabled(false);
+        ui->petalWidthCheckBox->setEnabled(false);
 
     } else if (features == "Sepal width - Petal length") {
 
         emit setPlotBuildingFeatures(FeatureType::SEPAL_WIDTH, FeatureType::PETAL_LENGTH);
 
+        ui->sepalWidthCheckBox->setCheckState(Qt::Checked);
+        ui->petalLengthCheckBox->setCheckState(Qt::Checked);
+        ui->sepalWidthCheckBox->setEnabled(false);
+        ui->petalLengthCheckBox->setEnabled(false);
+
     } else if (features == "Sepal width - Petal width") {
 
         emit setPlotBuildingFeatures(FeatureType::SEPAL_WIDTH, FeatureType::PETAL_WIDTH);
 
+        ui->sepalWidthCheckBox->setCheckState(Qt::Checked);
+        ui->petalWidthCheckBox->setCheckState(Qt::Checked);
+        ui->sepalWidthCheckBox->setEnabled(false);
+        ui->petalWidthCheckBox->setEnabled(false);
+
     } else if (features == "Petal length - Petal width") {
 
         emit setPlotBuildingFeatures(FeatureType::PETAL_LENGTH, FeatureType::PETAL_WIDTH);
+
+        ui->petalLengthCheckBox->setCheckState(Qt::Checked);
+        ui->petalWidthCheckBox->setCheckState(Qt::Checked);
+        ui->petalLengthCheckBox->setEnabled(false);
+        ui->petalWidthCheckBox->setEnabled(false);
 
     }
 
