@@ -31,7 +31,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(this, &MainWindow::setWindowWidth, model, &Model::onSetWindowWidth);
     connect(this, &MainWindow::setNumberOfNeighbours, model, &Model::onSetNumberOfNeighbours);
     connect(this, &MainWindow::setFeatureIndexes, model, &Model::onSetFeatureIndexes);
-    connect(this, &MainWindow::startLearning, model, &Model::startLearning);
+    connect(this, &MainWindow::startBuildingPlot, model, &Model::startBuildingPlot);
 
     connect(this, &MainWindow::setSepalLength, model, &Model::onSetSepalLength);
     connect(this, &MainWindow::setSepalWidth, model, &Model::onSetSepalWidth);
@@ -104,7 +104,7 @@ void MainWindow::on_startLearnButton_clicked() {
 
     } else {
 
-        emit startLearning();
+        emit startBuildingPlot();
 
     }
 

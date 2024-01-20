@@ -43,7 +43,7 @@ Model::Model(QObject *parent)
 
 }
 
-void Model::startLearning() {
+void Model::startBuildingPlot() {
 
     emit setIsLearning(true);
 
@@ -74,6 +74,12 @@ void Model::startLearning() {
     qDebug() << "===================";
 
     emit setIsLearning(false);
+
+}
+
+void Model::startPredicting() {
+
+
 
 }
 

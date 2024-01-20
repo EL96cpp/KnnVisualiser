@@ -987,7 +987,7 @@ font: 18pt ;</string>
     <widget class="QLabel" name="useParametersLabel">
      <property name="geometry">
       <rect>
-       <x>410</x>
+       <x>400</x>
        <y>240</y>
        <width>91</width>
        <height>31</height>

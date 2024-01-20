@@ -32,7 +32,7 @@ signals:
     void setPetalLength(const double& petal_length);
     void setPetalWidth(const double& petal_width);
 
-    void startLearning();
+    void startBuildingPlot();
 
 public slots:
     void onSetIsLearning(const bool& is_learning);
@@ -53,7 +53,7 @@ private slots:
     void on_predictButton_clicked();
 
 
-    void on_featuresComboBox_currentTextChanged(const QString &arg1);
+    void on_featuresComboBox_currentTextChanged(const QString &features);
 
 private:
     Ui::MainWindow *ui;

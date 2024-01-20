@@ -15,6 +15,11 @@ int IrisData::getId() const {
 
 }
 
+double IrisData::getSepalLength() const
+{
+
+}
+
 double IrisData::getFeatureByIndex(const int &feature_index) const {
 
     switch(feature_index) {

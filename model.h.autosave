@@ -51,7 +51,9 @@ private:
 
 private:
     QVector<IrisData> dataset;
-    QVector<QVector<IrisData>> cv_data;
+    QVector<IrisData> train_data;
+    QV    
+    
     std::function<double(const double&)> kernel;
     int minkowski_metric_param;
     double window_width;
