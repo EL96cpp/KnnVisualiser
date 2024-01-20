@@ -15,28 +15,48 @@ int IrisData::getId() const {
 
 }
 
-double IrisData::getSepalLength() const
-{
+double IrisData::getSepalLength() const {
+
+    return sepal_length;
 
 }
 
-double IrisData::getFeatureByIndex(const int &feature_index) const {
+double IrisData::getSepalWidth() const {
 
-    switch(feature_index) {
+    return sepal_width;
 
-    case 0:
+}
+
+double IrisData::getPetalLength() const {
+
+    return petal_length;
+
+}
+
+double IrisData::getPetalWidth() const {
+
+    return petal_width;
+
+}
+
+double IrisData::getFeatureValue(const FeatureType &feature_type) const {
+
+    switch (feature_type) {
+
+    case FeatureType::SEPAL_LENGTH:
         return sepal_length;
 
-    case 1:
+    case FeatureType::SEPAL_WIDTH:
         return sepal_width;
 
-    case 2:
+    case FeatureType::PETAL_LENGTH:
         return petal_length;
 
-    case 3:
+    case FeatureType::PETAL_WIDTH:
         return petal_width;
 
     }
+
 
 }
 

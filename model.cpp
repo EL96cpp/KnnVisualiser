@@ -47,31 +47,7 @@ void Model::startBuildingPlot() {
 
     emit setIsLearning(true);
 
-    accuracy_results.clear();
-    prepareCrossValidationData();
-    setDistancesVector();
 
-    QVector<double> first_group_accuracies = getCvGroupAccuracies(0);
-    QVector<double> second_group_accuracies = getCvGroupAccuracies(1);
-    QVector<double> third_group_accuracies = getCvGroupAccuracies(2);
-    QVector<double> fourth_group_accuracies = getCvGroupAccuracies(3);
-    QVector<double> fifth_group_accuracies = getCvGroupAccuracies(4);
-
-    for (int i = 0; i < first_group_accuracies.size(); ++i) {
-
-        accuracy_results.push_back((first_group_accuracies[i] + second_group_accuracies[i] +
-                                    third_group_accuracies[i] + fourth_group_accuracies[i] +
-                                    fifth_group_accuracies[i]) / 5.0);
-
-    }
-
-    for (int i = 0; i < accuracy_results.size(); ++i) {
-
-        qDebug() << accuracy_results[i];
-
-    }
-
-    qDebug() << "===================";
 
     emit setIsLearning(false);
 
@@ -127,10 +103,11 @@ void Model::onSetNumberOfNeighbours(const int &number_of_neighbours) {
 
 }
 
-void Model::onSetFeatureIndexes(const int &first_feature_index, const int &second_feature_index) {
+void Model::onSetPlotBuildingFeatures(const FeatureType &first_feature, const FeatureType &second_feature) {
 
-    this->first_feature_index = first_feature_index;
-    this->second_feature_index = second_feature_index;
+    plot_building_features.clear();
+    plot_building_features.push_back(first_feature);
+    plot_building_features.push_back(second_feature);
 
 }
 
@@ -210,59 +187,14 @@ void Model::readDataFromCsv() {
 
 }
 
-void Model::prepareCrossValidationData() {
+void Model::calculatePlotData() {
 
-    //In dataset first 50 values are Iris-setosa, next 50 - Iris-versicolor, last 50 - Iris-virginica
-    //It means we can create vector of indexes, shuffle indexes in each group of 50 values
-    //and consistently put 10 values from each of three groups in cross-validation vectors
-    //to get 5 cross-validation vectors, 30 values in each
+    for (double second_feature = 10.0; second_feature > 0.0; second_feature -= 0.1) {
 
-    QVector<int> cv_indexes;
+        for (double first_feature = 0.0; first_feature < 10.0; first_feature += 0.1) {
 
-    for (int i = 0; i < 150; ++i) {
 
-        cv_indexes.push_back(i);
 
-    }
-
-    //std::time(0) - time in seconds since the Unix epoch
-    std::srand(std::time(0));
-
-    for (int i = 0; i <= 100; i += 50) {
-
-        std::random_shuffle(cv_indexes.begin() + i, cv_indexes.begin() + (i + 50));
-
-    }
-
-    cv_data.clear();
-
-    for (int i = 0; i < 5; ++i) {
-
-        QVector<IrisData> cv_group;
-
-        for (int j = 0; j < 10; ++j) {
-
-            cv_group.push_back(dataset[cv_indexes[i*10 + j]]);
-            cv_group.push_back(dataset[cv_indexes[i*10 + 50 + j]]);
-            cv_group.push_back(dataset[cv_indexes[i*10 + 100 + j]]);
-
-        }
-
-        cv_data.push_back(cv_group);
-
-    }
-
-}
-
-void Model::setDistancesVector() {
-
-    distances.clear();
-
-    for (int i = 0; i < dataset.size(); ++i) {
-
-        for (int j = i+1; j < dataset.size(); ++j) {
-
-            distances.pushBack(DistanceData(dataset[i].getId(), dataset[j].getId(), calculateDistance(dataset[i], dataset[j])));
 
         }
 
@@ -270,87 +202,15 @@ void Model::setDistancesVector() {
 
 }
 
-double Model::calculateDistance(const IrisData &first, const IrisData &second) {
 
-    double sum = std::pow(std::abs(first.getFeatureByIndex(first_feature_index) - second.getFeatureByIndex(first_feature_index)), minkowski_metric_param) +
-                 std::pow(std::abs(first.getFeatureByIndex(second_feature_index) - second.getFeatureByIndex(second_feature_index)), minkowski_metric_param);
-    return std::pow(sum, 1.f/minkowski_metric_param);
+double Model::calculateDistance(const double& first_feature, const double& second_feature, const IrisData& iris_data) {
 
-}
-
-QVector<double> Model::getCvGroupAccuracies(const int &group_index) {
-
-    QVector<int> cv_group_ids;
-
-    for (int i = 0; i < cv_data[group_index].size(); ++i) {
-
-        cv_group_ids.push_back(cv_data[group_index][i].getId());
-
-    }
-
-    QVector<QVector<bool>> prediction_results;
-
-    for (int i = 0; i < cv_data[group_index].size(); ++i) {
-
-        int current_id = cv_data[group_index][i].getId();
-        IrisType current_type = cv_data[group_index][i].getType();
-        QVector<DistanceData> current_distances = distances.getDecreasingSortedDistances(current_id, cv_group_ids);
-
-        double first_type_score = 0.0, second_type_score = 0.0, third_type_score = 0.0;
-
-        //Value with index i will store correctness of prediction for i+1 neighbours
-        QVector<bool> current_predictions;
-
-        for (int j = 0; j < number_of_neighbours; ++j) {
-
-            int pair_id = current_distances[j].getPairForId(current_id);
-            IrisType pair_type = dataset[pair_id-1].getType();
-
-            switch(pair_type) {
-
-            case IrisType::SETOSA:
-                first_type_score += kernel(current_distances[j].getDistance()/window_width);
-                break;
-
-            case IrisType::VERSICOLOR:
-                second_type_score += kernel(current_distances[j].getDistance()/window_width);
-                break;
-
-            case IrisType::VIRGINICA:
-                third_type_score += kernel(current_distances[j].getDistance()/window_width);
-                break;
-
-            }
-
-            IrisType predicted_type = predictType(first_type_score, second_type_score, third_type_score);
-
-            current_predictions.push_back(current_type == predicted_type);
-
-        }
-
-        prediction_results.push_back(current_predictions);
-
-    }
-
-    QVector<double> cv_group_accuracies;
-
-    for (int i = 0; i < number_of_neighbours; ++i) {
-
-        double correct_predictions = 0.0;
-
-        for (int j = 0; j < prediction_results.size(); ++j) {
-
-            correct_predictions += prediction_results[j][i];
-
-        }
-
-        cv_group_accuracies.push_back(correct_predictions/prediction_results.size());
-
-    }
-
-    return cv_group_accuracies;
+    double sum = std::pow(std::abs(first_feature - iris_data.getFeatureValue(plot_building_features[0])), minkowski_metric_param) +
+                 std::pow(std::abs(second_feature - iris_data.getFeatureValue(plot_building_features[1])), minkowski_metric_param);
+    return std::pow(sum, 1.0/minkowski_metric_param);
 
 }
+
 
 
 IrisType Model::predictType(const double &setosa_score, const double &versicolor_score, const double &virginica_score) {

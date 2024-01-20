@@ -29,7 +29,7 @@ public slots:
     void onSetWindowWidth(const double &window_width);
     void onSetMinkowskiMetric(const int& minkowski_metric_param);
     void onSetNumberOfNeighbours(const int& number_of_neighbours);
-    void onSetFeatureIndexes(const int& first_feature_index, const int& second_feature_index);
+    void onSetPlotBuildingFeatures(const FeatureType& first_feature, const FeatureType& second_feature);
 
     void onSetSepalLength(const double& sepal_length);
     void onSetSepalWidth(const double& sepal_width);
@@ -42,27 +42,24 @@ signals:
 
 private:
     void readDataFromCsv();
-    void prepareCrossValidationData();
-    void setDistancesVector();
-    double calculateDistance(const IrisData& first, const IrisData& second);
-    QVector<double> getCvGroupAccuracies(const int& group_index);
+    void calculatePlotData();
+    double calculateDistance(const double& first_feature, const double& second_feature, const IrisData& iris_data);
     IrisType predictType(const double& setosa_score, const double& versicolor_score, const double& virginica_score);
 
 
 private:
-    QVector<IrisData> dataset;
-    QVector<QVector<IrisData>> cv_data;
+    QVector<IrisData> dataset;   
+
     std::function<double(const double&)> kernel;
     int minkowski_metric_param;
     double window_width;
     bool is_learning;
-    DistancesVector distances;
-    QVector<double> accuracy_results;
     int number_of_neighbours;
 
-    int first_feature_index;
-    int second_feature_index;
-    QVector<int> prediction_featrue_indexes;
+    QVector<FeatureType> plot_building_features;
+    QVector<FeatureType> prediction_featrues;
+
+    QVector<QVector<IrisType>> plot_data;
 
     double sepal_length;
     double sepal_width;

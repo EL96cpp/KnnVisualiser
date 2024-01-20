@@ -9,6 +9,15 @@ enum class IrisType {
 
 };
 
+enum class FeatureType {
+
+    SEPAL_LENGTH,
+    SEPAL_WIDTH,
+    PETAL_LENGTH,
+    PETAL_WIDTH
+
+};
+
 class IrisData {
 
 public:
@@ -16,7 +25,11 @@ public:
              const double& petal_length, const double& petal_width, const IrisType& iris_type);
 
     int getId() const;
-    double getFeatureByIndex(const int& feature_index) const;
+    double getSepalLength() const;
+    double getSepalWidth() const;
+    double getPetalLength() const;
+    double getPetalWidth() const;
+    double getFeatureValue(const FeatureType& feature_type) const;
     IrisType getType() const;
 
 private:
