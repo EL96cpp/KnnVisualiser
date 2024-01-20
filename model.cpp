@@ -47,7 +47,7 @@ void Model::startBuildingPlot() {
 
     emit setIsLearning(true);
 
-
+    calculatePlotData();
 
     emit setIsLearning(false);
 
@@ -189,14 +189,38 @@ void Model::readDataFromCsv() {
 
 void Model::calculatePlotData() {
 
-    for (double second_feature = 10.0; second_feature > 0.0; second_feature -= 0.1) {
+    double second_feature = 10.0;
 
-        for (double first_feature = 0.0; first_feature < 10.0; first_feature += 0.1) {
+    while (second_feature > 0.1) {
+
+        double first_feature = 0.1;
+
+        while (first_feature < 10.0) {
+
+            QVector<double> distances;
+
+            for (int  i = 0; i < dataset.size(); ++i) {
+
+                distances.push_back(calculateDistance(first_feature, second_feature, dataset[i]));
+
+            }
 
 
+            std::sort(distances.begin(), distances.end());
 
+            for (int i = 0; i < distances.size(); ++i) {
+
+                qDebug() << distances[i];
+
+            }
+
+            qDebug() << "==============";
+
+            first_feature += 0.1;
 
         }
+
+        second_feature -= 0.1;
 
     }
 

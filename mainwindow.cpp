@@ -46,6 +46,9 @@ MainWindow::MainWindow(QWidget *parent)
     on_metricComboBox_currentTextChanged(ui->metricComboBox->currentText());
     on_neighboursSpinBox_valueChanged(ui->neighboursSpinBox->value());
 
+    on_featuresComboBox_currentTextChanged(ui->featuresComboBox->currentText());
+
+
 }
 
 MainWindow::~MainWindow() {
