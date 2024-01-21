@@ -48,23 +48,81 @@ void Model::onStartPrediction() {
 
     emit setIsLearning(true);
 
-    QVector<double> distances;
+    //Debug info!
+    for (auto& type : prediction_featrues) {
+
+        if (type == FeatureType::SEPAL_LENGTH) {
+
+            qDebug() << "sepal length";
+
+        } else if (type == FeatureType::SEPAL_WIDTH) {
+
+            qDebug() << "sepal width";
+
+        } else if (type == FeatureType::PETAL_LENGTH) {
+
+            qDebug() << "petal length";
+
+        } else if (type == FeatureType::PETAL_WIDTH) {
+
+            qDebug() << "petal width";
+
+        }
+
+    }
+
+    QVector<DistanceData> distances;
     IrisData prediction_iris_data(sepal_length, sepal_width, petal_length, petal_width);
 
     for (int i = 0; i < dataset.size(); ++i) {
 
-        distances.push_back(calculateDistance(prediction_iris_data, dataset[i]));
+        distances.push_back(DistanceData(calculateDistance(prediction_iris_data, dataset[i]), dataset[i].getType()));
 
     }
 
     std::sort(distances.begin(), distances.end());
 
-    for (int i = 0; i < distances.size(); ++i) {
+    double setosa_score = 0.0, versicolor_score = 0.0, virginica_score = 0.0;
 
-        qDebug() << distances[i];
+    for (int i = 0; i < number_of_neighbours; ++i) {
+
+        if (distances[i].getIrisType() == IrisType::SETOSA) {
+
+            setosa_score += kernel(distances[i].getDistance()/window_width);
+
+        } else if (distances[i].getIrisType() == IrisType::VERSICOLOR) {
+
+            versicolor_score += kernel(distances[i].getDistance()/window_width);
+
+        } else if (distances[i].getIrisType() == IrisType::VIRGINICA) {
+
+            virginica_score += kernel(distances[i].getDistance()/window_width);
+
+        }
 
     }
 
+    IrisType predicted_type = predictType(setosa_score, versicolor_score, virginica_score);
+
+    //Debug
+    switch (predicted_type) {
+
+    case IrisType::SETOSA:
+        qDebug() << "setosa predicted!";
+        break;
+
+    case IrisType::VERSICOLOR:
+        qDebug() << "versicolor predicted!";
+        break;
+
+    case IrisType::VIRGINICA:
+        qDebug() << "virginica predicted!";
+        break;
+
+    }
+
+
+    emit setPredictedIrisType(predicted_type);
 
     emit setIsLearning(false);
 

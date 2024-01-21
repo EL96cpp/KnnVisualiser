@@ -14,7 +14,7 @@ void DistancesVector::clear() {
 
 }
 
-QVector<DistanceData> DistancesVector::getDecreasingSortedDistances(const int &search_id, const QVector<int>& cv_indexes) {
+QVector<DistanceData> DistancesVector::getIncreasingSortedDistances(const int &search_id, const QVector<int>& cv_indexes) {
 
     QVector<DistanceData> result;
 

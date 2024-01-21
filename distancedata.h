@@ -5,22 +5,23 @@
 
 #include "irisdata.h"
 
-class DistanceData
-{
-public:
-    DistanceData(const int& first_id, const int& second_id, const double& distance);
+//DistanceData object stores distance between IrisData inputed by user,
+//and IrisData from dataset, iris_type value stores type of IrisData from dataset,
+//so we'll be able to predict type of IrisData inputed by user
 
-    bool checkIfIncludesId(const int& search_id) const;
+class DistanceData {
+
+public:
+    DistanceData(const double& distance, const IrisType& iris_type);
+
     double getDistance() const;
-    int getPairForId(const int& search_id) const;
+    IrisType getIrisType() const;
 
     bool operator < (const DistanceData& other) const;
 
 private:
-    int first_id;
-    int second_id;
     double distance;
-
+    IrisType iris_type;
 
 };
 

@@ -22,8 +22,6 @@ set(PROJECT_SOURCES
         model.h
         distancedata.cpp
         distancedata.h
-        distancesvector.cpp
-        distancesvector.h
         Images.qrc
         mainwindow.ui
 )
