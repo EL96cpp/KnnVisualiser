@@ -41,3 +41,10 @@ void Plot::setAxesTexts(const QString &x_axis_text, const QString &y_axis_text) 
     this->y_axis_text->setPlainText(y_axis_text);
 
 }
+
+void Plot::setDataset(const QVector<IrisData> &dataset) {
+
+    qDebug() << "set reference to dataset!";
+    this->dataset = dataset;
+
+}

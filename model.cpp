@@ -43,6 +43,12 @@ Model::Model(QObject *parent)
 
 }
 
+QVector<IrisData> Model::getDataset() {
+
+    return dataset;
+
+}
+
 
 void Model::onStartPrediction() {
 

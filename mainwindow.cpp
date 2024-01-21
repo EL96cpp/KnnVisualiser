@@ -10,6 +10,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     setWindowTitle("KnnVisualiser");
     plot->setGraphicsScene(ui->graphicsView);
+    plot->setDataset(model->getDataset());
 
     QDoubleValidator* window_validator = new QDoubleValidator(0.00, 5.00, 2); // [0, 5] with 2 decimals of precision
     window_validator->setNotation(QDoubleValidator::StandardNotation);
@@ -26,7 +27,6 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->neighboursSpinBox->setRange(1, 120);
     ui->neighboursSpinBox->setValue(1);
-
 
     connect(this, &MainWindow::setKernelType, model, &Model::onSetKernelType);
     connect(this, &MainWindow::setMinkowskiMetric, model, &Model::onSetMinkowskiMetric);
@@ -317,12 +317,10 @@ void MainWindow::on_sepalLengthCheckBox_stateChanged(int arg1) {
     if (arg1 == 0) {
 
         emit removePredictionFeature(FeatureType::SEPAL_LENGTH);
-        qDebug() << "Unchecked state " << arg1;
 
     } else if (arg1 == 2) {
 
         emit addPredictionFeature(FeatureType::SEPAL_LENGTH);
-        qDebug() << "Checked state " << arg1;
 
     }
 
@@ -334,12 +332,10 @@ void MainWindow::on_sepalWidthCheckBox_stateChanged(int arg1) {
     if (arg1 == 0) {
 
         emit removePredictionFeature(FeatureType::SEPAL_WIDTH);
-        qDebug() << "Unchecked state " << arg1;
 
     } else if (arg1 == 2) {
 
         emit addPredictionFeature(FeatureType::SEPAL_WIDTH);
-        qDebug() << "Checked state " << arg1;
 
     }
 
@@ -351,12 +347,10 @@ void MainWindow::on_petalLengthCheckBox_stateChanged(int arg1) {
     if (arg1 == 0) {
 
         emit removePredictionFeature(FeatureType::PETAL_LENGTH);
-        qDebug() << "Unchecked state " << arg1;
 
     } else if (arg1 == 2) {
 
         emit addPredictionFeature(FeatureType::PETAL_LENGTH);
-        qDebug() << "Checked state " << arg1;
 
     }
 
@@ -368,12 +362,10 @@ void MainWindow::on_petalWidthCheckBox_stateChanged(int arg1) {
     if (arg1 == 0) {
 
         emit removePredictionFeature(FeatureType::PETAL_WIDTH);
-        qDebug() << "Unchecked state " << arg1;
 
     } else if (arg1 == 2) {
 
         emit addPredictionFeature(FeatureType::PETAL_WIDTH);
-        qDebug() << "Checked state " << arg1;
 
     }
 

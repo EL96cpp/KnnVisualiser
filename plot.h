@@ -11,6 +11,8 @@
 #include <QPen>
 #include <QColor>
 
+#include "irisdata.h"
+
 class Plot : public QObject {
 
     Q_OBJECT
@@ -20,7 +22,10 @@ public:
     void setGraphicsScene(QGraphicsView* graphics_view);
     void setAxesTexts(const QString& x_axis_text, const QString& y_axis_text);
 
+    void setDataset(const QVector<IrisData>& dataset);
+
 private:
+    QVector<IrisData> dataset;
     QGraphicsScene* scene;
     QGraphicsRectItem* main_rect;
     QGraphicsLineItem* x_axis;

@@ -21,6 +21,7 @@ class Model : public QObject
     Q_OBJECT
 public:
     explicit Model(QObject *parent = nullptr);
+    QVector<IrisData> getDataset();
 
 public slots:
     void onStartPrediction();
