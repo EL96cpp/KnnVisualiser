@@ -257,57 +257,56 @@ void MainWindow::on_featuresComboBox_currentTextChanged(const QString &features)
     if (features == "Sepal length - Sepal width") {
 
         emit setPlotBuildingFeatures(FeatureType::SEPAL_LENGTH, FeatureType::SEPAL_WIDTH);
-
         ui->sepalLengthCheckBox->setCheckState(Qt::Checked);
         ui->sepalWidthCheckBox->setCheckState(Qt::Checked);
         ui->sepalLengthCheckBox->setEnabled(false);
-        ui->sepalWidthCheckBox->setEnabled(false);
-
+        ui->sepalWidthCheckBox->setEnabled(false);        
+        plot->setAxesTexts(QStringLiteral("Sepal length"), QStringLiteral("Sepal width"));
 
     } else if (features == "Sepal length - Petal length") {
 
         emit setPlotBuildingFeatures(FeatureType::SEPAL_LENGTH, FeatureType::PETAL_LENGTH);
-
         ui->sepalLengthCheckBox->setCheckState(Qt::Checked);
         ui->petalLengthCheckBox->setCheckState(Qt::Checked);
         ui->sepalLengthCheckBox->setEnabled(false);
-        ui->petalLengthCheckBox->setEnabled(false);
+        ui->petalLengthCheckBox->setEnabled(false);        
+        plot->setAxesTexts(QStringLiteral("Sepal length"), QStringLiteral("Petal length"));
 
     } else if (features == "Sepal length - Petal width") {
 
         emit setPlotBuildingFeatures(FeatureType::SEPAL_LENGTH, FeatureType::PETAL_WIDTH);
-
         ui->sepalLengthCheckBox->setCheckState(Qt::Checked);
         ui->petalWidthCheckBox->setCheckState(Qt::Checked);
         ui->sepalLengthCheckBox->setEnabled(false);
         ui->petalWidthCheckBox->setEnabled(false);
+        plot->setAxesTexts(QStringLiteral("Sepal length"), QStringLiteral("Petal width"));
 
     } else if (features == "Sepal width - Petal length") {
 
         emit setPlotBuildingFeatures(FeatureType::SEPAL_WIDTH, FeatureType::PETAL_LENGTH);
-
         ui->sepalWidthCheckBox->setCheckState(Qt::Checked);
         ui->petalLengthCheckBox->setCheckState(Qt::Checked);
         ui->sepalWidthCheckBox->setEnabled(false);
         ui->petalLengthCheckBox->setEnabled(false);
+        plot->setAxesTexts(QStringLiteral("Sepal width"), QStringLiteral("Petal length"));
 
     } else if (features == "Sepal width - Petal width") {
 
         emit setPlotBuildingFeatures(FeatureType::SEPAL_WIDTH, FeatureType::PETAL_WIDTH);
-
         ui->sepalWidthCheckBox->setCheckState(Qt::Checked);
         ui->petalWidthCheckBox->setCheckState(Qt::Checked);
         ui->sepalWidthCheckBox->setEnabled(false);
         ui->petalWidthCheckBox->setEnabled(false);
+        plot->setAxesTexts(QStringLiteral("Sepal width"), QStringLiteral("Petal width"));
 
     } else if (features == "Petal length - Petal width") {
 
         emit setPlotBuildingFeatures(FeatureType::PETAL_LENGTH, FeatureType::PETAL_WIDTH);
-
         ui->petalLengthCheckBox->setCheckState(Qt::Checked);
         ui->petalWidthCheckBox->setCheckState(Qt::Checked);
         ui->petalLengthCheckBox->setEnabled(false);
         ui->petalWidthCheckBox->setEnabled(false);
+        plot->setAxesTexts(QStringLiteral("Petal length"), QStringLiteral("Petal width"));
 
     }
 

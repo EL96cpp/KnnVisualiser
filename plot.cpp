@@ -16,12 +16,9 @@ Plot::Plot(QObject *parent) : QObject{parent},
     x_axis->setPen(big_axis_pen);
     y_axis->setPen(big_axis_pen);
 
-    x_axis_text->setPlainText(QStringLiteral("x_axis"));
-    y_axis_text->setPlainText(QStringLiteral("y_axis"));
-
-    x_axis_text->setPos(20, 300);
-    x_axis_text->setRotation(-90);
-    y_axis_text->setPos(300, 555);
+    x_axis_text->setPos(300, 555);
+    y_axis_text->setPos(20, 300);
+    y_axis_text->setRotation(-90);
 
     scene->addItem(main_rect);
     scene->addItem(x_axis);
@@ -34,5 +31,13 @@ Plot::Plot(QObject *parent) : QObject{parent},
 void Plot::setGraphicsScene(QGraphicsView *graphics_view) {
 
     graphics_view->setScene(scene);
+
+}
+
+
+void Plot::setAxesTexts(const QString &x_axis_text, const QString &y_axis_text) {
+
+    this->x_axis_text->setPlainText(x_axis_text);
+    this->y_axis_text->setPlainText(y_axis_text);
 
 }

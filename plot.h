@@ -18,6 +18,7 @@ public:
     Plot(QObject *parent = nullptr);
 
     void setGraphicsScene(QGraphicsView* graphics_view);
+    void setAxesTexts(const QString& x_axis_text, const QString& y_axis_text);
 
 private:
     QGraphicsScene* scene;
