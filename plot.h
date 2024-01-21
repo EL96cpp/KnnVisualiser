@@ -6,6 +6,7 @@
 #include <QGraphicsScene>
 #include <QGraphicsRectItem>
 #include <QGraphicsLineItem>
+#include <QGraphicsTextItem>
 #include <QBrush>
 #include <QPen>
 #include <QColor>
@@ -23,6 +24,8 @@ private:
     QGraphicsRectItem* main_rect;
     QGraphicsLineItem* x_axis;
     QGraphicsLineItem* y_axis;
+    QGraphicsTextItem* x_axis_text;
+    QGraphicsTextItem* y_axis_text;
     QBrush main_rect_brush;
     QPen big_axis_pen;
     QPen small_axis_pen;
