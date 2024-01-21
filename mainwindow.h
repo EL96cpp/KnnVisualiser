@@ -39,6 +39,7 @@ signals:
 
 public slots:
     void onSetIsLearning(const bool& is_learning);
+    void onSetPredictedIrisType(const IrisType& predicted_type);
 
 private slots:
     void on_kernelComboBox_currentTextChanged(const QString &arg1);
@@ -54,13 +55,9 @@ private slots:
 
     void on_predictButton_clicked();
 
-
     void on_sepalLengthCheckBox_stateChanged(int arg1);
-
     void on_sepalWidthCheckBox_stateChanged(int arg1);
-
     void on_petalLengthCheckBox_stateChanged(int arg1);
-
     void on_petalWidthCheckBox_stateChanged(int arg1);
 
 private:

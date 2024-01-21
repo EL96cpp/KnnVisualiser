@@ -42,6 +42,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(this, &MainWindow::startPrediction, model, &Model::onStartPrediction);
     connect(model, &Model::setIsLearning, this, &MainWindow::onSetIsLearning);
+    connect(model, &Model::setPredictedIrisType, this, &MainWindow::onSetPredictedIrisType);
 
     //Send initial values from ui to model
     on_kernelComboBox_currentTextChanged(ui->kernelComboBox->currentText());
@@ -49,7 +50,6 @@ MainWindow::MainWindow(QWidget *parent)
     on_metricComboBox_currentTextChanged(ui->metricComboBox->currentText());
     on_neighboursSpinBox_valueChanged(ui->neighboursSpinBox->value());
     on_featuresComboBox_currentTextChanged(ui->featuresComboBox->currentText());
-
 
 }
 
@@ -72,6 +72,26 @@ void MainWindow::onSetIsLearning(const bool &is_learning) {
         ui->windowWidthLineEdit->setEnabled(true);
         ui->kernelComboBox->setEnabled(true);
         ui->metricComboBox->setEnabled(true);
+
+    }
+
+}
+
+void MainWindow::onSetPredictedIrisType(const IrisType &predicted_type) {
+
+    switch (predicted_type) {
+
+    case IrisType::SETOSA:
+        ui->predictionValueLabel->setText("Iris-setosa");
+        break;
+
+    case IrisType::VERSICOLOR:
+        ui->predictionValueLabel->setText("Iris-versicolor");
+        break;
+
+    case IrisType::VIRGINICA:
+        ui->predictionValueLabel->setText("Iris-virginica");
+        break;
 
     }
 

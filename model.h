@@ -40,6 +40,7 @@ public slots:
 signals:
     void openCsvFileError();
     void setIsLearning(const bool& is_learning); //Emits, when model starts/stops learning process
+    void setPredictedIrisType(const IrisType& predicted_type);
 
 private:
     void readDataFromCsv();
