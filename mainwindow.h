@@ -7,6 +7,7 @@
 #include <QMessageBox>
 
 #include "model.h"
+#include "plot.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -63,5 +64,6 @@ private slots:
 private:
     Ui::MainWindow *ui;
     Model* model;
+    Plot* plot;
 };
 #endif // MAINWINDOW_H

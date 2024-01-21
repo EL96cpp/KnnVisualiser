@@ -4,10 +4,12 @@
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
-    , model(new Model(this)) {
+    , model(new Model(this))
+    , plot(new Plot(this)) {
 
     ui->setupUi(this);
     setWindowTitle("KnnVisualiser");
+    plot->setGraphicsScene(ui->graphicsView);
 
     QDoubleValidator* window_validator = new QDoubleValidator(0.00, 5.00, 2); // [0, 5] with 2 decimals of precision
     window_validator->setNotation(QDoubleValidator::StandardNotation);
