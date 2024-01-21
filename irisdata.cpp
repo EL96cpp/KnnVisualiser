@@ -74,3 +74,25 @@ double IrisData::getFeatureValue(const FeatureType &feature_type) const {
 
 }
 
+double IrisData::getFeatureValue(const QString &feature_type) const {
+
+    if (feature_type == QStringLiteral("Sepal length")) {
+
+        return sepal_length;
+
+    } else if (feature_type == QStringLiteral("Sepal width")) {
+
+        return sepal_width;
+
+    } else if (feature_type == QStringLiteral("Petal length")) {
+
+        return petal_length;
+
+    } else if (feature_type == QStringLiteral("Petal width")) {
+
+        return petal_width;
+
+    }
+
+}
+

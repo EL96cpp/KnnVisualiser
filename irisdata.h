@@ -1,6 +1,8 @@
 #ifndef IRISDATA_H
 #define IRISDATA_H
 
+#include <QString>
+
 enum class IrisType {
 
     SETOSA,
@@ -34,6 +36,7 @@ public:
     double getPetalLength() const;
     double getPetalWidth() const;
     double getFeatureValue(const FeatureType& feature_type) const;
+    double getFeatureValue(const QString& feature_type) const;
     IrisType getType() const;
 
 private:

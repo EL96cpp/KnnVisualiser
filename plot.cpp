@@ -2,6 +2,7 @@
 
 Plot::Plot(QObject *parent) : QObject{parent},
                               scene(new QGraphicsScene(this)),
+                              //dataset_plot_points(150, new QGraphicsEllipseItem()),
                               main_rect(new QGraphicsRectItem(0, 0, 600, 600)),
                               x_axis(new QGraphicsLineItem(50, 50, 50, 550)),
                               y_axis(new QGraphicsLineItem(50, 550, 550, 550)),
@@ -26,6 +27,12 @@ Plot::Plot(QObject *parent) : QObject{parent},
     scene->addItem(x_axis_text);
     scene->addItem(y_axis_text);
 
+    for (int i = 0; i < 150; ++i) {
+
+        dataset_plot_points.push_back(new QGraphicsEllipseItem());
+
+    }
+
 }
 
 void Plot::setGraphicsScene(QGraphicsView *graphics_view) {
@@ -46,5 +53,24 @@ void Plot::setDataset(const QVector<IrisData> &dataset) {
 
     qDebug() << "set reference to dataset!";
     this->dataset = dataset;
+    updateDatasetPlot();
+
+}
+
+void Plot::updateDatasetPlot() {
+
+    for (int i = 0; i < dataset_plot_points.size(); ++i) {
+
+        double x_value = dataset[i].getFeatureValue(x_axis_text->toPlainText());
+        double y_value = dataset[i].getFeatureValue(y_axis_text->toPlainText());
+        IrisType iris_type = dataset[i].getType();
+
+        dataset_plot_points[i]->setRect(50 + x_value*50, 550 - y_value*50, 10, 10);
+        dataset_plot_points[i]->setPen(big_axis_pen);
+
+        scene->addItem(dataset_plot_points[i]);
+
+
+    }
 
 }

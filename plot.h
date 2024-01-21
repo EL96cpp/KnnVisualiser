@@ -7,6 +7,7 @@
 #include <QGraphicsRectItem>
 #include <QGraphicsLineItem>
 #include <QGraphicsTextItem>
+#include <QGraphicsEllipseItem>
 #include <QBrush>
 #include <QPen>
 #include <QColor>
@@ -25,7 +26,11 @@ public:
     void setDataset(const QVector<IrisData>& dataset);
 
 private:
+    void updateDatasetPlot();
+
+private:
     QVector<IrisData> dataset;
+    QVector<QGraphicsEllipseItem*> dataset_plot_points;
     QGraphicsScene* scene;
     QGraphicsRectItem* main_rect;
     QGraphicsLineItem* x_axis;
