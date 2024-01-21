@@ -43,19 +43,30 @@ Model::Model(QObject *parent)
 
 }
 
-void Model::startBuildingPlot() {
+
+void Model::onStartPrediction() {
 
     emit setIsLearning(true);
 
-    calculatePlotData();
+    QVector<double> distances;
+    IrisData prediction_iris_data(sepal_length, sepal_width, petal_length, petal_width);
+
+    for (int i = 0; i < dataset.size(); ++i) {
+
+        distances.push_back(calculateDistance(prediction_iris_data, dataset[i]));
+
+    }
+
+    std::sort(distances.begin(), distances.end());
+
+    for (int i = 0; i < distances.size(); ++i) {
+
+        qDebug() << distances[i];
+
+    }
+
 
     emit setIsLearning(false);
-
-}
-
-void Model::startPredicting() {
-
-
 
 }
 
@@ -108,6 +119,20 @@ void Model::onSetPlotBuildingFeatures(const FeatureType &first_feature, const Fe
     plot_building_features.clear();
     plot_building_features.push_back(first_feature);
     plot_building_features.push_back(second_feature);
+
+}
+
+void Model::onAddPredictionFeature(const FeatureType &feature) {
+
+    qDebug() << "Added feature ";
+    prediction_featrues.push_back(feature);
+
+}
+
+void Model::onRemovePredictionFeature(const FeatureType &feature) {
+
+    qDebug() << "trying remove feature ";
+    qDebug() << "removed feature " << prediction_featrues.removeIf([feature](const FeatureType& f){ return f == feature; });
 
 }
 
@@ -187,50 +212,17 @@ void Model::readDataFromCsv() {
 
 }
 
-void Model::calculatePlotData() {
 
-    double second_feature = 10.0;
+double Model::calculateDistance(const IrisData& prediction_iris_data, const IrisData& dataset_iris_data) {
 
-    while (second_feature > 0.1) {
+    double sum = 0.0;
 
-        double first_feature = 0.1;
+    for (auto& feature : prediction_featrues) {
 
-        while (first_feature < 10.0) {
-
-            QVector<double> distances;
-
-            for (int  i = 0; i < dataset.size(); ++i) {
-
-                distances.push_back(calculateDistance(first_feature, second_feature, dataset[i]));
-
-            }
-
-
-            std::sort(distances.begin(), distances.end());
-
-            for (int i = 0; i < distances.size(); ++i) {
-
-                qDebug() << distances[i];
-
-            }
-
-            qDebug() << "==============";
-
-            first_feature += 0.1;
-
-        }
-
-        second_feature -= 0.1;
+        sum += std::pow(std::abs(prediction_iris_data.getFeatureValue(feature) - dataset_iris_data.getFeatureValue(feature)), minkowski_metric_param);
 
     }
 
-}
-
-
-double Model::calculateDistance(const double& first_feature, const double& second_feature, const IrisData& iris_data) {
-
-    double sum = std::pow(std::abs(first_feature - iris_data.getFeatureValue(plot_building_features[0])), minkowski_metric_param) +
-                 std::pow(std::abs(second_feature - iris_data.getFeatureValue(plot_building_features[1])), minkowski_metric_param);
     return std::pow(sum, 1.0/minkowski_metric_param);
 
 }

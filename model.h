@@ -23,13 +23,14 @@ public:
     explicit Model(QObject *parent = nullptr);
 
 public slots:
-    void startBuildingPlot();
-    void startPredicting();
+    void onStartPrediction();
     void onSetKernelType(const QString& kernel_type);
     void onSetWindowWidth(const double &window_width);
     void onSetMinkowskiMetric(const int& minkowski_metric_param);
     void onSetNumberOfNeighbours(const int& number_of_neighbours);
     void onSetPlotBuildingFeatures(const FeatureType& first_feature, const FeatureType& second_feature);
+    void onAddPredictionFeature(const FeatureType& feature);
+    void onRemovePredictionFeature(const FeatureType& feature);
 
     void onSetSepalLength(const double& sepal_length);
     void onSetSepalWidth(const double& sepal_width);
@@ -42,8 +43,7 @@ signals:
 
 private:
     void readDataFromCsv();
-    void calculatePlotData();
-    double calculateDistance(const double& first_feature, const double& second_feature, const IrisData& iris_data);
+    double calculateDistance(const IrisData& prediction_iris_data, const IrisData& dataset_iris_data);
     IrisType predictType(const double& setosa_score, const double& versicolor_score, const double& virginica_score);
 
 

@@ -5,7 +5,8 @@ enum class IrisType {
 
     SETOSA,
     VERSICOLOR,
-    VIRGINICA
+    VIRGINICA,
+    UNDEFINED
 
 };
 
@@ -23,6 +24,9 @@ class IrisData {
 public:
     IrisData(const int& id, const double& sepal_length, const double& sepal_width,
              const double& petal_length, const double& petal_width, const IrisType& iris_type);
+
+    IrisData(const double& sepal_length, const double& sepal_width,
+             const double& petal_length, const double& petal_width);
 
     int getId() const;
     double getSepalLength() const;

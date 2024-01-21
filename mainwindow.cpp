@@ -32,11 +32,15 @@ MainWindow::MainWindow(QWidget *parent)
     connect(this, &MainWindow::setNumberOfNeighbours, model, &Model::onSetNumberOfNeighbours);
     connect(this, &MainWindow::setPlotBuildingFeatures, model, &Model::onSetPlotBuildingFeatures);
 
+    connect(this, &MainWindow::addPredictionFeature, model, &Model::onAddPredictionFeature);
+    connect(this, &MainWindow::removePredictionFeature, model, &Model::onRemovePredictionFeature);
+
     connect(this, &MainWindow::setSepalLength, model, &Model::onSetSepalLength);
     connect(this, &MainWindow::setSepalWidth, model, &Model::onSetSepalWidth);
     connect(this, &MainWindow::setPetalLength, model, &Model::onSetPetalLength);
     connect(this, &MainWindow::setPetalWidth, model, &Model::onSetPetalWidth);
 
+    connect(this, &MainWindow::startPrediction, model, &Model::onStartPrediction);
     connect(model, &Model::setIsLearning, this, &MainWindow::onSetIsLearning);
 
     //Send initial values from ui to model
@@ -44,6 +48,8 @@ MainWindow::MainWindow(QWidget *parent)
     on_windowWidthLineEdit_textChanged(ui->windowWidthLineEdit->text());
     on_metricComboBox_currentTextChanged(ui->metricComboBox->currentText());
     on_neighboursSpinBox_valueChanged(ui->neighboursSpinBox->value());
+    on_featuresComboBox_currentTextChanged(ui->featuresComboBox->currentText());
+
 
 }
 
@@ -107,13 +113,17 @@ void MainWindow::on_sepalLengthLineEdit_textChanged(const QString &sepal_length)
     QString copy = sepal_length;
     emit setSepalLength(copy.replace(",", ".").toDouble());
 
-    if (ui->sepalLengthLineEdit->text().isEmpty()) {
+    if (ui->sepalLengthCheckBox->isEnabled()) {
 
-        ui->sepalLengthCheckBox->setCheckState(Qt::Unchecked);
+        if (ui->sepalLengthLineEdit->text().isEmpty()) {
 
-    } else {
+            ui->sepalLengthCheckBox->setCheckState(Qt::Unchecked);
 
-        ui->sepalLengthCheckBox->setCheckState(Qt::Checked);
+        } else {
+
+            ui->sepalLengthCheckBox->setCheckState(Qt::Checked);
+
+        }
 
     }
 
@@ -125,13 +135,17 @@ void MainWindow::on_sepalWidthLineEdit_textChanged(const QString &sepal_width) {
     QString copy = sepal_width;
     emit setSepalWidth(copy.replace(",", ".").toDouble());
 
-    if (ui->sepalWidthLineEdit->text().isEmpty()) {
+    if (ui->sepalWidthCheckBox->isEnabled()) {
 
-        ui->sepalWidthCheckBox->setCheckState(Qt::Unchecked);
+        if (ui->sepalWidthLineEdit->text().isEmpty()) {
 
-    } else {
+            ui->sepalWidthCheckBox->setCheckState(Qt::Unchecked);
 
-        ui->sepalWidthCheckBox->setCheckState(Qt::Checked);
+        } else {
+
+            ui->sepalWidthCheckBox->setCheckState(Qt::Checked);
+
+        }
 
     }
 
@@ -143,13 +157,17 @@ void MainWindow::on_petalLengthLineEdit_textChanged(const QString &petal_length)
     QString copy = petal_length;
     emit setPetalLength(copy.replace(",", ".").toDouble());
 
-    if (ui->petalLengthLineEdit->text().isEmpty()) {
+    if (ui->petalLengthCheckBox->isEnabled()) {
 
-        ui->petalLengthCheckBox->setCheckState(Qt::Unchecked);
+        if (ui->petalLengthLineEdit->text().isEmpty()) {
 
-    } else {
+            ui->petalLengthCheckBox->setCheckState(Qt::Unchecked);
 
-        ui->petalLengthCheckBox->setCheckState(Qt::Checked);
+        } else {
+
+            ui->petalLengthCheckBox->setCheckState(Qt::Checked);
+
+        }
 
     }
 
@@ -161,13 +179,17 @@ void MainWindow::on_petalWidthLineEdit_textChanged(const QString &petal_width) {
     QString copy = petal_width;
     emit setPetalWidth(copy.replace(",", ".").toDouble());
 
-    if (ui->petalWidthLineEdit->text().isEmpty()) {
+    if (ui->petalWidthCheckBox->isEnabled()) {
 
-        ui->petalWidthCheckBox->setCheckState(Qt::Unchecked);
+        if (ui->petalWidthLineEdit->text().isEmpty()) {
 
-    } else {
+            ui->petalWidthCheckBox->setCheckState(Qt::Unchecked);
 
-        ui->petalWidthCheckBox->setCheckState(Qt::Checked);
+        } else {
+
+            ui->petalWidthCheckBox->setCheckState(Qt::Checked);
+
+        }
 
     }
 
@@ -189,8 +211,7 @@ void MainWindow::on_predictButton_clicked() {
 
     } else {
 
-
-
+        emit startPrediction();
 
     }
 
@@ -269,3 +290,71 @@ void MainWindow::on_featuresComboBox_currentTextChanged(const QString &features)
     }
 
 }
+
+void MainWindow::on_sepalLengthCheckBox_stateChanged(int arg1) {
+
+    if (arg1 == 0) {
+
+        emit removePredictionFeature(FeatureType::SEPAL_LENGTH);
+        qDebug() << "Unchecked state " << arg1;
+
+    } else if (arg1 == 2) {
+
+        emit addPredictionFeature(FeatureType::SEPAL_LENGTH);
+        qDebug() << "Checked state " << arg1;
+
+    }
+
+}
+
+
+void MainWindow::on_sepalWidthCheckBox_stateChanged(int arg1) {
+
+    if (arg1 == 0) {
+
+        emit removePredictionFeature(FeatureType::SEPAL_WIDTH);
+        qDebug() << "Unchecked state " << arg1;
+
+    } else if (arg1 == 2) {
+
+        emit addPredictionFeature(FeatureType::SEPAL_WIDTH);
+        qDebug() << "Checked state " << arg1;
+
+    }
+
+}
+
+
+void MainWindow::on_petalLengthCheckBox_stateChanged(int arg1) {
+
+    if (arg1 == 0) {
+
+        emit removePredictionFeature(FeatureType::PETAL_LENGTH);
+        qDebug() << "Unchecked state " << arg1;
+
+    } else if (arg1 == 2) {
+
+        emit addPredictionFeature(FeatureType::PETAL_LENGTH);
+        qDebug() << "Checked state " << arg1;
+
+    }
+
+}
+
+
+void MainWindow::on_petalWidthCheckBox_stateChanged(int arg1) {
+
+    if (arg1 == 0) {
+
+        emit removePredictionFeature(FeatureType::PETAL_WIDTH);
+        qDebug() << "Unchecked state " << arg1;
+
+    } else if (arg1 == 2) {
+
+        emit addPredictionFeature(FeatureType::PETAL_WIDTH);
+        qDebug() << "Checked state " << arg1;
+
+    }
+
+}
+
