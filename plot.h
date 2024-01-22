@@ -61,8 +61,8 @@ private:
 
     int plot_point_size = 8;
 
-    float prediction_point_x;
-    float prediction_point_y;
+    float prediction_point_x = 0.0;
+    float prediction_point_y = 0.0;
 
     float sepal_length_min = 4.0;
     float sepal_length_max = 8.0;

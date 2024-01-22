@@ -9,7 +9,7 @@ Plot::Plot(QObject *parent) : QObject{parent},
                               y_axis(new QGraphicsLineItem(50, 550, 550, 550)),
                               x_axis_text(new QGraphicsTextItem),
                               y_axis_text(new QGraphicsTextItem),
-                              main_rect_brush(QColor(255, 255, 255), Qt::SolidPattern),
+                              main_rect_brush(QColor(129, 151, 184), Qt::SolidPattern),
                               big_axis_pen(QColor(0, 0, 0), 1.5, Qt::SolidLine),
                               small_axis_pen(QColor(0, 0, 0), 1.0, Qt::SolidLine) {
 
@@ -62,18 +62,21 @@ void Plot::setAxesTexts(const QString &x_axis_text, const QString &y_axis_text) 
         x_axis_cell_size = sepal_length_cell_size;
         x_axis_min = sepal_length_min;
         x_axis_max = sepal_length_max;
+        x_axis_min = sepal_length_min;
 
     } else if (x_axis_text == "Sepal width") {
 
         x_axis_cell_size = sepal_width_cell_size;
         x_axis_min = sepal_width_min;
         x_axis_max = sepal_width_max;
+        x_axis_min = sepal_width_min;
 
     } else if (x_axis_text == "Petal length") {
 
         x_axis_cell_size = petal_length_cell_size;
         x_axis_min = petal_length_min;
         x_axis_max = petal_length_max;
+        x_axis_min = petal_length_min;
 
     }
 
@@ -82,18 +85,21 @@ void Plot::setAxesTexts(const QString &x_axis_text, const QString &y_axis_text) 
         y_axis_cell_size = sepal_width_cell_size;
         y_axis_min = sepal_width_min;
         y_axis_max = sepal_width_max;
+        y_axis_min = sepal_width_min;
 
     } else if (y_axis_text == "Petal length") {
 
         y_axis_cell_size = petal_length_cell_size;
         y_axis_min = petal_length_min;
         y_axis_max = petal_length_max;
+        y_axis_min = petal_length_min;
 
     } else if (y_axis_text == "Petal width") {
 
         y_axis_cell_size = petal_width_cell_size;
         y_axis_min = petal_width_min;
         y_axis_max = petal_width_max;
+        y_axis_min = petal_width_min;
 
     }
 
@@ -106,12 +112,26 @@ void Plot::setPredictionPointValues(const float &x_value, const float &y_value) 
     prediction_point_x = x_value;
     prediction_point_y = y_value;
 
-    qDebug() << "Set point values " << x_value << " " << y_value;
+    qDebug() << "Set prediction values " << prediction_point_x << " " << prediction_point_y;
+    qDebug() << "Border values " << x_axis_min << " " << x_axis_max << " " << y_axis_min << " " << y_axis_max;
 
-    prediction_plot_point->setBrush(QColor(255, 234, 43));
-    prediction_plot_point->setRect(50 + (prediction_point_x - x_axis_min)*x_axis_cell_size + plot_point_size/2,
-                                   550 - (prediction_point_y - y_axis_min)*y_axis_cell_size - plot_point_size/2,
-                                   plot_point_size, plot_point_size);
+    if (!(prediction_point_x <= x_axis_min || prediction_point_x >= x_axis_max ||
+          prediction_point_y <= y_axis_min || prediction_point_y >= y_axis_max)) {
+
+        prediction_plot_point->setBrush(QColor(255, 234, 43));
+        prediction_plot_point->setRect(50 + (prediction_point_x - x_axis_min)*x_axis_cell_size + plot_point_size/2,
+                                       550 - (prediction_point_y - y_axis_min)*y_axis_cell_size - plot_point_size/2,
+                                       plot_point_size, plot_point_size);
+
+        prediction_plot_point->setVisible(true);
+        qDebug() << "set point visible";
+
+    } else {
+
+        prediction_plot_point->setVisible(false);
+        qDebug() << "set point invisible";
+
+    }
 
 }
 
@@ -119,10 +139,26 @@ void Plot::setPredictionPointX(const float &x_value) {
 
     prediction_point_x = x_value;
 
-    prediction_plot_point->setBrush(QColor(255, 234, 43));
-    prediction_plot_point->setRect(50 + (prediction_point_x - x_axis_min)*x_axis_cell_size + plot_point_size/2,
-                                   550 - (prediction_point_y - y_axis_min)*y_axis_cell_size - plot_point_size/2,
-                                   plot_point_size, plot_point_size);
+    qDebug() << "Set prediction x value " << prediction_point_x;
+    qDebug() << "Border values " << x_axis_min << " " << x_axis_max;
+
+    if (!(prediction_point_x <= x_axis_min || prediction_point_x >= x_axis_max ||
+          prediction_point_y <= y_axis_min || prediction_point_y >= y_axis_max)) {
+
+        prediction_plot_point->setBrush(QColor(255, 234, 43));
+        prediction_plot_point->setRect(50 + (prediction_point_x - x_axis_min)*x_axis_cell_size + plot_point_size/2,
+                                       550 - (prediction_point_y - y_axis_min)*y_axis_cell_size - plot_point_size/2,
+                                       plot_point_size, plot_point_size);
+
+        prediction_plot_point->setVisible(true);
+        qDebug() << "set point visible";
+
+    } else {
+
+        prediction_plot_point->setVisible(false);
+        qDebug() << "set point invisible";
+
+    }
 
 }
 
@@ -130,10 +166,26 @@ void Plot::setPredictionPointY(const float &y_value) {
 
     prediction_point_y = y_value;
 
-    prediction_plot_point->setBrush(QColor(255, 234, 43));
-    prediction_plot_point->setRect(50 + (prediction_point_x - x_axis_min)*x_axis_cell_size + plot_point_size/2,
-                                   550 - (prediction_point_y - y_axis_min)*y_axis_cell_size - plot_point_size/2,
-                                   plot_point_size, plot_point_size);
+    qDebug() << "Set prediction value y " << prediction_point_y;
+    qDebug() << "Border values " << y_axis_min << " " << y_axis_max;
+
+    if (!(prediction_point_x <= x_axis_min || prediction_point_x >= x_axis_max ||
+          prediction_point_y <= y_axis_min || prediction_point_y >= y_axis_max)) {
+
+        prediction_plot_point->setBrush(QColor(255, 234, 43));
+        prediction_plot_point->setRect(50 + (prediction_point_x - x_axis_min)*x_axis_cell_size + plot_point_size/2,
+                                       550 - (prediction_point_y - y_axis_min)*y_axis_cell_size - plot_point_size/2,
+                                       plot_point_size, plot_point_size);
+
+        prediction_plot_point->setVisible(true);
+        qDebug() << "set point visible";
+
+    } else {
+
+        prediction_plot_point->setVisible(false);
+        qDebug() << "set point invisible";
+
+    }
 
 }
 
@@ -172,11 +224,6 @@ void Plot::updateDatasetPlot() {
 
     }
 
-    /*
-    prediction_plot_point->setBrush(QColor(255, 234, 43));
-    prediction_plot_point->setRect(1, 1, plot_point_size, plot_point_size);
-    */
-
     if (!added_dataset_points) {
 
         for (int i = 0; i < dataset_plot_points.size(); ++i) {
@@ -188,6 +235,19 @@ void Plot::updateDatasetPlot() {
         scene->addItem(prediction_plot_point);
 
         added_dataset_points = true;
+
+    }
+
+    if (!(prediction_point_x <= x_axis_min || prediction_point_x >= x_axis_max ||
+          prediction_point_y <= y_axis_min || prediction_point_y >= y_axis_max)) {
+
+        prediction_plot_point->setVisible(true);
+        qDebug() << "set point visible";
+
+    } else {
+
+        prediction_plot_point->setVisible(false);
+        qDebug() << "set point invisible";
 
     }
 
