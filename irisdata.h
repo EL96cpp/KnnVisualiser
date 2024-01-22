@@ -2,6 +2,7 @@
 #define IRISDATA_H
 
 #include <QString>
+#include <QDebug>
 
 enum class IrisType {
 

@@ -76,6 +76,8 @@ double IrisData::getFeatureValue(const FeatureType &feature_type) const {
 
 double IrisData::getFeatureValue(const QString &feature_type) const {
 
+    qDebug() << "Get feature " << feature_type;
+
     if (feature_type == QStringLiteral("Sepal length")) {
 
         return sepal_length;

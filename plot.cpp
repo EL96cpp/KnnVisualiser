@@ -49,14 +49,14 @@ void Plot::setAxesTexts(const QString &x_axis_text, const QString &y_axis_text) 
     this->x_axis_text->setPos(300 - this->x_axis_text->boundingRect().width()/2, 555);
     this->y_axis_text->setPos(20, 300 + this->y_axis_text->boundingRect().width()/2);
 
+    updateDatasetPlot();
 
 }
 
 void Plot::setDataset(const QVector<IrisData> &dataset) {
 
-    qDebug() << "set reference to dataset!";
     this->dataset = dataset;
-    updateDatasetPlot();
+    //updateDatasetPlot();
 
 }
 
@@ -68,7 +68,9 @@ void Plot::updateDatasetPlot() {
         double y_value = dataset[i].getFeatureValue(y_axis_text->toPlainText());
         IrisType iris_type = dataset[i].getType();
 
-        dataset_plot_points[i]->setRect(50 + x_value*50, 550 - y_value*50, 10, 10);
+        qDebug() << x_value << " x value " << y_value << " y value";
+
+        dataset_plot_points[i]->setRect(50 + x_value*50, 550 - y_value*50, 5, 5);
         dataset_plot_points[i]->setPen(big_axis_pen);
 
         scene->addItem(dataset_plot_points[i]);
