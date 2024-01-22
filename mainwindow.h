@@ -65,5 +65,7 @@ private:
     Ui::MainWindow *ui;
     Model* model;
     Plot* plot;
+    FeatureType x_axis_plot_feature;
+    FeatureType y_axis_plot_feature;
 };
 #endif // MAINWINDOW_H

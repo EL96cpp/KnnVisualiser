@@ -22,6 +22,9 @@ public:
 
     void setGraphicsScene(QGraphicsView* graphics_view);
     void setAxesTexts(const QString& x_axis_text, const QString& y_axis_text);
+    void setPredictionPointValues(const float& x_value, const float& y_value);
+    void setPredictionPointX(const float& x_value);
+    void setPredictionPointY(const float& y_value);
 
     void setDataset(const QVector<IrisData>& dataset);
 
@@ -31,6 +34,7 @@ private:
 private:
     QVector<IrisData> dataset;
     QVector<QGraphicsEllipseItem*> dataset_plot_points;
+    QGraphicsEllipseItem* prediction_plot_point;
     QGraphicsScene* scene;
     QGraphicsRectItem* main_rect;
     QGraphicsLineItem* x_axis;
@@ -48,7 +52,17 @@ private:
     int petal_length_cell_size;
     int petal_width_cell_size;
 
+    int x_axis_cell_size;
+    int y_axis_cell_size;
+    float x_axis_min;
+    float x_axis_max;
+    float y_axis_min;
+    float y_axis_max;
+
     int plot_point_size = 8;
+
+    float prediction_point_x;
+    float prediction_point_y;
 
     float sepal_length_min = 4.0;
     float sepal_length_max = 8.0;
