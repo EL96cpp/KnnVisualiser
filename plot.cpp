@@ -46,6 +46,9 @@ void Plot::setAxesTexts(const QString &x_axis_text, const QString &y_axis_text) 
 
     this->x_axis_text->setPlainText(x_axis_text);
     this->y_axis_text->setPlainText(y_axis_text);
+    this->x_axis_text->setPos(300 - this->x_axis_text->boundingRect().width()/2, 555);
+    this->y_axis_text->setPos(20, 300 + this->y_axis_text->boundingRect().width()/2);
+
 
 }
 
