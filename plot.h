@@ -41,6 +41,8 @@ private:
     QPen big_axis_pen;
     QPen small_axis_pen;
 
+    bool added_dataset_points;
+
     int sepal_length_cell_size;
     int sepal_width_cell_size;
     int petal_length_cell_size;

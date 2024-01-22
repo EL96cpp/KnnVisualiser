@@ -2,7 +2,7 @@
 
 Plot::Plot(QObject *parent) : QObject{parent},
                               scene(new QGraphicsScene(this)),
-                              //dataset_plot_points(150, new QGraphicsEllipseItem()),
+                              added_dataset_points(false),
                               main_rect(new QGraphicsRectItem(0, 0, 600, 600)),
                               x_axis(new QGraphicsLineItem(50, 50, 50, 550)),
                               y_axis(new QGraphicsLineItem(50, 550, 550, 550)),
@@ -148,9 +148,19 @@ void Plot::updateDatasetPlot() {
 
             dataset_plot_points[i]->setBrush(QColor(0, 92, 255));
 
+        }       
+
+    }
+
+    if (!added_dataset_points) {
+
+        for (int i = 0; i < dataset_plot_points.size(); ++i) {
+
+            scene->addItem(dataset_plot_points[i]);
+
         }
 
-        scene->addItem(dataset_plot_points[i]);
+        added_dataset_points = true;
 
     }
 
