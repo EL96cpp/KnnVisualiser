@@ -41,6 +41,22 @@ private:
     QPen big_axis_pen;
     QPen small_axis_pen;
 
+    int sepal_length_cell_size;
+    int sepal_width_cell_size;
+    int petal_length_cell_size;
+    int petal_width_cell_size;
+
+    int plot_point_size = 8;
+
+    float sepal_length_min = 4.0;
+    float sepal_length_max = 8.0;
+    float sepal_width_min = 1.9;
+    float sepal_width_max = 5.0;
+    float petal_length_min = 0.5;
+    float petal_length_max = 7.0;
+    float petal_width_min = 0.0;
+    float petal_width_max = 3.1;
+
 };
 
 #endif // PLOT_H

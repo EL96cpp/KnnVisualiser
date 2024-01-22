@@ -8,7 +8,7 @@ Plot::Plot(QObject *parent) : QObject{parent},
                               y_axis(new QGraphicsLineItem(50, 550, 550, 550)),
                               x_axis_text(new QGraphicsTextItem),
                               y_axis_text(new QGraphicsTextItem),
-                              main_rect_brush(QColor(255, 255, 255), Qt::SolidPattern),
+                              main_rect_brush(QColor(255, 255, 255, 120), Qt::SolidPattern),
                               big_axis_pen(QColor(0, 0, 0), 1.5, Qt::SolidLine),
                               small_axis_pen(QColor(0, 0, 0), 1.0, Qt::SolidLine) {
 
@@ -32,6 +32,13 @@ Plot::Plot(QObject *parent) : QObject{parent},
         dataset_plot_points.push_back(new QGraphicsEllipseItem());
 
     }
+
+    sepal_length_cell_size = 500 / (sepal_length_max - sepal_length_min);
+    sepal_width_cell_size = 500 / (sepal_width_max - sepal_width_min);
+    petal_length_cell_size = 500 / (petal_length_max - petal_length_min);
+    petal_width_cell_size = 500 / (petal_width_max - petal_width_min);
+
+    qDebug() << "cell sizes " << sepal_length_cell_size << " " << sepal_width_cell_size << " " << petal_length_cell_size << " " << petal_width_cell_size;
 
 }
 
@@ -67,8 +74,67 @@ void Plot::updateDatasetPlot() {
         double y_value = dataset[i].getFeatureValue(y_axis_text->toPlainText());
         IrisType iris_type = dataset[i].getType();
 
-        dataset_plot_points[i]->setRect(50 + x_value*50, 550 - y_value*50, 5, 5);
-        dataset_plot_points[i]->setPen(big_axis_pen);
+        if (x_axis_text->toPlainText() == "Sepal length") {
+
+
+            if (y_axis_text->toPlainText() == "Sepal width") {
+
+                dataset_plot_points[i]->setRect(50 + (x_value - sepal_length_min)*sepal_length_cell_size + plot_point_size/2,
+                                                550 - (y_value - sepal_width_min)*sepal_width_cell_size - plot_point_size/2,
+                                                plot_point_size, plot_point_size);
+                dataset_plot_points[i]->setPen(big_axis_pen);
+
+            } else if (y_axis_text->toPlainText() == "Petal length") {
+
+                dataset_plot_points[i]->setRect(50 + (x_value - sepal_length_min)*sepal_length_cell_size + plot_point_size/2,
+                                                550 - (y_value - petal_length_min)*petal_length_cell_size - plot_point_size/2,
+                                                plot_point_size, plot_point_size);
+                dataset_plot_points[i]->setPen(big_axis_pen);
+
+            } else if (y_axis_text->toPlainText() == "Petal width") {
+
+                dataset_plot_points[i]->setRect(50 + (x_value - sepal_length_min)*sepal_length_cell_size + plot_point_size/2,
+                                                550 - (y_value - petal_width_min)*petal_width_cell_size - plot_point_size/2,
+                                                plot_point_size, plot_point_size);
+                dataset_plot_points[i]->setPen(big_axis_pen);
+
+            }
+
+
+        } else if (x_axis_text->toPlainText() == "Sepal width") {
+
+
+            if (y_axis_text->toPlainText() == "Petal length") {
+
+                dataset_plot_points[i]->setRect(50 + (x_value - sepal_width_min)*sepal_width_cell_size + plot_point_size/2,
+                                                550 - (y_value - petal_length_min)*petal_length_cell_size - plot_point_size/2,
+                                                plot_point_size, plot_point_size);
+                dataset_plot_points[i]->setPen(big_axis_pen);
+
+            } else if (y_axis_text->toPlainText() == "Petal width") {
+
+                dataset_plot_points[i]->setRect(50 + (x_value - sepal_width_min)*sepal_width_cell_size + plot_point_size/2,
+                                                550 - (y_value - petal_width_min)*petal_width_cell_size - plot_point_size/2,
+                                                plot_point_size, plot_point_size);
+                dataset_plot_points[i]->setPen(big_axis_pen);
+
+            }
+
+
+        } else if (x_axis_text->toPlainText() == "Petal length") {
+
+
+            if (y_axis_text->toPlainText() == "Petal width") {
+
+                dataset_plot_points[i]->setRect(50 + (x_value - petal_length_min)*petal_length_cell_size + plot_point_size/2,
+                                                550 - (y_value - petal_width_min)*petal_width_cell_size - plot_point_size/2,
+                                                plot_point_size, plot_point_size);
+                dataset_plot_points[i]->setPen(big_axis_pen);
+
+            }
+
+
+        }
 
         if (iris_type == IrisType::SETOSA) {
 
