@@ -1026,7 +1026,7 @@ font: 9pt ;</string>
      </size>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgba(224, 253, 255, 150);
+     <string notr="true">background-color: rgba(5, 87, 101, 170);
 border-radius: 15px;</string>
     </property>
    </widget>

@@ -15,6 +15,7 @@ Plot::Plot(QObject *parent) : QObject{parent},
                               points_outline_pen(QColor(0, 63, 65)) {
 
     main_rect->setBrush(main_rect_brush);
+    main_rect->setPen(Qt::NoPen);
 
     points_outline_pen.setWidth(2);
 
