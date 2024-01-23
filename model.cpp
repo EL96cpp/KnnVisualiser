@@ -312,31 +312,16 @@ void Model::setCrossValidationDataset() {
 
     }
 
-    for (int i = 0; i < cv_dataset.size(); ++i) {
+}
 
-        int setosa = 0, versicolor = 0, virginica = 0;
+double Model::calculateModelAccuracy() {
 
-        for (int j = 0; j < cv_dataset[i].size(); ++j) {
 
-            if (cv_dataset[i][j].getType() == IrisType::SETOSA) {
 
-                ++setosa;
+}
 
-            } else if (cv_dataset[i][j].getType() == IrisType::VERSICOLOR) {
+double Model::calculateCVGroupAccuracy(const int &group_index) {
 
-                ++versicolor;
-
-            } else if (cv_dataset[i][j].getType() == IrisType::VIRGINICA) {
-
-                ++virginica;
-
-            }
-
-        }
-
-        qDebug() << setosa << " " << versicolor << " " << virginica;
-
-    }
 
 
 }

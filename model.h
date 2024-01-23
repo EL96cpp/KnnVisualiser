@@ -47,6 +47,8 @@ signals:
 private:
     void readDataFromCsv();
     void setCrossValidationDataset();
+    double calculateModelAccuracy();
+    double calculateCVGroupAccuracy(const int& group_index);
     double calculateDistance(const IrisData& prediction_iris_data, const IrisData& dataset_iris_data);
     IrisType predictType(const double& setosa_score, const double& versicolor_score, const double& virginica_score);
 
