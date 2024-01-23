@@ -7,6 +7,7 @@
 #include <QFile>
 #include <QStringList>
 #include <QTextStream>
+#include <QColor>
 #include <algorithm>
 #include <math.h>
 #include <functional>

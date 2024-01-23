@@ -22,11 +22,15 @@ public:
 
     void setGraphicsScene(QGraphicsView* graphics_view);
     void setAxesTexts(const QString& x_axis_text, const QString& y_axis_text);
-    void setPredictionPointValues(const float& x_value, const float& y_value);
-    void setPredictionPointX(const float& x_value);
-    void setPredictionPointY(const float& y_value);
+    void onSetSepalLength(const float& sepal_length);
+    void onSetSepalWidth(const float& sepal_width);
+    void onSetPetalLength(const float& petal_length);
+    void onSetPetalWidth(const float& petal_width);
 
     void setDataset(const QVector<IrisData>& dataset);
+
+public slots:
+    void setPredictionPlotPointColor(const QColor& color);
 
 private:
     void updateDatasetPlot();
@@ -44,6 +48,7 @@ private:
     QBrush main_rect_brush;
     QPen big_axis_pen;
     QPen small_axis_pen;
+    QPen points_outline_pen;
 
     bool added_dataset_points;
 
@@ -59,10 +64,15 @@ private:
     float y_axis_min;
     float y_axis_max;
 
-    int plot_point_size = 8;
+    int plot_point_size = 10;
 
     float prediction_point_x = 0.0;
     float prediction_point_y = 0.0;
+
+    float prediction_sepal_length = 0.0;
+    float prediction_sepal_width = 0.0;
+    float prediction_petal_length = 0.0;
+    float prediction_petal_width = 0.0;
 
     float sepal_length_min = 4.0;
     float sepal_length_max = 8.0;

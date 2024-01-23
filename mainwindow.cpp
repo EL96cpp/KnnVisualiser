@@ -85,14 +85,17 @@ void MainWindow::onSetPredictedIrisType(const IrisType &predicted_type) {
 
     case IrisType::SETOSA:
         ui->predictionValueLabel->setText("Iris-setosa");
+        plot->setPredictionPlotPointColor(QColor(251, 166, 166));
         break;
 
     case IrisType::VERSICOLOR:
         ui->predictionValueLabel->setText("Iris-versicolor");
+        plot->setPredictionPlotPointColor(QColor(182, 251, 166));
         break;
 
     case IrisType::VIRGINICA:
         ui->predictionValueLabel->setText("Iris-virginica");
+        plot->setPredictionPlotPointColor(QColor(166, 192, 251));
         break;
 
     }
@@ -134,6 +137,7 @@ void MainWindow::on_sepalLengthLineEdit_textChanged(const QString &sepal_length)
 
     QString copy = sepal_length;
     emit setSepalLength(copy.replace(",", ".").toDouble());
+    plot->onSetSepalLength(copy.replace(",", ".").toDouble());
 
     if (ui->sepalLengthCheckBox->isEnabled()) {
 
@@ -149,16 +153,6 @@ void MainWindow::on_sepalLengthLineEdit_textChanged(const QString &sepal_length)
 
     }
 
-    if (x_axis_plot_feature == FeatureType::SEPAL_LENGTH) {
-
-        plot->setPredictionPointX(copy.replace(",", ".").toDouble());
-
-    } else if (y_axis_plot_feature == FeatureType::SEPAL_LENGTH) {
-
-        plot->setPredictionPointY(copy.replace(",", ".").toDouble());
-
-    }
-
 }
 
 
@@ -166,6 +160,7 @@ void MainWindow::on_sepalWidthLineEdit_textChanged(const QString &sepal_width) {
 
     QString copy = sepal_width;
     emit setSepalWidth(copy.replace(",", ".").toDouble());
+    plot->onSetSepalWidth(copy.replace(",", ".").toDouble());
 
     if (ui->sepalWidthCheckBox->isEnabled()) {
 
@@ -181,16 +176,6 @@ void MainWindow::on_sepalWidthLineEdit_textChanged(const QString &sepal_width) {
 
     }
 
-    if (x_axis_plot_feature == FeatureType::SEPAL_WIDTH) {
-
-        plot->setPredictionPointX(copy.replace(",", ".").toDouble());
-
-    } else if (y_axis_plot_feature == FeatureType::SEPAL_WIDTH) {
-
-        plot->setPredictionPointY(copy.replace(",", ".").toDouble());
-
-    }
-
 }
 
 
@@ -198,6 +183,7 @@ void MainWindow::on_petalLengthLineEdit_textChanged(const QString &petal_length)
 
     QString copy = petal_length;
     emit setPetalLength(copy.replace(",", ".").toDouble());
+    plot->onSetPetalLength(copy.replace(",", ".").toDouble());
 
     if (ui->petalLengthCheckBox->isEnabled()) {
 
@@ -213,16 +199,6 @@ void MainWindow::on_petalLengthLineEdit_textChanged(const QString &petal_length)
 
     }
 
-    if (x_axis_plot_feature == FeatureType::PETAL_LENGTH) {
-
-        plot->setPredictionPointX(copy.replace(",", ".").toDouble());
-
-    } else if (y_axis_plot_feature == FeatureType::PETAL_LENGTH) {
-
-        plot->setPredictionPointY(copy.replace(",", ".").toDouble());
-
-    }
-
 }
 
 
@@ -230,6 +206,7 @@ void MainWindow::on_petalWidthLineEdit_textChanged(const QString &petal_width) {
 
     QString copy = petal_width;
     emit setPetalWidth(copy.replace(",", ".").toDouble());
+    plot->onSetPetalWidth(copy.replace(",", ".").toDouble());
 
     if (ui->petalWidthCheckBox->isEnabled()) {
 
@@ -242,16 +219,6 @@ void MainWindow::on_petalWidthLineEdit_textChanged(const QString &petal_width) {
             ui->petalWidthCheckBox->setCheckState(Qt::Checked);
 
         }
-
-    }
-
-    if (x_axis_plot_feature == FeatureType::PETAL_WIDTH) {
-
-        plot->setPredictionPointX(copy.replace(",", ".").toDouble());
-
-    } else if (y_axis_plot_feature == FeatureType::PETAL_WIDTH) {
-
-        plot->setPredictionPointY(copy.replace(",", ".").toDouble());
 
     }
 
@@ -301,10 +268,8 @@ void MainWindow::on_featuresComboBox_currentTextChanged(const QString &features)
         ui->sepalWidthCheckBox->setCheckState(Qt::Checked);
         ui->sepalLengthCheckBox->setEnabled(false);
         ui->sepalWidthCheckBox->setEnabled(false);
-        x_axis_plot_feature = FeatureType::SEPAL_LENGTH;
-        y_axis_plot_feature = FeatureType::SEPAL_WIDTH;
         plot->setAxesTexts(QStringLiteral("Sepal length"), QStringLiteral("Sepal width"));
-        plot->setPredictionPointValues(ui->sepalLengthLineEdit->text().toFloat(), ui->sepalWidthLineEdit->text().toFloat());
+        //plot->setPredictionPointValues(ui->sepalLengthLineEdit->text().toFloat(), ui->sepalWidthLineEdit->text().toFloat());
 
     } else if (features == "Sepal length - Petal length") {
 
@@ -313,10 +278,8 @@ void MainWindow::on_featuresComboBox_currentTextChanged(const QString &features)
         ui->petalLengthCheckBox->setCheckState(Qt::Checked);
         ui->sepalLengthCheckBox->setEnabled(false);
         ui->petalLengthCheckBox->setEnabled(false);
-        x_axis_plot_feature = FeatureType::SEPAL_LENGTH;
-        y_axis_plot_feature = FeatureType::PETAL_LENGTH;
         plot->setAxesTexts(QStringLiteral("Sepal length"), QStringLiteral("Petal length"));
-        plot->setPredictionPointValues(ui->sepalLengthLineEdit->text().toFloat(), ui->petalLengthLineEdit->text().toFloat());
+        //plot->setPredictionPointValues(ui->sepalLengthLineEdit->text().toFloat(), ui->petalLengthLineEdit->text().toFloat());
 
     } else if (features == "Sepal length - Petal width") {
 
@@ -325,10 +288,8 @@ void MainWindow::on_featuresComboBox_currentTextChanged(const QString &features)
         ui->petalWidthCheckBox->setCheckState(Qt::Checked);
         ui->sepalLengthCheckBox->setEnabled(false);
         ui->petalWidthCheckBox->setEnabled(false);
-        x_axis_plot_feature = FeatureType::SEPAL_LENGTH;
-        y_axis_plot_feature = FeatureType::PETAL_WIDTH;
         plot->setAxesTexts(QStringLiteral("Sepal length"), QStringLiteral("Petal width"));
-        plot->setPredictionPointValues(ui->sepalLengthLineEdit->text().toFloat(), ui->petalWidthLineEdit->text().toFloat());
+        //plot->setPredictionPointValues(ui->sepalLengthLineEdit->text().toFloat(), ui->petalWidthLineEdit->text().toFloat());
 
     } else if (features == "Sepal width - Petal length") {
 
@@ -337,10 +298,8 @@ void MainWindow::on_featuresComboBox_currentTextChanged(const QString &features)
         ui->petalLengthCheckBox->setCheckState(Qt::Checked);
         ui->sepalWidthCheckBox->setEnabled(false);
         ui->petalLengthCheckBox->setEnabled(false);
-        x_axis_plot_feature = FeatureType::SEPAL_WIDTH;
-        y_axis_plot_feature = FeatureType::PETAL_LENGTH;
         plot->setAxesTexts(QStringLiteral("Sepal width"), QStringLiteral("Petal length"));
-        plot->setPredictionPointValues(ui->sepalWidthLineEdit->text().toFloat(), ui->petalLengthLineEdit->text().toFloat());
+        //plot->setPredictionPointValues(ui->sepalWidthLineEdit->text().toFloat(), ui->petalLengthLineEdit->text().toFloat());
 
     } else if (features == "Sepal width - Petal width") {
 
@@ -349,10 +308,8 @@ void MainWindow::on_featuresComboBox_currentTextChanged(const QString &features)
         ui->petalWidthCheckBox->setCheckState(Qt::Checked);
         ui->sepalWidthCheckBox->setEnabled(false);
         ui->petalWidthCheckBox->setEnabled(false);
-        x_axis_plot_feature = FeatureType::SEPAL_WIDTH;
-        y_axis_plot_feature = FeatureType::PETAL_WIDTH;
         plot->setAxesTexts(QStringLiteral("Sepal width"), QStringLiteral("Petal width"));
-        plot->setPredictionPointValues(ui->sepalWidthLineEdit->text().toFloat(), ui->petalWidthLineEdit->text().toFloat());
+        //plot->setPredictionPointValues(ui->sepalWidthLineEdit->text().toFloat(), ui->petalWidthLineEdit->text().toFloat());
 
     } else if (features == "Petal length - Petal width") {
 
@@ -361,10 +318,8 @@ void MainWindow::on_featuresComboBox_currentTextChanged(const QString &features)
         ui->petalWidthCheckBox->setCheckState(Qt::Checked);
         ui->petalLengthCheckBox->setEnabled(false);
         ui->petalWidthCheckBox->setEnabled(false);
-        x_axis_plot_feature = FeatureType::PETAL_LENGTH;
-        y_axis_plot_feature = FeatureType::PETAL_WIDTH;
         plot->setAxesTexts(QStringLiteral("Petal length"), QStringLiteral("Petal width"));
-        plot->setPredictionPointValues(ui->petalLengthLineEdit->text().toFloat(), ui->petalWidthLineEdit->text().toFloat());
+        //plot->setPredictionPointValues(ui->petalLengthLineEdit->text().toFloat(), ui->petalWidthLineEdit->text().toFloat());
 
     }
 
