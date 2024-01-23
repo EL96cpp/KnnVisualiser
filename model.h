@@ -46,12 +46,14 @@ signals:
 
 private:
     void readDataFromCsv();
+    void setCrossValidationDataset();
     double calculateDistance(const IrisData& prediction_iris_data, const IrisData& dataset_iris_data);
     IrisType predictType(const double& setosa_score, const double& versicolor_score, const double& virginica_score);
 
 
 private:
-    QVector<IrisData> dataset;   
+    QVector<IrisData> dataset;
+    QVector<QVector<IrisData>> cv_dataset;
 
     std::function<double(const double&)> kernel;
     int minkowski_metric_param;
@@ -61,8 +63,6 @@ private:
 
     QVector<FeatureType> plot_building_features;
     QVector<FeatureType> prediction_featrues;
-
-    QVector<QVector<IrisType>> plot_data;
 
     double sepal_length;
     double sepal_width;

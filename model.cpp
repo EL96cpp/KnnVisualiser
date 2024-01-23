@@ -272,7 +272,72 @@ void Model::readDataFromCsv() {
 
         }
 
+        setCrossValidationDataset();
+
     }
+
+}
+
+void Model::setCrossValidationDataset() {
+
+    //QVector includes IDs of IrisData from Dataset. In dataset first 50 rows of data are Iris-setosa,
+    //second 50 rows - Iris-versicolor, last 50 - Iris-virginica.
+    //So we can shuffle IDs in each of three groups, and then take to each of cross-validation groups
+    //10 elements. We'll get 5 cross-validation groups with 30 random IrisData values, 10 values of each iris type.
+
+    QVector<int> dataset_ids;
+    for (int i = 1; i <= 150; ++i) {
+
+        dataset_ids.push_back(i);
+
+    }
+
+    std::random_shuffle(dataset_ids.begin(), dataset_ids.begin() + 50);
+    std::random_shuffle(dataset_ids.begin() + 50, dataset_ids.begin() + 100);
+    std::random_shuffle(dataset_ids.begin() + 100, dataset_ids.end());
+
+    for (int i = 0; i < 5; ++i) {
+
+        QVector<IrisData> cv_group;
+
+        for (int j = 0; j < 10; ++j) {
+
+            cv_group.push_back(dataset[i*10 + j]);
+            cv_group.push_back(dataset[i*10 + 50 + j]);
+            cv_group.push_back(dataset[i*10 + 100 +j]);
+
+        }
+
+        cv_dataset.push_back(cv_group);
+
+    }
+
+    for (int i = 0; i < cv_dataset.size(); ++i) {
+
+        int setosa = 0, versicolor = 0, virginica = 0;
+
+        for (int j = 0; j < cv_dataset[i].size(); ++j) {
+
+            if (cv_dataset[i][j].getType() == IrisType::SETOSA) {
+
+                ++setosa;
+
+            } else if (cv_dataset[i][j].getType() == IrisType::VERSICOLOR) {
+
+                ++versicolor;
+
+            } else if (cv_dataset[i][j].getType() == IrisType::VIRGINICA) {
+
+                ++virginica;
+
+            }
+
+        }
+
+        qDebug() << setosa << " " << versicolor << " " << virginica;
+
+    }
+
 
 }
 
