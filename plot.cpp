@@ -11,7 +11,7 @@ Plot::Plot(QObject *parent) : QObject{parent},
                               y_axis_text(new QGraphicsTextItem),
                               main_rect_brush(QColor(188, 255, 255), Qt::SolidPattern),
                               big_axis_pen(QColor(0, 0, 0), 1.5, Qt::SolidLine),
-                              small_axis_pen(QColor(0, 0, 0), 1.0, Qt::SolidLine),
+                              small_axis_pen(QColor(0, 0, 0), 0.7, Qt::SolidLine),
                               points_outline_pen(QColor(0, 63, 65)) {
 
     main_rect->setBrush(main_rect_brush);
@@ -24,7 +24,6 @@ Plot::Plot(QObject *parent) : QObject{parent},
 
     x_axis_text->setPos(300, 575);
     y_axis_text->setPos(50 - this->y_axis_text->boundingRect().width()/2, 15);
-    //y_axis_text->setRotation(-90);
 
     scene->addItem(main_rect);
     scene->addItem(x_axis);
@@ -118,6 +117,12 @@ void Plot::setAxesTexts(const QString &x_axis_text, const QString &y_axis_text) 
     }
 
     updateDatasetPlot();
+
+}
+
+void Plot::setAxesMarkingValues() {
+
+
 
 }
 
@@ -258,9 +263,9 @@ void Plot::updateDatasetPlot() {
 
         prediction_plot_point->setBrush(QColor(255, 234, 43));
         prediction_plot_point->setPen(points_outline_pen);
-        prediction_plot_point->setRect(50 + (prediction_point_x - x_axis_min)*x_axis_cell_size + plot_point_size/2,
-                                       550 - (prediction_point_y - y_axis_min)*y_axis_cell_size - plot_point_size/2,
-                                       plot_point_size, plot_point_size);
+        prediction_plot_point->setRect(50 + (prediction_point_x - x_axis_min)*x_axis_cell_size + plot_prediction_point_size/2,
+                                       550 - (prediction_point_y - y_axis_min)*y_axis_cell_size - plot_prediction_point_size/2,
+                                       plot_prediction_point_size, plot_prediction_point_size);
 
     } else {
 

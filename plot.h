@@ -22,6 +22,7 @@ public:
 
     void setGraphicsScene(QGraphicsView* graphics_view);
     void setAxesTexts(const QString& x_axis_text, const QString& y_axis_text);
+    void setAxesMarkingValues();
     void onSetSepalLength(const float& sepal_length);
     void onSetSepalWidth(const float& sepal_width);
     void onSetPetalLength(const float& petal_length);
@@ -45,6 +46,23 @@ private:
     QGraphicsLineItem* y_axis;
     QGraphicsTextItem* x_axis_text;
     QGraphicsTextItem* y_axis_text;
+
+    QVector<QGraphicsLineItem*> sepal_length_y_axis_lines;
+    QVector<QGraphicsLineItem*> petal_length_y_axis_lines;
+    QVector<QGraphicsLineItem*> petal_width_y_axis_lines;
+
+    QVector<QGraphicsTextItem*> sepal_length_y_axis_texts;
+    QVector<QGraphicsTextItem*> petal_length_y_axis_texts;
+    QVector<QGraphicsTextItem*> petal_width_y_axis_texts;
+
+    QVector<QGraphicsLineItem*> sepal_width_x_axis_lines;
+    QVector<QGraphicsLineItem*> petal_length_x_axis_lines;
+    QVector<QGraphicsLineItem*> petal_width_x_axis_lines;
+
+    QVector<QGraphicsTextItem*> sepal_width_x_axis_texts;
+    QVector<QGraphicsTextItem*> petal_length_x_axis_texts;
+    QVector<QGraphicsTextItem*> petal_width_x_axis_texts;
+
     QBrush main_rect_brush;
     QPen big_axis_pen;
     QPen small_axis_pen;
@@ -64,7 +82,8 @@ private:
     float y_axis_min;
     float y_axis_max;
 
-    int plot_point_size = 10;
+    int plot_point_size = 8;
+    int plot_prediction_point_size = 10;
 
     float prediction_point_x = 0.0;
     float prediction_point_y = 0.0;
