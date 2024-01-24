@@ -42,6 +42,8 @@ Plot::Plot(QObject *parent) : QObject{parent},
     petal_length_cell_size = 500 / (petal_length_max - petal_length_min);
     petal_width_cell_size = 500 / (petal_width_max - petal_width_min);
 
+    prepareAxesMarkingValues();
+
 }
 
 void Plot::setGraphicsScene(QGraphicsView *graphics_view) {
@@ -116,13 +118,346 @@ void Plot::setAxesTexts(const QString &x_axis_text, const QString &y_axis_text) 
 
     }
 
+    qDebug() << "Set " << x_axis_text << " " << y_axis_text;
+
+    setXAxisMarkingValues(x_axis_text);
+    setYAxisMarkingValues(y_axis_text);
+
     updateDatasetPlot();
 
 }
 
-void Plot::setAxesMarkingValues() {
+void Plot::setXAxisMarkingValues(const QString &feature) {
+
+    if (feature == "Sepal length") {
+
+        for (int i = 0; i < sepal_length_x_axis_lines.size(); ++i) {
+
+            sepal_length_x_axis_lines[i]->setVisible(true);
+            sepal_length_x_axis_texts[i]->setVisible(true);
+
+        }
+
+        //Set invisible other marks
+
+        for (int i = 0; i < sepal_width_x_axis_lines.size(); ++i) {
+
+            sepal_width_x_axis_lines[i]->setVisible(false);
+            sepal_width_x_axis_texts[i]->setVisible(false);
+
+        }
+
+        for (int i = 0; i < petal_length_x_axis_lines.size(); ++i) {
+
+            petal_length_x_axis_lines[i]->setVisible(false);
+            petal_length_x_axis_texts[i]->setVisible(false);
+
+        }
+
+    } else if (feature == "Sepal width") {
+
+        for (int i = 0; i < sepal_width_x_axis_lines.size(); ++i) {
+
+            sepal_width_x_axis_lines[i]->setVisible(true);
+            sepal_width_x_axis_texts[i]->setVisible(true);
+
+        }
+
+        //Set invisible other marks
+
+        for (int i = 0; i < sepal_length_x_axis_lines.size(); ++i) {
+
+            sepal_length_x_axis_texts[i]->setVisible(false);
+            sepal_length_x_axis_texts[i]->setVisible(false);
+
+        }
+
+        for (int i = 0; i < petal_length_x_axis_lines.size(); ++i) {
+
+            petal_length_x_axis_lines[i]->setVisible(false);
+            petal_length_x_axis_texts[i]->setVisible(false);
+
+        }
+
+    } else if (feature == "Petal length") {
+
+        for (int i = 0; i < petal_length_x_axis_lines.size(); ++i) {
+
+            petal_length_x_axis_lines[i]->setVisible(true);
+            petal_length_x_axis_texts[i]->setVisible(true);
+
+        }
+
+        //Set invisible other marks
+
+        for (int i = 0; i < sepal_length_x_axis_lines.size(); ++i) {
+
+            sepal_length_x_axis_lines[i]->setVisible(false);
+            sepal_length_x_axis_texts[i]->setVisible(false);
+
+        }
+
+        for (int i = 0; i < sepal_width_x_axis_lines.size(); ++i) {
+
+            sepal_width_x_axis_lines[i]->setVisible(false);
+            sepal_width_x_axis_texts[i]->setVisible(false);
+
+        }
+
+    }
+
+}
+
+void Plot::setYAxisMarkingValues(const QString &feature) {
+
+    if (feature == "Sepal width") {
+
+        for (int i = 0; i < sepal_width_y_axis_lines.size(); ++i) {
+
+            sepal_width_y_axis_lines[i]->setVisible(true);
+            sepal_width_y_axis_texts[i]->setVisible(true);
+
+        }
+
+        //Set invisible other marks
+
+        for (int i = 0; i < petal_length_y_axis_lines.size(); ++i) {
+
+            petal_length_y_axis_lines[i]->setVisible(false);
+            petal_length_y_axis_texts[i]->setVisible(false);
+
+        }
+
+        for (int i = 0; i < petal_width_y_axis_lines.size(); ++i) {
+
+            petal_width_y_axis_lines[i]->setVisible(false);
+            petal_width_y_axis_texts[i]->setVisible(false);
+
+        }
+
+    } else if (feature == "Petal length") {
+
+        for (int i = 0; i < petal_length_y_axis_lines.size(); ++i) {
+
+            petal_length_y_axis_lines[i]->setVisible(true);
+            petal_length_y_axis_texts[i]->setVisible(true);
+
+        }
+
+        //Set invisible other marks
+
+        for (int i = 0; i < sepal_width_y_axis_lines.size(); ++i) {
+
+            sepal_width_y_axis_texts[i]->setVisible(false);
+            sepal_width_y_axis_texts[i]->setVisible(false);
+
+        }
+
+        for (int i = 0; i < petal_width_y_axis_lines.size(); ++i) {
+
+            petal_width_y_axis_lines[i]->setVisible(false);
+            petal_width_y_axis_texts[i]->setVisible(false);
+
+        }
+
+    } else if (feature == "Petal width") {
+
+        for (int i = 0; i < petal_width_y_axis_lines.size(); ++i) {
+
+            petal_width_y_axis_lines[i]->setVisible(true);
+            petal_width_y_axis_texts[i]->setVisible(true);
+
+        }
+
+        //Set invisible other marks
+
+        for (int i = 0; i < sepal_width_y_axis_lines.size(); ++i) {
+
+            sepal_width_y_axis_lines[i]->setVisible(false);
+            sepal_width_y_axis_texts[i]->setVisible(false);
+
+        }
+
+        for (int i = 0; i < petal_length_y_axis_lines.size(); ++i) {
+
+            petal_length_y_axis_lines[i]->setVisible(false);
+            petal_length_y_axis_texts[i]->setVisible(false);
+
+        }
+
+    }
+
+}
+
+void Plot::prepareAxesMarkingValues() {
+
+    //Set X axis plot marking values
+
+    float x_sepal_length_text = sepal_length_min + 0.5;
+    int x_sepal_length_counter = 1;
+
+    while (x_sepal_length_counter < (sepal_length_max - sepal_length_min)/0.5) {
+
+        QGraphicsLineItem* line = new QGraphicsLineItem(50 + x_sepal_length_counter * sepal_length_cell_size/2, 550,
+                                                        50 + x_sepal_length_counter * sepal_length_cell_size/2, 560);
+        line->setPen(small_axis_pen);
+        line->setVisible(false);
+        scene->addItem(line);
+
+        sepal_length_x_axis_lines.push_back(std::move(line));
+
+        QGraphicsTextItem* text = new QGraphicsTextItem(QString::number(x_sepal_length_text));
+        text->setPos(50 + x_sepal_length_counter * sepal_length_cell_size/2 - text->boundingRect().width()/2, 560);
+        text->setVisible(false);
+        scene->addItem(text);
+
+        sepal_length_x_axis_texts.push_back(std::move(text));
+        x_sepal_length_text += 0.5;
+        ++x_sepal_length_counter;
+
+    }
 
 
+    float x_sepal_width_text = sepal_width_min + 0.5;
+    int x_sepal_width_counter = 1;
+
+    while (x_sepal_width_counter < (sepal_width_max - sepal_width_min)/0.5) {
+
+        QGraphicsLineItem* line = new QGraphicsLineItem(50 + x_sepal_width_counter * sepal_width_cell_size/2, 550,
+                                                        50 + x_sepal_width_counter * sepal_width_cell_size/2, 560);
+        line->setPen(small_axis_pen);
+        line->setVisible(false);
+        scene->addItem(line);
+
+        sepal_width_x_axis_lines.push_back(std::move(line));
+
+        QGraphicsTextItem* text = new QGraphicsTextItem(QString::number(x_sepal_width_text));
+        text->setPos(50 + x_sepal_width_counter * sepal_width_cell_size/2 - text->boundingRect().width()/2, 560);
+        text->setVisible(false);
+        scene->addItem(text);
+
+        sepal_width_x_axis_texts.push_back(std::move(text));
+        x_sepal_width_text += 0.5;
+        ++x_sepal_width_counter;
+
+    }
+
+
+    float x_petal_length_text = petal_length_min + 0.5;
+    int x_petal_length_counter = 1;
+
+    while (x_petal_length_counter < (petal_length_max - petal_length_min)/0.5) {
+
+        QGraphicsLineItem* line = new QGraphicsLineItem(50 + x_petal_length_counter * petal_length_cell_size/2, 550,
+                                                        50 + x_petal_length_counter * petal_length_cell_size/2, 560);
+        line->setPen(small_axis_pen);
+        line->setVisible(false);
+        scene->addItem(line);
+
+        petal_length_x_axis_lines.push_back(std::move(line));
+
+        QGraphicsTextItem* text = new QGraphicsTextItem(QString::number(x_petal_length_text));
+        text->setPos(50 + x_petal_length_counter * petal_length_cell_size/2 - text->boundingRect().width()/2, 560);
+        text->setVisible(false);
+        scene->addItem(text);
+
+        petal_length_x_axis_texts.push_back(std::move(text));
+        x_petal_length_text += 0.5;
+        ++x_petal_length_counter;
+
+    }
+
+
+    //Set Y axis plot marking values
+
+    float y_sepal_width_text = sepal_width_min - 0.5;
+    int y_sepal_width_counter = 1;
+
+    while (y_sepal_width_counter < (sepal_width_max - sepal_width_min)/0.5) {
+
+        QGraphicsLineItem* line = new QGraphicsLineItem(40, 550 - y_sepal_width_counter * sepal_width_cell_size/2,
+                                                        50, 550 - y_sepal_width_counter * sepal_width_cell_size/2);
+        line->setPen(small_axis_pen);
+        line->setVisible(false);
+        scene->addItem(line);
+
+        sepal_width_y_axis_lines.push_back(std::move(line));
+
+        QGraphicsTextItem* text = new QGraphicsTextItem(QString::number(y_sepal_width_text));
+        text->setPos(25 - text->boundingRect().width()/2,
+                     550 - y_sepal_width_counter * sepal_width_cell_size/2 - text->boundingRect().height()/2);
+        text->setVisible(false);
+        scene->addItem(text);
+
+        sepal_width_y_axis_texts.push_back(std::move(text));
+        y_sepal_width_text += 0.5;
+        ++y_sepal_width_counter;
+
+    }
+
+
+    float y_petal_length_text = petal_length_min - 0.5;
+    int y_petal_length_counter = 1;
+
+    while (y_petal_length_counter < (petal_length_max - petal_length_min)/0.5) {
+
+        QGraphicsLineItem* line = new QGraphicsLineItem(40, 550 - y_petal_length_counter * petal_length_cell_size/2,
+                                                        50, 550 - y_petal_length_counter * petal_length_cell_size/2);
+        line->setPen(small_axis_pen);
+        line->setVisible(false);
+        scene->addItem(line);
+
+        petal_length_y_axis_lines.push_back(std::move(line));
+
+        QGraphicsTextItem* text = new QGraphicsTextItem(QString::number(y_petal_length_text));
+        text->setPos(25 - text->boundingRect().width()/2,
+                     550 - y_petal_length_counter * petal_length_cell_size/2 - text->boundingRect().height()/2);
+        text->setVisible(false);
+        scene->addItem(text);
+
+        petal_length_y_axis_texts.push_back(std::move(text));
+        y_petal_length_text += 0.5;
+        ++y_petal_length_counter;
+
+        qDebug() << "p l " << petal_length_y_axis_lines.size() << " " << petal_length_y_axis_texts.size();
+
+    }
+
+
+    float y_petal_width_text = petal_width_min + 0.5;
+    int y_petal_width_counter = 1;
+
+    while (y_petal_width_counter < (petal_width_max - petal_width_min)/0.5) {
+
+        QGraphicsLineItem* line = new QGraphicsLineItem(40, 550 - y_petal_width_counter * petal_width_cell_size/2,
+                                                        50, 550 - y_petal_width_counter * petal_width_cell_size/2);
+        line->setPen(small_axis_pen);
+        line->setVisible(false);
+        scene->addItem(line);
+
+        petal_width_y_axis_lines.push_back(std::move(line));
+
+        QGraphicsTextItem* text = new QGraphicsTextItem(QString::number(y_petal_width_text));
+        text->setPos(25 - text->boundingRect().width()/2,
+                     550 - y_petal_width_counter * petal_width_cell_size/2 - text->boundingRect().height()/2);
+        text->setVisible(false);
+        scene->addItem(text);
+
+        petal_width_y_axis_texts.push_back(std::move(text));
+        y_petal_width_text += 0.5;
+        ++y_petal_width_counter;
+
+    }
+
+
+    qDebug() << "check sizes";
+    qDebug() << sepal_length_x_axis_lines.size() << " " << sepal_length_x_axis_texts.size();
+    qDebug() << sepal_width_x_axis_lines.size() << " " << sepal_width_x_axis_texts.size();
+    qDebug() << petal_length_x_axis_lines.size() << " " << petal_length_x_axis_texts.size();
+
+    qDebug() << sepal_width_y_axis_lines.size() << " " << sepal_width_y_axis_texts.size();
+    qDebug() << petal_length_y_axis_lines.size() << " " << petal_length_y_axis_texts.size();
+    qDebug() << petal_width_y_axis_lines.size() << " " << petal_width_y_axis_texts.size();
 
 }
 

@@ -22,7 +22,9 @@ public:
 
     void setGraphicsScene(QGraphicsView* graphics_view);
     void setAxesTexts(const QString& x_axis_text, const QString& y_axis_text);
-    void setAxesMarkingValues();
+    void prepareAxesMarkingValues();
+    void setXAxisMarkingValues(const QString& feature);
+    void setYAxisMarkingValues(const QString& feature);
     void onSetSepalLength(const float& sepal_length);
     void onSetSepalWidth(const float& sepal_width);
     void onSetPetalLength(const float& petal_length);
@@ -47,21 +49,21 @@ private:
     QGraphicsTextItem* x_axis_text;
     QGraphicsTextItem* y_axis_text;
 
-    QVector<QGraphicsLineItem*> sepal_length_y_axis_lines;
+    QVector<QGraphicsLineItem*> sepal_length_x_axis_lines;
+    QVector<QGraphicsLineItem*> sepal_width_x_axis_lines;
+    QVector<QGraphicsLineItem*> petal_length_x_axis_lines;
+
+    QVector<QGraphicsTextItem*> sepal_length_x_axis_texts;
+    QVector<QGraphicsTextItem*> sepal_width_x_axis_texts;
+    QVector<QGraphicsTextItem*> petal_length_x_axis_texts;
+
+    QVector<QGraphicsLineItem*> sepal_width_y_axis_lines;
     QVector<QGraphicsLineItem*> petal_length_y_axis_lines;
     QVector<QGraphicsLineItem*> petal_width_y_axis_lines;
 
-    QVector<QGraphicsTextItem*> sepal_length_y_axis_texts;
+    QVector<QGraphicsTextItem*> sepal_width_y_axis_texts;
     QVector<QGraphicsTextItem*> petal_length_y_axis_texts;
     QVector<QGraphicsTextItem*> petal_width_y_axis_texts;
-
-    QVector<QGraphicsLineItem*> sepal_width_x_axis_lines;
-    QVector<QGraphicsLineItem*> petal_length_x_axis_lines;
-    QVector<QGraphicsLineItem*> petal_width_x_axis_lines;
-
-    QVector<QGraphicsTextItem*> sepal_width_x_axis_texts;
-    QVector<QGraphicsTextItem*> petal_length_x_axis_texts;
-    QVector<QGraphicsTextItem*> petal_width_x_axis_texts;
 
     QBrush main_rect_brush;
     QPen big_axis_pen;
@@ -95,12 +97,12 @@ private:
 
     float sepal_length_min = 4.0;
     float sepal_length_max = 8.0;
-    float sepal_width_min = 1.9;
+    float sepal_width_min = 1.5;
     float sepal_width_max = 5.0;
     float petal_length_min = 0.5;
     float petal_length_max = 7.0;
     float petal_width_min = 0.0;
-    float petal_width_max = 3.1;
+    float petal_width_max = 3.5;
 
 };
 
