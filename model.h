@@ -14,7 +14,7 @@
 
 #include "irisdata.h"
 #include "distancedata.h"
-#include "distancesvector.h"
+#include "cvdistancedata.h"
 
 
 class Model : public QObject
@@ -46,16 +46,15 @@ signals:
 
 private:
     void readDataFromCsv();
-    void setCrossValidationDataset();
+    void setTrainTestDatasets();
     double calculateModelAccuracy();
-    double calculateCVGroupAccuracy(const int& group_index);
     double calculateDistance(const IrisData& prediction_iris_data, const IrisData& dataset_iris_data);
     IrisType predictType(const double& setosa_score, const double& versicolor_score, const double& virginica_score);
 
-
 private:
     QVector<IrisData> dataset;
-    QVector<QVector<IrisData>> cv_dataset;
+    QVector<IrisData> train_dataset;
+    QVector<IrisData> test_dataset;
 
     std::function<double(const double&)> kernel;
     int minkowski_metric_param;

@@ -54,28 +54,7 @@ void Model::onStartPrediction() {
 
     emit setIsLearning(true);
 
-    //Debug info!
-    for (auto& type : prediction_featrues) {
-
-        if (type == FeatureType::SEPAL_LENGTH) {
-
-            qDebug() << "sepal length";
-
-        } else if (type == FeatureType::SEPAL_WIDTH) {
-
-            qDebug() << "sepal width";
-
-        } else if (type == FeatureType::PETAL_LENGTH) {
-
-            qDebug() << "petal length";
-
-        } else if (type == FeatureType::PETAL_WIDTH) {
-
-            qDebug() << "petal width";
-
-        }
-
-    }
+    setTrainTestDatasets();
 
     QVector<DistanceData> distances;
     IrisData prediction_iris_data(sepal_length, sepal_width, petal_length, petal_width);
@@ -128,8 +107,11 @@ void Model::onStartPrediction() {
     }
 
 
-    emit setPredictedIrisType(predicted_type);
+    double model_accuracy = calculateModelAccuracy();
+    qDebug() << "Model accuracy " << model_accuracy;
 
+
+    emit setPredictedIrisType(predicted_type);
     emit setIsLearning(false);
 
 }
@@ -240,7 +222,7 @@ void Model::readDataFromCsv() {
         in.readLine();
 
         //Id value for IrisData objects
-        int id = 1;
+        int id = 0;
 
         while (!in.atEnd()) {
 
@@ -272,57 +254,98 @@ void Model::readDataFromCsv() {
 
         }
 
-        setCrossValidationDataset();
-
     }
 
 }
 
-void Model::setCrossValidationDataset() {
-
-    //QVector includes IDs of IrisData from Dataset. In dataset first 50 rows of data are Iris-setosa,
-    //second 50 rows - Iris-versicolor, last 50 - Iris-virginica.
-    //So we can shuffle IDs in each of three groups, and then take to each of cross-validation groups
-    //10 elements. We'll get 5 cross-validation groups with 30 random IrisData values, 10 values of each iris type.
+void Model::setTrainTestDatasets() {
 
     QVector<int> dataset_ids;
-    for (int i = 1; i <= 150; ++i) {
+
+    for (int i = 0; i < dataset.size(); ++i) {
 
         dataset_ids.push_back(i);
 
     }
 
+    std::srand(std::time(0));
+
     std::random_shuffle(dataset_ids.begin(), dataset_ids.begin() + 50);
     std::random_shuffle(dataset_ids.begin() + 50, dataset_ids.begin() + 100);
     std::random_shuffle(dataset_ids.begin() + 100, dataset_ids.end());
 
-    for (int i = 0; i < 5; ++i) {
+    for (int i = 0; i < 10; ++i) {
 
-        QVector<IrisData> cv_group;
+        train_dataset.push_back(dataset[dataset_ids[i]]);
+        train_dataset.push_back(dataset[dataset_ids[50 + i]]);
+        train_dataset.push_back(dataset[dataset_ids[100 + i]]);
 
-        for (int j = 0; j < 10; ++j) {
+    }
 
-            cv_group.push_back(dataset[i*10 + j]);
-            cv_group.push_back(dataset[i*10 + 50 + j]);
-            cv_group.push_back(dataset[i*10 + 100 +j]);
+    for (int i = 10; i < 50; ++i) {
 
-        }
-
-        cv_dataset.push_back(cv_group);
+        test_dataset.push_back(dataset[dataset_ids[i]]);
+        test_dataset.push_back(dataset[dataset_ids[50 + i]]);
+        test_dataset.push_back(dataset[dataset_ids[100 + i]]);
 
     }
 
 }
 
+
 double Model::calculateModelAccuracy() {
 
+    QVector<int> test_dataset_ids;
 
+    for (int i = 0; i < test_dataset_ids.size(); ++i) {
 
-}
+        test_dataset_ids.push_back(test_dataset[i].getId());
 
-double Model::calculateCVGroupAccuracy(const int &group_index) {
+    }
 
+    float correct_predictions_counter = 0.0;
 
+    for (int i = 0; i < test_dataset.size(); ++i) {
+
+        QVector<DistanceData> current_distances;
+
+        for (int j = 0; j < train_dataset.size(); ++j) {
+
+            current_distances.push_back(DistanceData(calculateDistance(test_dataset[i], train_dataset[j]), train_dataset[j].getType()));
+
+        }
+
+        std::sort(current_distances.begin(), current_distances.end());
+
+        double setosa_score = 0.0, versicolor_score = 0.0, virginica_score = 0.0;
+
+        for (int k = 0; k < number_of_neighbours; ++k) {
+
+            if (current_distances[k].getIrisType() == IrisType::SETOSA) {
+
+                setosa_score += kernel(current_distances[k].getDistance()/window_width);
+
+            } else if (current_distances[k].getIrisType() == IrisType::VERSICOLOR) {
+
+                versicolor_score += kernel(current_distances[k].getDistance()/window_width);
+
+            } else if (current_distances[k].getIrisType() == IrisType::VIRGINICA) {
+
+                virginica_score += kernel(current_distances[k].getDistance()/window_width);
+
+            }
+
+        }
+
+        if (predictType(setosa_score, versicolor_score, virginica_score) == test_dataset[i].getType()) {
+
+            correct_predictions_counter += 1.0;
+
+        }
+
+    }
+
+    return correct_predictions_counter/test_dataset.size();
 
 }
 
@@ -333,6 +356,7 @@ double Model::calculateDistance(const IrisData& prediction_iris_data, const Iris
 
     for (auto& feature : prediction_featrues) {
 
+        //qDebug() << "inside calculate distance " << prediction_iris_data.getId() << " " << dataset_iris_data.getId();
         sum += std::pow(std::abs(prediction_iris_data.getFeatureValue(feature) - dataset_iris_data.getFeatureValue(feature)), minkowski_metric_param);
 
     }
@@ -340,7 +364,6 @@ double Model::calculateDistance(const IrisData& prediction_iris_data, const Iris
     return std::pow(sum, 1.0/minkowski_metric_param);
 
 }
-
 
 
 IrisType Model::predictType(const double &setosa_score, const double &versicolor_score, const double &virginica_score) {

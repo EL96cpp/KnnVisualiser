@@ -43,8 +43,6 @@ Plot::Plot(QObject *parent) : QObject{parent},
     petal_length_cell_size = 500 / (petal_length_max - petal_length_min);
     petal_width_cell_size = 500 / (petal_width_max - petal_width_min);
 
-    qDebug() << "cell sizes " << sepal_length_cell_size << " " << sepal_width_cell_size << " " << petal_length_cell_size << " " << petal_width_cell_size;
-
 }
 
 void Plot::setGraphicsScene(QGraphicsView *graphics_view) {
