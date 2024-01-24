@@ -43,6 +43,7 @@ signals:
     void openCsvFileError();
     void setIsLearning(const bool& is_learning); //Emits, when model starts/stops learning process
     void setPredictedIrisType(const IrisType& predicted_type);
+    void setModelAccuracy(const double& model_accuracy);
 
 private:
     void readDataFromCsv();

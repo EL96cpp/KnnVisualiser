@@ -262,12 +262,9 @@ void Plot::updateDatasetPlot() {
                                        550 - (prediction_point_y - y_axis_min)*y_axis_cell_size - plot_point_size/2,
                                        plot_point_size, plot_point_size);
 
-        qDebug() << "set point visible";
-
     } else {
 
         prediction_plot_point->setVisible(false);
-        qDebug() << "set point invisible";
 
     }
 

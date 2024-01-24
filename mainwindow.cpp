@@ -45,6 +45,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(this, &MainWindow::startPrediction, model, &Model::onStartPrediction);
     connect(model, &Model::setIsLearning, this, &MainWindow::onSetIsLearning);
     connect(model, &Model::setPredictedIrisType, this, &MainWindow::onSetPredictedIrisType);
+    connect(model, &Model::setModelAccuracy, this, &MainWindow::onSetModelAccuracy);
 
     //Send initial values from ui to model
     on_kernelComboBox_currentTextChanged(ui->kernelComboBox->currentText());
@@ -99,6 +100,12 @@ void MainWindow::onSetPredictedIrisType(const IrisType &predicted_type) {
         break;
 
     }
+
+}
+
+void MainWindow::onSetModelAccuracy(const double &model_accuracy) {
+
+    ui->accuracyValueLabel->setText(QString::number(model_accuracy));
 
 }
 

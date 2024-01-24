@@ -89,28 +89,9 @@ void Model::onStartPrediction() {
 
     IrisType predicted_type = predictType(setosa_score, versicolor_score, virginica_score);
 
-    //Debug
-    switch (predicted_type) {
-
-    case IrisType::SETOSA:
-        qDebug() << "setosa predicted!";
-        break;
-
-    case IrisType::VERSICOLOR:
-        qDebug() << "versicolor predicted!";
-        break;
-
-    case IrisType::VIRGINICA:
-        qDebug() << "virginica predicted!";
-        break;
-
-    }
-
-
     double model_accuracy = calculateModelAccuracy();
-    qDebug() << "Model accuracy " << model_accuracy;
 
-
+    emit setModelAccuracy(model_accuracy);
     emit setPredictedIrisType(predicted_type);
     emit setIsLearning(false);
 
@@ -170,15 +151,13 @@ void Model::onSetPlotBuildingFeatures(const FeatureType &first_feature, const Fe
 
 void Model::onAddPredictionFeature(const FeatureType &feature) {
 
-    qDebug() << "Added feature ";
     prediction_featrues.push_back(feature);
 
 }
 
 void Model::onRemovePredictionFeature(const FeatureType &feature) {
 
-    qDebug() << "trying remove feature ";
-    qDebug() << "removed feature " << prediction_featrues.removeIf([feature](const FeatureType& f){ return f == feature; });
+    prediction_featrues.removeIf([feature](const FeatureType& f){ return f == feature; });
 
 }
 
@@ -356,7 +335,6 @@ double Model::calculateDistance(const IrisData& prediction_iris_data, const Iris
 
     for (auto& feature : prediction_featrues) {
 
-        //qDebug() << "inside calculate distance " << prediction_iris_data.getId() << " " << dataset_iris_data.getId();
         sum += std::pow(std::abs(prediction_iris_data.getFeatureValue(feature) - dataset_iris_data.getFeatureValue(feature)), minkowski_metric_param);
 
     }

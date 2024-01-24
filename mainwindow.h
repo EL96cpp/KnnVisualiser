@@ -41,6 +41,7 @@ signals:
 public slots:
     void onSetIsLearning(const bool& is_learning);
     void onSetPredictedIrisType(const IrisType& predicted_type);
+    void onSetModelAccuracy(const double& model_accuracy);
 
 private slots:
     void on_kernelComboBox_currentTextChanged(const QString &arg1);
