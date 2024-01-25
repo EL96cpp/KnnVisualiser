@@ -404,7 +404,7 @@ void Plot::prepareAxesMarkingValues() {
 
     //Set Y axis plot marking values
 
-    float y_sepal_width_text = sepal_width_min - 0.5;
+    float y_sepal_width_text = sepal_width_min + 0.5;
     int y_sepal_width_counter = 1;
 
     while (y_sepal_width_counter < (sepal_width_max - sepal_width_min)/0.5) {
@@ -430,7 +430,7 @@ void Plot::prepareAxesMarkingValues() {
     }
 
 
-    float y_petal_length_text = petal_length_min - 0.5;
+    float y_petal_length_text = petal_length_min + 0.5;
     int y_petal_length_counter = 1;
 
     while (y_petal_length_counter < (petal_length_max - petal_length_min)/0.5) {

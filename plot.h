@@ -8,6 +8,7 @@
 #include <QGraphicsLineItem>
 #include <QGraphicsTextItem>
 #include <QGraphicsEllipseItem>
+#include <QGraphicsPolygonItem>
 #include <QBrush>
 #include <QPen>
 #include <QColor>
@@ -48,6 +49,8 @@ private:
     QGraphicsLineItem* y_axis;
     QGraphicsTextItem* x_axis_text;
     QGraphicsTextItem* y_axis_text;
+    QGraphicsPolygonItem* x_axis_arrow;
+    QGraphicsPolygonItem* y_axis_arrow;
 
     QGraphicsTextItem* setosa_legend_text;
     QGraphicsTextItem* versicolor_legend_text;
