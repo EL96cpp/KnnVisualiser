@@ -22,7 +22,7 @@ Plot::Plot(QObject *parent) : QObject{parent},
     x_axis->setPen(big_axis_pen);
     y_axis->setPen(big_axis_pen);
 
-    x_axis_text->setPos(300, 575);
+    x_axis_text->setPos(300, 580);
     y_axis_text->setPos(50 - this->y_axis_text->boundingRect().width()/2, 15);
 
     scene->addItem(main_rect);
@@ -57,7 +57,7 @@ void Plot::setAxesTexts(const QString &x_axis_text, const QString &y_axis_text) 
 
     this->x_axis_text->setPlainText(x_axis_text);
     this->y_axis_text->setPlainText(y_axis_text);
-    this->x_axis_text->setPos(300 - this->x_axis_text->boundingRect().width()/2, 575);
+    this->x_axis_text->setPos(300 - this->x_axis_text->boundingRect().width()/2, 580);
     this->y_axis_text->setPos(50 - this->y_axis_text->boundingRect().width()/2, 15);
 
     if (x_axis_text == "Sepal length") {
@@ -118,7 +118,6 @@ void Plot::setAxesTexts(const QString &x_axis_text, const QString &y_axis_text) 
 
     }
 
-    qDebug() << "Set " << x_axis_text << " " << y_axis_text;
 
     setXAxisMarkingValues(x_axis_text);
     setYAxisMarkingValues(y_axis_text);
@@ -167,7 +166,7 @@ void Plot::setXAxisMarkingValues(const QString &feature) {
 
         for (int i = 0; i < sepal_length_x_axis_lines.size(); ++i) {
 
-            sepal_length_x_axis_texts[i]->setVisible(false);
+            sepal_length_x_axis_lines[i]->setVisible(false);
             sepal_length_x_axis_texts[i]->setVisible(false);
 
         }
@@ -248,7 +247,7 @@ void Plot::setYAxisMarkingValues(const QString &feature) {
 
         for (int i = 0; i < sepal_width_y_axis_lines.size(); ++i) {
 
-            sepal_width_y_axis_texts[i]->setVisible(false);
+            sepal_width_y_axis_lines[i]->setVisible(false);
             sepal_width_y_axis_texts[i]->setVisible(false);
 
         }
@@ -419,8 +418,6 @@ void Plot::prepareAxesMarkingValues() {
         y_petal_length_text += 0.5;
         ++y_petal_length_counter;
 
-        qDebug() << "p l " << petal_length_y_axis_lines.size() << " " << petal_length_y_axis_texts.size();
-
     }
 
 
@@ -448,16 +445,6 @@ void Plot::prepareAxesMarkingValues() {
         ++y_petal_width_counter;
 
     }
-
-
-    qDebug() << "check sizes";
-    qDebug() << sepal_length_x_axis_lines.size() << " " << sepal_length_x_axis_texts.size();
-    qDebug() << sepal_width_x_axis_lines.size() << " " << sepal_width_x_axis_texts.size();
-    qDebug() << petal_length_x_axis_lines.size() << " " << petal_length_x_axis_texts.size();
-
-    qDebug() << sepal_width_y_axis_lines.size() << " " << sepal_width_y_axis_texts.size();
-    qDebug() << petal_length_y_axis_lines.size() << " " << petal_length_y_axis_texts.size();
-    qDebug() << petal_width_y_axis_lines.size() << " " << petal_width_y_axis_texts.size();
 
 }
 
