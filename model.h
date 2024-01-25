@@ -14,7 +14,6 @@
 
 #include "irisdata.h"
 #include "distancedata.h"
-#include "cvdistancedata.h"
 
 
 class Model : public QObject

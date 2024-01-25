@@ -22,8 +22,6 @@ set(PROJECT_SOURCES
         model.h
         distancedata.cpp
         distancedata.h
-        cvdistancedata.cpp
-        cvdistancedata.h
         plot.cpp
         plot.h
         Images.qrc
