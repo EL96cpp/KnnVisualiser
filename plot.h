@@ -49,6 +49,13 @@ private:
     QGraphicsTextItem* x_axis_text;
     QGraphicsTextItem* y_axis_text;
 
+    QGraphicsTextItem* setosa_legend_text;
+    QGraphicsTextItem* versicolor_legend_text;
+    QGraphicsTextItem* virginica_legend_text;
+    QGraphicsRectItem* setosa_legend_rect;
+    QGraphicsRectItem* versicolor_legend_rect;
+    QGraphicsRectItem* virginica_legend_rect;
+
     QVector<QGraphicsLineItem*> sepal_length_x_axis_lines;
     QVector<QGraphicsLineItem*> sepal_width_x_axis_lines;
     QVector<QGraphicsLineItem*> petal_length_x_axis_lines;
@@ -85,7 +92,7 @@ private:
     float y_axis_max;
 
     int plot_point_size = 8;
-    int plot_prediction_point_size = 10;
+    int plot_prediction_point_size = 12;
 
     float prediction_point_x = 0.0;
     float prediction_point_y = 0.0;

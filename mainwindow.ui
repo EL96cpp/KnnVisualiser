@@ -6,19 +6,19 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1340</width>
+    <width>1400</width>
     <height>840</height>
    </rect>
   </property>
   <property name="sizePolicy">
-   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+   <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
     <horstretch>134</horstretch>
     <verstretch>0</verstretch>
    </sizepolicy>
   </property>
   <property name="minimumSize">
    <size>
-    <width>1340</width>
+    <width>1400</width>
     <height>840</height>
    </size>
   </property>
@@ -45,13 +45,25 @@ background-image: url(:/background.jpg);
      <verstretch>0</verstretch>
     </sizepolicy>
    </property>
+   <property name="minimumSize">
+    <size>
+     <width>1400</width>
+     <height>0</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>1400</width>
+     <height>16777215</height>
+    </size>
+   </property>
    <property name="styleSheet">
     <string notr="true"/>
    </property>
    <widget class="QGroupBox" name="predictionGroupBox">
     <property name="geometry">
      <rect>
-      <x>790</x>
+      <x>860</x>
       <y>60</y>
       <width>511</width>
       <height>700</height>
@@ -899,7 +911,7 @@ font: 9pt ;</string>
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-    <widget class="QWidget" name="">
+    <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
        <x>50</x>
@@ -1058,9 +1070,9 @@ font: 12pt ;</string>
    <widget class="QGraphicsView" name="graphicsView">
     <property name="geometry">
      <rect>
-      <x>50</x>
+      <x>20</x>
       <y>60</y>
-      <width>700</width>
+      <width>800</width>
       <height>700</height>
      </rect>
     </property>
@@ -1072,7 +1084,7 @@ font: 12pt ;</string>
     </property>
     <property name="minimumSize">
      <size>
-      <width>700</width>
+      <width>800</width>
       <height>700</height>
      </size>
     </property>

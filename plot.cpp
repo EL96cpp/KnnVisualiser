@@ -1,15 +1,31 @@
 #include "plot.h"
 
+/*
+QGraphicsRectItem* legend_rect;
+QGraphicsTextItem* setosa_legend_text;
+QGraphicsTextItem* versicolor_legend_text;
+QGraphicsTextItem* virginica_legend_text;
+QGraphicsRectItem* setosa_legend_rect;
+QGraphicsRectItem* versicolor_legend_rect;
+QGraphicsRectItem* virginica_legend_rect;
+*/
+
 Plot::Plot(QObject *parent) : QObject{parent},
                               scene(new QGraphicsScene(this)),
                               added_dataset_points(false),
-                              main_rect(new QGraphicsRectItem(0, 0, 600, 600)),
+                              main_rect(new QGraphicsRectItem(0, 0, 750, 650)),
+                              setosa_legend_text(new QGraphicsTextItem("Setosa")),
+                              versicolor_legend_text(new QGraphicsTextItem("Versicolor")),
+                              virginica_legend_text(new QGraphicsTextItem("Virginica")),
+                              setosa_legend_rect(new QGraphicsRectItem(700, 57, 16, 16)),
+                              versicolor_legend_rect(new QGraphicsRectItem(700, 125, 16, 16)),
+                              virginica_legend_rect(new QGraphicsRectItem(700, 193, 16, 16)),
                               prediction_plot_point(new QGraphicsEllipseItem),
                               x_axis(new QGraphicsLineItem(50, 50, 50, 550)),
                               y_axis(new QGraphicsLineItem(50, 550, 550, 550)),
                               x_axis_text(new QGraphicsTextItem),
                               y_axis_text(new QGraphicsTextItem),
-                              main_rect_brush(QColor(188, 255, 255), Qt::SolidPattern),
+                              main_rect_brush(QColor(255, 255, 255), Qt::SolidPattern),
                               big_axis_pen(QColor(0, 0, 0), 1.5, Qt::SolidLine),
                               small_axis_pen(QColor(0, 0, 0), 0.7, Qt::SolidLine),
                               points_outline_pen(QColor(0, 63, 65)) {
@@ -17,12 +33,21 @@ Plot::Plot(QObject *parent) : QObject{parent},
     main_rect->setBrush(main_rect_brush);
     main_rect->setPen(Qt::NoPen);
 
+    setosa_legend_rect->setBrush(QBrush(QColor(239, 28, 28), Qt::SolidPattern));
+    versicolor_legend_rect->setBrush(QBrush(QColor(85, 234, 0), Qt::SolidPattern));
+    virginica_legend_rect->setBrush(QBrush(QColor(0, 92, 255), Qt::SolidPattern));
+
+    setosa_legend_text->setPos(650 - setosa_legend_text->boundingRect().width()/2, 52);
+    versicolor_legend_text->setPos(650 - versicolor_legend_text->boundingRect().width()/2, 120);
+    virginica_legend_text->setPos(650 - virginica_legend_text->boundingRect().width()/2, 188);
+
+
     points_outline_pen.setWidth(2);
 
     x_axis->setPen(big_axis_pen);
     y_axis->setPen(big_axis_pen);
 
-    x_axis_text->setPos(300, 580);
+    x_axis_text->setPos(300, 600);
     y_axis_text->setPos(50 - this->y_axis_text->boundingRect().width()/2, 15);
 
     scene->addItem(main_rect);
@@ -30,6 +55,16 @@ Plot::Plot(QObject *parent) : QObject{parent},
     scene->addItem(y_axis);
     scene->addItem(x_axis_text);
     scene->addItem(y_axis_text);
+
+
+    scene->addItem(setosa_legend_rect);
+    scene->addItem(versicolor_legend_rect);
+    scene->addItem(virginica_legend_rect);
+
+    scene->addItem(setosa_legend_text);
+    scene->addItem(versicolor_legend_text);
+    scene->addItem(virginica_legend_text);
+
 
     for (int i = 0; i < 150; ++i) {
 
@@ -57,7 +92,7 @@ void Plot::setAxesTexts(const QString &x_axis_text, const QString &y_axis_text) 
 
     this->x_axis_text->setPlainText(x_axis_text);
     this->y_axis_text->setPlainText(y_axis_text);
-    this->x_axis_text->setPos(300 - this->x_axis_text->boundingRect().width()/2, 580);
+    this->x_axis_text->setPos(300 - this->x_axis_text->boundingRect().width()/2, 600);
     this->y_axis_text->setPos(50 - this->y_axis_text->boundingRect().width()/2, 15);
 
     if (x_axis_text == "Sepal length") {
