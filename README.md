@@ -4,6 +4,9 @@ KnnVisualiser application demonstrates how K-Nearest Neighbours classification w
 Iris dataset includes 150 rows of data with 3 different types of irises (Iris-setosa, Iris-versicolor, Iris-virginica). Each row of data includes 4 features: sepal length, sepal width, petal length and petal width. You can choose which of four features you whant to use in prediction. Minimum number of used features is 2 (It must be features selected as plot axes, so application can visualise data correctly).
 ## Plot 
 2D scatter-plot demonstrates dataset points of three colors (Iris-setosa - red, Iris-versicolor - green, Iris-virginica - blue) and point with data, entered by user. Each time you predict iris type, prediction point is painted in corresponding iris type color. 
+## UI example
+![Снимок экрана от 2024-04-22 15-30-34](https://github.com/EL96cpp/KnnVisualiser/assets/120955824/94427061-ce7a-4a73-8fce-c881161e8122)
+
 ## Accuracy 
 Each time you predict iris type, application randomly splits data into train and test datasets (20% for train and 80% for test dataset). Test dataset is balanced: it includes 10 data rows for each type of flower.
 ## Model parameters
